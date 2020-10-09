@@ -14,4 +14,4 @@ Vamos a seguir un desarrollo modular, cada modulo debe seguir al patrón de dise
 Para contribuir por favor leer el archivo [CONTRIBUTING](/CONTRIBUTING.md)
 
 ### Estado actual
-Para conocer el estado actual del sprint, [click](/projects)
+Para conocer el estado actual del sprint, [click](../../projects)
