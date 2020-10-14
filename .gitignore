@@ -3,3 +3,6 @@ tags
 bin
 .project
 .settings
+*.class
+*.jar
+.metadata
