@@ -1,1 +1,8 @@
 tags
+.classpath
+bin
+.project
+.settings
+*.class
+*.jar
+.metadata
