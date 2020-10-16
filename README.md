@@ -5,8 +5,9 @@ Diseñado para facilitar la gestión de los activos y la facturación de las emp
 La arquitectura es modular, cada módulo debe seguir al patrón de diseño MVC (Modelo, Vista y Controlador).
 
 ### Tecnologías utilizadas
-* Java (OpenJDK > 8)
-* PostgreSQL 12
+* [Java (OpenJDK > 8)](https://jdk.java.net/14/)
+* [PostgreSQL 12](https://www.postgresql.org/download/)
+* [JDBC](https://jdbc.postgresql.org/)
 * Swing
 
 
