@@ -6,3 +6,4 @@ bin
 *.class
 *.jar
 .metadata
+*.properties
