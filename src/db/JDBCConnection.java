@@ -18,18 +18,19 @@ public class JDBCConnection {
 	
 	public JDBCConnection() {
 		try {
-			props.load(new FileInputStream(new File("db.properties")));
+			FileReader reader = new FileReader("src/db/db.properties");
+			props.load(reader);
 			
 			dbHost = props.getProperty("DB_HOST");
 			dbUser = props.getProperty("DB_USER");
-			dbName = props.getProperty("BD");
+			dbName = props.getProperty("DB_NAME");
 			dbPassword = props.getProperty("USER_PASSWORD");
 			
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
 		
-		dbUrl = String.format("jdbc:postgresql://%s:5243/%s?user=%s&password=%s", dbHost, dbName, dbUser, dbPassword);
+		dbUrl = String.format("jdbc:postgresql://%s:5432/%s?user=%s&password=%s", dbHost, dbName, dbUser, dbPassword);
 		
 		try {
 			getConnection(dbUrl);
