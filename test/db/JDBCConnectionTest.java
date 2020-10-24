@@ -12,5 +12,12 @@ class JDBCConnectionTest {
 		JDBCConnection conect = new JDBCConnection();
 		assertNotNull(conect);
 	}
-
+	
+	@Test
+	void testQuery() {
+		assertNotNull(
+				JDBCConnection.getRecords(JDBCConnection.getConnection(),
+				"select * from clientes;"
+				));
+	}
 }

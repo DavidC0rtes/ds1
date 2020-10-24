@@ -14,6 +14,7 @@ public class JDBCConnection {
 	private String dbUser;
 	private String dbHost;
 	private String dbUrl;
+	private static Connection conn;
 	
 	Properties props = new Properties();
 	
@@ -34,20 +35,15 @@ public class JDBCConnection {
 		dbUrl = String.format("jdbc:postgresql://%s:5432/%s?user=%s&password=%s", dbHost, dbName, dbUser, dbPassword);
 		
 		try {
-			getConnection(dbUrl);
+			conn = DriverManager.getConnection(dbUrl);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 	
-	/**
-	 * Retorna la conexión con la base de datos.
-	 * @param String url, url que debe utilizar el driver para conectarse.
-	 * @return Connection
-	 * @throws SQLException
-	 */
-	private static Connection getConnection(String url) throws SQLException {
-		return DriverManager.getConnection(url);
+	public static Connection getConnection() {
+		// TODO Auto-generated method stub
+		return conn;
 	}
 	
 	/**
@@ -67,5 +63,8 @@ public class JDBCConnection {
 		}
 		return rs;
 	}
+
+
+
 	
 }
