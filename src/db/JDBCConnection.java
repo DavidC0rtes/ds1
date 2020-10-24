@@ -2,8 +2,9 @@ package db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import java.sql.Statement;
 import java.io.*;
 import java.util.Properties;
 
@@ -39,7 +40,32 @@ public class JDBCConnection {
 		}
 	}
 	
+	/**
+	 * Retorna la conexión con la base de datos.
+	 * @param String url, url que debe utilizar el driver para conectarse.
+	 * @return Connection
+	 * @throws SQLException
+	 */
 	private static Connection getConnection(String url) throws SQLException {
 		return DriverManager.getConnection(url);
 	}
+	
+	/**
+	 * Retorna el resultado de una consulta a la bd.
+	 * @param Connection conn, objeto que contiene la conexión con la bd.
+	 * @param String query
+	 * @return ResultSet | Null
+	 * @throws SQLException
+	 */
+	public static ResultSet getRecords(Connection conn, String query) {
+		ResultSet rs = null;
+		try {
+			Statement recordStatement = conn.createStatement();
+			rs = recordStatement.executeQuery(query);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rs;
+	}
+	
 }
