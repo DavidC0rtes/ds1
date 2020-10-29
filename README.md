@@ -9,10 +9,10 @@ La arquitectura es modular, cada módulo debe seguir al patrón de diseño MVC (
 * [PostgreSQL 12](https://www.postgresql.org/download/)
 * [JDBC](https://jdbc.postgresql.org/)
 * Swing
-
+* [JUnit 5](https://ju)nit.org/junit5/docs/current/user-guide/)
 
 ### Contribución
-Para contribuir por favor leer el archivo [CONTRIBUTING](/CONTRIBUTING.md)
+Para contribuir **por favor leer** el archivo [CONTRIBUTING](/CONTRIBUTING.md)
 
 ### Estado actual
 Para conocer el estado actual del sprint, [click](../../projects)
