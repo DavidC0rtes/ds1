@@ -1,0 +1,13 @@
+name: Greetings
+
+on: [pull_request, issues]
+
+jobs:
+  greeting:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/first-interaction@v1
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        issue-message: 'Recuerda leer el archivo CONTRIBUTING.md para saber como sacar la rama en dónde se va a trabajar'
+        pr-message: 'Antes de combinar la rama, asegurarse de que (1) se hicieron las pruebas unitarias correspondientes y (2) se está haciendo PR hacia develop, nunca hacia master'
