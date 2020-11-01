@@ -16,7 +16,7 @@ public class Main {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
 
-            	new Login().setVisible(true);
+            	new Register().setVisible(true);
 
             }
         });
