@@ -80,8 +80,7 @@ public class JDBCConnection {
 		try {
 			PreparedStatement updateStatement = conn.prepareStatement(query);
 			
-			for( int i = 0; i < params.length; i++) 
-			{
+			for( int i = 0; i < params.length; i++) {
 				updateStatement.setString(i+1, params[i]);
 			}
 			rows = updateStatement.executeUpdate();
