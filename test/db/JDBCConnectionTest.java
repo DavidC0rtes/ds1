@@ -16,8 +16,13 @@ class JDBCConnectionTest {
 	@Test
 	void testQuery() {
 		assertNotNull(
-				JDBCConnection.getRecords(JDBCConnection.getConnection(),
-				"select * from clientes;"
-				));
+				JDBCConnection.getRecords("select * from clientes;"));
+	}
+	
+	@Test
+	void testInsertRole() {
+		String[] params = {"gerente"};
+		String query = "insert into roles (nombre_rol) values (?)";
+		assertEquals(1, JDBCConnection.updateRecord(query, params));
 	}
 }
