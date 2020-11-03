@@ -1,5 +1,6 @@
 package user.register;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import db.JDBCConnection;
@@ -10,10 +11,10 @@ import db.JDBCConnection;
  */
 public class User {
 	private int cedula;
-	private int idRol;
 	
 	private String rol;
-	private String[] nombre;
+	private String primerNombre;
+	private String segundoNombre;
 	private String email;
 	private String password;
 
@@ -46,12 +47,12 @@ public class User {
 	 * @return true | false
 	 * @throws SQLException
 	 */
-	public boolean roleIsValid(int idRol) throws SQLException {
+	public boolean roleIsValid(String rol) throws SQLException {
 		String query =
 				"SELECT * "
 				+ "FROM roles"
-				+ "WHERE id ="
-				+ idRol;
+				+ "WHERE nombre ="
+				+ rol;
 		
 		if (JDBCConnection.getRecords(query).isBeforeFirst()) {
 			return true;
@@ -71,19 +72,19 @@ public class User {
 		 * Antes de hacer persistentes los datos, hay que hacer
 		 * ciertas validaciones.
 		 */
-		if (!userExists(cedula) && roleIsValid(idRol) ) {
+		if (!userExists(cedula) && roleIsValid(rol) ) {
 			String createUserSQL = 
 					"INSERT INTO usuarios"
 					+ "VALUES (?,?,?,?,?,?,?)";
 			
 			String[] userParams = {
 						Integer.toString(cedula),
-						nombre[0],
-						nombre[1],
+						primerNombre,
+						segundoNombre,
 						password,
 						email,
-						Integer.toString(1),
-						Integer.toString(idRol)
+						Integer.toString(1), // Campo activo
+						Integer.toString(getIdRol(rol))
 				};
 			
 			JDBCConnection.updateRecord(createUserSQL, userParams);
@@ -91,28 +92,33 @@ public class User {
 		
 	}
 	
+	private int getIdRol(String rol) throws SQLException {
+		ResultSet rs = JDBCConnection.getRecords("select id from rol where id="+rol);
+		return rs.getInt(1);
+	}
+	
 	/** setters **/
 	public void setCedula(int cedula) {this.cedula = cedula;}
 	
 	public void setEmail(String email) {this.email = email;}
 	
-	public void setName(String[] nombre) {this.nombre = nombre;}
+	public void setPrimerNombre(String nombre) {this.primerNombre = nombre;}
+	
+	public void setSegundoNombre(String nombre) {this.segundoNombre = nombre;}
 	
 	public void setPassword(String password) {this.password = password;}
 	
-	public void setIDRol(int idRol) {this.idRol = idRol;}
+	public void setRol(String Rol) {this.rol = Rol;}
 	
 	
 	/* getters */
-	public int getID() {return idRol;}
+	//public int getID() {return idRol;}
 	
 	public int getCC() {return cedula;}
 	
-	public int getIdRol() {return idRol;}
+	//public int getIdRol() {return idRol;}
 	
 	public String getEmail() {return email;}
-	
-	public String[] getName() {return nombre;}
 	
 	public String getPassword() {return password;}
 }
