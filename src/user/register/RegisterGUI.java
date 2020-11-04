@@ -189,6 +189,7 @@ public class RegisterGUI extends JFrame {
 
 		public void mouseClicked(MouseEvent arg0) {
 			if (control.datosCompletos(datos)) {
+				
 				JOptionPane.showMessageDialog(null, "Usuario creado correctamente.");
 			}
 			else {

@@ -1,5 +1,6 @@
 package user.register;
 
+import java.sql.SQLException;
 import java.util.*;
 
 public class ControlRegister {
@@ -10,7 +11,6 @@ public class ControlRegister {
 	}
 	
 	public boolean datosCompletos(HashMap<String, String> datos) {
-		System.out.println(datos);
 		if ((datos.containsKey("primer_nombre"))
 				&& (datos.containsKey("primer_apellido"))
 				&& (datos.containsKey("cedula"))
@@ -18,10 +18,23 @@ public class ControlRegister {
 				&& (datos.containsKey("email"))
 				&& datos.containsKey("rol")) {
 			
-			datos.putIfAbsent("segundo_nombre", null);
-			datos.putIfAbsent("segundo_apellido", null);
+			
+			if (!datos.containsKey("segundo_nombre")) {
+				datos.put("segundo_nombre", "null");
+			}
+			
+			if (!datos.containsKey("segundo_apellido")) {
+				datos.put("segundo_apellido", "null");
+			}
 			
 			datos.forEach((k,v) -> setData(k,v));
+			
+			try {
+				usuario.createUser();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
 			return true;
 		}
 		
@@ -40,6 +53,7 @@ public class ControlRegister {
 		case "password":
 			usuario.setPassword(value);
 		case "primer_apellido":
+			usuario.setPrimerApellido(value);
 			break;
 		case "email":
 			usuario.setEmail(value);
