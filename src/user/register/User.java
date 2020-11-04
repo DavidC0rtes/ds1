@@ -15,8 +15,15 @@ public class User {
 	private String rol;
 	private String primerNombre;
 	private String segundoNombre;
+	private String primerApellido;
+	private String segundoApellido;
 	private String email;
 	private String password;
+	private JDBCConnection conn;
+	
+	public User() {
+		conn = new JDBCConnection();
+	}
 
 	
 	/**
@@ -34,7 +41,7 @@ public class User {
 				+ "WHERE num_documento = "
 				+ cedula;
 		
-		if (!JDBCConnection.getRecords(query).isBeforeFirst()) {
+		if (!conn.getRecords(query).isBeforeFirst()) {
 			return false;
 		}
 		
@@ -48,13 +55,10 @@ public class User {
 	 * @throws SQLException
 	 */
 	public boolean roleIsValid(String rol) throws SQLException {
-		String query =
-				"SELECT * "
-				+ "FROM roles"
-				+ "WHERE nombre ="
-				+ rol;
+		String query ="SELECT * FROM roles WHERE nombre_rol = ?";
+		String[] params = {rol};
 		
-		if (JDBCConnection.getRecords(query).isBeforeFirst()) {
+		if (conn.getRecords(query, params).isBeforeFirst()) {
 			return true;
 		}
 		return false;
@@ -74,27 +78,32 @@ public class User {
 		 */
 		if (!userExists(cedula) && roleIsValid(rol) ) {
 			String createUserSQL = 
-					"INSERT INTO usuarios"
-					+ "VALUES (?,?,?,?,?,?,?)";
+					"INSERT "
+					+ "INTO usuarios(id,num_documento,primer_nombre,primer_apellido,password,email,id_rol) "
+					+ "VALUES(?,?,?,?,?,?,?)";
 			
 			String[] userParams = {
+						Integer.toString(1),
 						Integer.toString(cedula),
 						primerNombre,
-						segundoNombre,
+						primerApellido,
 						password,
 						email,
-						Integer.toString(1), // Campo activo
 						Integer.toString(getIdRol(rol))
 				};
 			
-			JDBCConnection.updateRecord(createUserSQL, userParams);
+			System.out.println(java.util.Arrays.toString(userParams));
+			conn.updateRecord(createUserSQL, userParams);
 		}
 		
 	}
 	
 	private int getIdRol(String rol) throws SQLException {
-		ResultSet rs = JDBCConnection.getRecords("select id from rol where id="+rol);
-		return rs.getInt(1);
+		ResultSet rs = conn.getRecords("select id from roles where nombre_rol='"+rol+"'");
+		if(rs.next()) {
+			return rs.getInt("id");
+		}
+		return 0;
 	}
 	
 	/** setters **/
@@ -105,6 +114,8 @@ public class User {
 	public void setPrimerNombre(String nombre) {this.primerNombre = nombre;}
 	
 	public void setSegundoNombre(String nombre) {this.segundoNombre = nombre;}
+	
+	public void setPrimerApellido(String apellido) {this.primerApellido = apellido;}
 	
 	public void setPassword(String password) {this.password = password;}
 	
