@@ -79,11 +79,10 @@ public class User {
 		if (!userExists(cedula) && roleIsValid(rol) ) {
 			String createUserSQL = 
 					"INSERT "
-					+ "INTO usuarios(id,num_documento,primer_nombre,primer_apellido,password,email,id_rol) "
-					+ "VALUES(?,?,?,?,?,?,?)";
+					+ "INTO usuarios(num_documento,primer_nombre,primer_apellido,password,email,id_rol) "
+					+ "VALUES(?,?,?,?,?,?)";
 			
 			String[] userParams = {
-						Integer.toString(1),
 						Integer.toString(cedula),
 						primerNombre,
 						primerApellido,
@@ -91,11 +90,8 @@ public class User {
 						email,
 						Integer.toString(getIdRol(rol))
 				};
-			
-			System.out.println(java.util.Arrays.toString(userParams));
 			conn.updateRecord(createUserSQL, userParams);
 		}
-		
 	}
 	
 	private int getIdRol(String rol) throws SQLException {

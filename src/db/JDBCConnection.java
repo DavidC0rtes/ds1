@@ -96,13 +96,12 @@ public class JDBCConnection {
 			PreparedStatement updateStatement = conn.prepareStatement(query);
 			for( int i = 0; i < params.length; i++) {
 				
-				if (params[i].chars().allMatch( Character::isDigit )) {
+				if (params[i].chars().allMatch( Character::isDigit )) {	
 					updateStatement.setInt(i+1, Integer.parseInt(params[i]));
 				}
 				else {
 					updateStatement.setString(i+1, params[i]);
 				}
-				
 			}
 			rows = updateStatement.executeUpdate();
 			
