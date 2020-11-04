@@ -52,6 +52,7 @@ public class ControlRegister {
 			break;
 		case "password":
 			usuario.setPassword(value);
+			break;
 		case "primer_apellido":
 			usuario.setPrimerApellido(value);
 			break;
@@ -60,11 +61,13 @@ public class ControlRegister {
 			break;
 		case "rol":
 			usuario.setRol(value);
+			break;
 		case "segundo_nombre":
 			usuario.setSegundoNombre(value);
 			break;
 		case "segundo_apellido":
 			usuario.setSegundoNombre(value);
+			break;
 		}
 	}
 }
