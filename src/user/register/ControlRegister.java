@@ -11,34 +11,18 @@ public class ControlRegister {
 	}
 	
 	public boolean datosCompletos(HashMap<String, String> datos) {
-		if ((datos.containsKey("primer_nombre"))
-				&& (datos.containsKey("primer_apellido"))
-				&& (datos.containsKey("cedula"))
-				&& (datos.containsKey("password"))
-				&& (datos.containsKey("email"))
-				&& datos.containsKey("rol")) {
-			
-			
-			if (!datos.containsKey("segundo_nombre")) {
-				datos.put("segundo_nombre", "null");
-			}
-			
-			if (!datos.containsKey("segundo_apellido")) {
-				datos.put("segundo_apellido", "null");
-			}
-			
-			datos.forEach((k,v) -> setData(k,v));
-			
-			try {
-				usuario.createUser();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			
-			return true;
+		if (datos.containsValue("")) {
+			return false;
 		}
 		
-		return false;
+		datos.forEach((k,v) -> setData(k,v));
+			
+		try {
+			usuario.createUser();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return true;
 	}
 	
 	private void setData(String field, String value) {
