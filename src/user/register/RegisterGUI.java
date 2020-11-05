@@ -4,19 +4,21 @@ import java.awt.*;
 import java.awt.event.*;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+
 import java.util.*;
 
 public class RegisterGUI extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private Container mainContenedor;
-	private JPanel mainPanel, centerPanel;
+	private JPanel mainPanel, leftPanel, rightPanel, centerPanel;
 	
 	private JButton registerButton;
 	
 	private JLabel titleLabel;
-	private JLabel nombresLabel, firstname1Label, firstname2Label;
-	private JLabel apellidosLabel, lastname1Label, lastname2Label;
+	private JLabel nombre1Label, nombre2Label;
+	private JLabel apellidosLabel, apellido1Label, apellido2Label;
 	private JLabel emailLabel, cedulaLabel, rolLabel, passwordLabel;
 	
 	private JTextField primerNombreTxt, segundoNombreTxt;
@@ -54,10 +56,14 @@ public class RegisterGUI extends JFrame {
 		titleLabel = new JLabel();
 		titleLabel.setText("Registro de nuevos usuarios");
 		titleLabel.setHorizontalAlignment(JLabel.CENTER);
+		titleLabel.setFont(new Font("DejaVu Sans", Font.PLAIN, 20));
+		titleLabel.setPreferredSize(new Dimension(100,60));
 		mainPanel.add(titleLabel, BorderLayout.NORTH);
 		
 		registerButton = new JButton();
 		registerButton.setText("Registrar");
+		registerButton.setBackground(Color.lightGray);
+		
 		registerButton.addMouseListener(escuchaM);
 		JPanel southPanel = new JPanel(new FlowLayout());
 		southPanel.add(registerButton);
@@ -81,62 +87,95 @@ public class RegisterGUI extends JFrame {
 	private void setupForm() {
 		centerPanel = new JPanel(new GridLayout(4,1));
 		
-		nombresLabel = new JLabel("Nombres");
+		initLeftPanel();
+		initRightPanel();
+		
+		mainPanel.add(rightPanel, BorderLayout.EAST);
+		mainPanel.add(leftPanel, BorderLayout.WEST);
+	}
+	
+	private void initLeftPanel() {
+		leftPanel = new JPanel();
+		leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
+		leftPanel.setFont(new Font("DejaVu Sans", Font.PLAIN, 12));
+		
+		nombre1Label = new JLabel("Primer nombre");
 		primerNombreTxt = new JTextField();
 		primerNombreTxt.setPreferredSize(new Dimension(200,25));
-		segundoNombreTxt = new JTextField();
-		segundoNombreTxt.setPreferredSize(new Dimension(200, 25));
 		
-		apellidosLabel = new JLabel("Apellidos");
 		apellido1Txt = new JTextField();
 		apellido1Txt.setPreferredSize(new Dimension(200, 25));
-		apellido2Txt = new JTextField();
-		apellido2Txt.setPreferredSize(new Dimension(200, 25));
-		
-		cedulaLabel = new JLabel("Cédula");
-		cedulaTxt = new JTextField();
-		cedulaTxt.setPreferredSize(new Dimension(200,25));
-		
+		apellido1Label = new JLabel("Primer apellido");
+				
 		emailLabel = new JLabel("Email");
 		emailTxt = new JTextField();
 		emailTxt.setPreferredSize(new Dimension(200, 25));
-		
+				
 		passwordLabel = new JLabel("Contraseña");
 		passwordTxt = new JPasswordField();
 		passwordTxt.setPreferredSize(new Dimension(200, 25));
+
+		
+		leftPanel.add(nombre1Label);
+		leftPanel.add(primerNombreTxt);
+		leftPanel.add(Box.createRigidArea(new Dimension(0,5)));
+		
+		leftPanel.add(apellido1Label);
+		leftPanel.add(apellido1Txt);
+		leftPanel.add(Box.createRigidArea(new Dimension(0,5)));
+		
+		leftPanel.add(emailLabel);
+		leftPanel.add(emailTxt);
+		leftPanel.add(Box.createRigidArea(new Dimension(0,5)));
+		
+		leftPanel.add(passwordLabel);
+		leftPanel.add(passwordTxt);
+		leftPanel.add(Box.createRigidArea(new Dimension(0,5)));
+	}
+	
+	private void initRightPanel() {
+		rightPanel = new JPanel();
+		rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
+		rightPanel.setFont(new Font("DejaVu Sans", Font.PLAIN, 12));
+		
+		nombre2Label = new JLabel("Segundo nombre");
+		segundoNombreTxt = new JTextField();
+		segundoNombreTxt.setPreferredSize(new Dimension(200, 25));
+
+		
+		apellido2Txt = new JTextField();
+		apellido2Txt.setPreferredSize(new Dimension(200, 25));
+		apellido2Label = new JLabel("Segundo apellido");
+		
+		cedulaLabel = new JLabel("Cédula");
+		cedulaLabel.setHorizontalAlignment(SwingConstants.LEFT);
+		cedulaTxt = new JTextField();
+		cedulaTxt.setPreferredSize(new Dimension(200,25));
+
 		
 		rolLabel = new JLabel("Cargo");
 		rolComboBox = new JComboBox<String>(roles);
 		rolComboBox.setPreferredSize(new Dimension(200,25));
 		
 		
-		JPanel filaNombres = new JPanel(new FlowLayout(5,25,10));
-		filaNombres.add(nombresLabel);
-		filaNombres.add(primerNombreTxt);
-		filaNombres.add(segundoNombreTxt);
+		rightPanel.add(nombre2Label);
+		rightPanel.add(segundoNombreTxt);
+		rightPanel.add(Box.createRigidArea(new Dimension(0,5)));
 		
-		centerPanel.add(filaNombres);
+		rightPanel.add(apellido2Label);
+		rightPanel.add(apellido2Txt);
+		rightPanel.add(Box.createRigidArea(new Dimension(0,5)));
 		
-		JPanel filaApellidos = new JPanel(new FlowLayout(5,25,10));
-		filaApellidos.add(apellidosLabel);
-		filaApellidos.add(apellido1Txt);
-		filaApellidos.add(apellido2Txt);
-		centerPanel.add(filaApellidos);
+		rightPanel.add(cedulaLabel);
+		rightPanel.add(cedulaTxt);
+		rightPanel.add(Box.createRigidArea(new Dimension(0,5)));
 		
-		JPanel filaCedula = new JPanel(new FlowLayout(5,25,10));
-		filaCedula.add(cedulaLabel);
-		filaCedula.add(cedulaTxt);
-		filaCedula.add(emailLabel);
-		filaCedula.add(emailTxt);
-		centerPanel.add(filaCedula);
+		rightPanel.add(rolLabel);
+		rightPanel.add(rolComboBox);
+		rightPanel.add(Box.createRigidArea(new Dimension(0,5)));
 		
-		JPanel filaContraseña = new JPanel(new FlowLayout());
-		filaContraseña.add(rolLabel);
-		filaContraseña.add(rolComboBox);
-		filaContraseña.add(passwordLabel);
-		filaContraseña.add(passwordTxt);
-		
-		centerPanel.add(filaContraseña);
+		rightPanel.setAlignmentY(Component.LEFT_ALIGNMENT);
+
 	}
 	
 	/**
@@ -163,7 +202,7 @@ public class RegisterGUI extends JFrame {
 				JOptionPane.showMessageDialog(mainPanel, "Usuario creado correctamente.");
 			}
 			else {
-				JOptionPane.showMessageDialog(mainPanel, "Error creando al usuario.");
+				JOptionPane.showMessageDialog(mainPanel, "Hay campos sin rellenar.");
 			}
 		}
 
