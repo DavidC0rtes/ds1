@@ -10,7 +10,7 @@ public class RegisterGUI extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private Container mainContenedor;
-	private JPanel mainPanel, leftPanel, rightPanel, topPanel, southPanel, centerPanel;
+	private JPanel mainPanel, centerPanel;
 	
 	private JButton registerButton;
 	
@@ -52,14 +52,17 @@ public class RegisterGUI extends JFrame {
 		mainPanel.setLayout(new BorderLayout());
 		
 		titleLabel = new JLabel();
-		titleLabel.setText("Registro");
+		titleLabel.setText("Registro de nuevos usuarios");
 		titleLabel.setHorizontalAlignment(JLabel.CENTER);
 		mainPanel.add(titleLabel, BorderLayout.NORTH);
 		
 		registerButton = new JButton();
 		registerButton.setText("Registrar");
 		registerButton.addMouseListener(escuchaM);
-		mainPanel.add(registerButton, BorderLayout.SOUTH);
+		JPanel southPanel = new JPanel(new FlowLayout());
+		southPanel.add(registerButton);
+		
+		mainPanel.add(southPanel, BorderLayout.SOUTH);
 		
 		setupForm();
 		
@@ -80,80 +83,31 @@ public class RegisterGUI extends JFrame {
 		
 		nombresLabel = new JLabel("Nombres");
 		primerNombreTxt = new JTextField();
-		primerNombreTxt.setPreferredSize(new Dimension(100,20));
+		primerNombreTxt.setPreferredSize(new Dimension(200,25));
 		segundoNombreTxt = new JTextField();
-		segundoNombreTxt.setPreferredSize(new Dimension(100, 20));
-		
-		primerNombreTxt.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				datos.put("primer_nombre",primerNombreTxt.getText());
-			}
-		});
-		
-		segundoNombreTxt.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				datos.put("segundo_nombre",segundoNombreTxt.getText());
-			}
-		});
+		segundoNombreTxt.setPreferredSize(new Dimension(200, 25));
 		
 		apellidosLabel = new JLabel("Apellidos");
 		apellido1Txt = new JTextField();
-		apellido1Txt.setPreferredSize(new Dimension(100, 20));
+		apellido1Txt.setPreferredSize(new Dimension(200, 25));
 		apellido2Txt = new JTextField();
-		apellido2Txt.setPreferredSize(new Dimension(100, 20));
-		
-		apellido1Txt.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				datos.put("primer_apellido", apellido1Txt.getText());
-			}
-		});
-		
-		apellido2Txt.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				datos.put("segunado_apellido", apellido2Txt.getText());
-			}
-		});
-		
+		apellido2Txt.setPreferredSize(new Dimension(200, 25));
 		
 		cedulaLabel = new JLabel("Cédula");
 		cedulaTxt = new JTextField();
-		cedulaTxt.setPreferredSize(new Dimension(100,20));
-		
-		cedulaTxt.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				datos.put("cedula", cedulaTxt.getText());
-			}
-		});
+		cedulaTxt.setPreferredSize(new Dimension(200,25));
 		
 		emailLabel = new JLabel("Email");
 		emailTxt = new JTextField();
-		emailTxt.setPreferredSize(new Dimension(100, 20));
-		
-		emailTxt.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				datos.put("email", emailTxt.getText());
-			}
-		});
+		emailTxt.setPreferredSize(new Dimension(200, 25));
 		
 		passwordLabel = new JLabel("Contraseña");
 		passwordTxt = new JPasswordField();
-		passwordTxt.setPreferredSize(new Dimension(100, 20));
-		
-		passwordTxt.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				datos.put("password", String.valueOf(passwordTxt.getPassword()));
-			}
-		});
+		passwordTxt.setPreferredSize(new Dimension(200, 25));
 		
 		rolLabel = new JLabel("Cargo");
 		rolComboBox = new JComboBox<String>(roles);
-		rolComboBox.setPreferredSize(new Dimension(100,25));
-		
-		rolComboBox.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				datos.put("rol", rolComboBox.getSelectedItem().toString());
-			}
-		});
+		rolComboBox.setPreferredSize(new Dimension(200,25));
 		
 		
 		JPanel filaNombres = new JPanel(new FlowLayout(5,25,10));
@@ -185,15 +139,31 @@ public class RegisterGUI extends JFrame {
 		centerPanel.add(filaContraseña);
 	}
 	
+	/**
+	 * Obtiene los valores de todos los JTextFields de la interfaz
+	 * y los añade al HashMap para futuros calculos.
+	 */
+	private void getFields() {
+		datos.put("primer_nombre", primerNombreTxt.getText());
+		datos.put("segundo_nombre", segundoNombreTxt.getText());
+		datos.put("primer_apellido", apellido1Txt.getText());
+		datos.put("segundo_apellido", apellido2Txt.getText());
+		datos.put("cedula", cedulaTxt.getText());
+		datos.put("email", emailTxt.getText());
+		datos.put("password", String.valueOf(passwordTxt.getPassword()));
+		datos.put("rol", rolComboBox.getSelectedItem().toString());
+	}
+	
 	private class EscuchaMouse implements MouseListener {
 
 		public void mouseClicked(MouseEvent arg0) {
+			getFields();
 			if (control.datosCompletos(datos)) {
 				
-				JOptionPane.showMessageDialog(null, "Usuario creado correctamente.");
+				JOptionPane.showMessageDialog(mainPanel, "Usuario creado correctamente.");
 			}
 			else {
-				JOptionPane.showMessageDialog(null, "Error creando al usuario.");
+				JOptionPane.showMessageDialog(mainPanel, "Error creando al usuario.");
 			}
 		}
 
