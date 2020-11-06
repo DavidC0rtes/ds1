@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ds_project;
+package user.consulta.ds_project;
 import java.awt.event.*;
 import javax.swing.*;
 import java.beans.*;
