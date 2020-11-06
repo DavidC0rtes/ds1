@@ -5,6 +5,7 @@ import java.awt.event.*;
 
 import javax.swing.*;
 import javax.swing.border.Border;
+import javax.swing.plaf.FontUIResource;
 
 import java.util.*;
 
@@ -12,13 +13,13 @@ public class RegisterGUI extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private Container mainContenedor;
-	private JPanel mainPanel, leftPanel, rightPanel, centerPanel;
+	private JPanel mainPanel, leftPanel, rightPanel;
 	
 	private JButton registerButton;
 	
 	private JLabel titleLabel;
 	private JLabel nombre1Label, nombre2Label;
-	private JLabel apellidosLabel, apellido1Label, apellido2Label;
+	private JLabel apellido1Label, apellido2Label;
 	private JLabel emailLabel, cedulaLabel, rolLabel, passwordLabel;
 	
 	private JTextField primerNombreTxt, segundoNombreTxt;
@@ -29,6 +30,8 @@ public class RegisterGUI extends JFrame {
 	private JComboBox<String> rolComboBox;
 	private String[] roles = {"gerente", "administrador", "operador"};
 	private HashMap<String,String> datos = new HashMap<String,String>();
+	
+	private static final Font FUENTE = new Font("DejaVu Sans", Font.PLAIN, 12);
 	
 	private EscuchaMouse escuchaM = new EscuchaMouse();
 
@@ -52,27 +55,29 @@ public class RegisterGUI extends JFrame {
 		
 		mainPanel = new JPanel();
 		mainPanel.setLayout(new BorderLayout());
+		UIManager.put("Label.font", FUENTE);
+		UIManager.put("Button.font", FUENTE );
+		UIManager.put("ComboBox.font", FUENTE);
 		
 		titleLabel = new JLabel();
 		titleLabel.setText("Registro de nuevos usuarios");
 		titleLabel.setHorizontalAlignment(JLabel.CENTER);
-		titleLabel.setFont(new Font("DejaVu Sans", Font.PLAIN, 20));
+		titleLabel.setFont(new Font("DejaVu Sans", Font.BOLD, 20));
 		titleLabel.setPreferredSize(new Dimension(100,60));
 		mainPanel.add(titleLabel, BorderLayout.NORTH);
 		
 		registerButton = new JButton();
 		registerButton.setText("Registrar");
-		registerButton.setBackground(Color.lightGray);
+		registerButton.setForeground(Color.white);
+		registerButton.setBackground(Color.BLUE);
 		
 		registerButton.addMouseListener(escuchaM);
 		JPanel southPanel = new JPanel(new FlowLayout());
 		southPanel.add(registerButton);
 		
 		mainPanel.add(southPanel, BorderLayout.SOUTH);
-		
 		setupForm();
 		
-		mainPanel.add(centerPanel, BorderLayout.CENTER);
 		mainContenedor.add(mainPanel);
 
 		this.pack();
@@ -85,7 +90,6 @@ public class RegisterGUI extends JFrame {
 	 * Es decir, los campos que recopilan la información del nuevo usuario.
 	 */
 	private void setupForm() {
-		centerPanel = new JPanel(new GridLayout(4,1));
 		
 		initLeftPanel();
 		initRightPanel();
@@ -97,7 +101,6 @@ public class RegisterGUI extends JFrame {
 	private void initLeftPanel() {
 		leftPanel = new JPanel();
 		leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
-		leftPanel.setFont(new Font("DejaVu Sans", Font.PLAIN, 12));
 		
 		nombre1Label = new JLabel("Primer nombre");
 		primerNombreTxt = new JTextField();
@@ -130,7 +133,7 @@ public class RegisterGUI extends JFrame {
 		
 		leftPanel.add(passwordLabel);
 		leftPanel.add(passwordTxt);
-		leftPanel.add(Box.createRigidArea(new Dimension(0,5)));
+		leftPanel.add(Box.createRigidArea(new Dimension(0,15)));
 	}
 	
 	private void initRightPanel() {
@@ -172,7 +175,7 @@ public class RegisterGUI extends JFrame {
 		
 		rightPanel.add(rolLabel);
 		rightPanel.add(rolComboBox);
-		rightPanel.add(Box.createRigidArea(new Dimension(0,5)));
+		rightPanel.add(Box.createRigidArea(new Dimension(0,15)));
 		
 		rightPanel.setAlignmentY(Component.LEFT_ALIGNMENT);
 
@@ -192,14 +195,24 @@ public class RegisterGUI extends JFrame {
 		datos.put("password", String.valueOf(passwordTxt.getPassword()));
 		datos.put("rol", rolComboBox.getSelectedItem().toString());
 	}
+
 	
 	private class EscuchaMouse implements MouseListener {
 
 		public void mouseClicked(MouseEvent arg0) {
 			getFields();
-			if (control.datosCompletos(datos)) {
+
+			if (control.datosCompletos(datos) ) {
 				
-				JOptionPane.showMessageDialog(mainPanel, "Usuario creado correctamente.");
+				if (datos.get("password").length() >= 6) {
+					JOptionPane.showMessageDialog(mainPanel, "Usuario creado correctamente.");
+				} 
+				else {
+					JOptionPane.showMessageDialog(null, "La contraseña debe tener al menos 6 caracteres.",
+							"Información", 
+							JOptionPane.INFORMATION_MESSAGE);
+				}
+				
 			}
 			else {
 				JOptionPane.showMessageDialog(mainPanel, "Hay campos sin rellenar.");

@@ -25,6 +25,10 @@ public class ControlRegister {
 		return true;
 	}
 	
+	public void checkPasswordLength(String password) {
+		
+	}
+	
 	private void setData(String field, String value) {
 		switch(field) {
 		
