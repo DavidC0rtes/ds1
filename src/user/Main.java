@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.UIManager;
 
 import user.register.RegisterGUI;
+import user.register.RegisterGUIViejo;
 
 import java.awt.EventQueue;
 

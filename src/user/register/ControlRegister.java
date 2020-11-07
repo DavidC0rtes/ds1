@@ -14,19 +14,17 @@ public class ControlRegister {
 		if (datos.containsValue("")) {
 			return false;
 		}
-		
+		return true;
+	}
+	
+	public void writeData(HashMap<String, String> datos) {
 		datos.forEach((k,v) -> setData(k,v));
-			
+		
 		try {
 			usuario.createUser();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return true;
-	}
-	
-	public void checkPasswordLength(String password) {
-		
 	}
 	
 	private void setData(String field, String value) {

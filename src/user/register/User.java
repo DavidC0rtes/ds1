@@ -50,7 +50,7 @@ public class User {
 	
 	/**
 	 * Verifica que el rol asignado al usuario sea válido.
-	 * @param idRol
+	 * @param String rol
 	 * @return true | false
 	 * @throws SQLException
 	 */
@@ -90,6 +90,7 @@ public class User {
 						email,
 						Integer.toString(getIdRol(rol))
 				};
+			System.out.println("iedede");
 			conn.updateRecord(createUserSQL, userParams);
 		}
 	}

@@ -1,222 +1,403 @@
+
 package user.register;
 
 import java.awt.*;
-import java.awt.event.*;
-
-import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.plaf.FontUIResource;
-
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.*;
+import javax.swing.*;
 
-public class RegisterGUI extends JFrame {
+public class RegisterGUI extends javax.swing.JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private Container mainContenedor;
-	private JPanel mainPanel, leftPanel, rightPanel;
-	
-	private JButton registerButton;
-	
-	private JLabel titleLabel;
-	private JLabel nombre1Label, nombre2Label;
-	private JLabel apellido1Label, apellido2Label;
-	private JLabel emailLabel, cedulaLabel, rolLabel, passwordLabel;
-	
-	private JTextField primerNombreTxt, segundoNombreTxt;
-	private JTextField apellido1Txt, apellido2Txt;
-	private JTextField emailTxt, cedulaTxt;
-	private JPasswordField passwordTxt;
-	
-	private JComboBox<String> rolComboBox;
-	private String[] roles = {"gerente", "administrador", "operador"};
-	private HashMap<String,String> datos = new HashMap<String,String>();
-	
-	private static final Font FUENTE = new Font("DejaVu Sans", Font.PLAIN, 12);
-	
-	private EscuchaMouse escuchaM = new EscuchaMouse();
-
+	private HashMap<String, String> datos = new HashMap<String, String>();
 	private ControlRegister control;
 	
-	/**
-	 * Constructor de la clase RegisterGUI
-	 */
-	public RegisterGUI() {
-		control = new ControlRegister();
-		this.setTitle("Registrar usuario");
-		initGUI();
-	}
+	private EscuchaMouse escuchaM = new EscuchaMouse();
 	
 	/**
-	 * Inicializa la ventana construyendo los elementos básicos
-	 */
-	private void initGUI() {
-		mainContenedor = this.getContentPane();
-		mainContenedor.setLayout(new BorderLayout(10,10));
-		
-		mainPanel = new JPanel();
-		mainPanel.setLayout(new BorderLayout());
-		UIManager.put("Label.font", FUENTE);
-		UIManager.put("Button.font", FUENTE );
-		UIManager.put("ComboBox.font", FUENTE);
-		
-		titleLabel = new JLabel();
-		titleLabel.setText("Registro de nuevos usuarios");
-		titleLabel.setHorizontalAlignment(JLabel.CENTER);
-		titleLabel.setFont(new Font("DejaVu Sans", Font.BOLD, 20));
-		titleLabel.setPreferredSize(new Dimension(100,60));
-		mainPanel.add(titleLabel, BorderLayout.NORTH);
-		
-		registerButton = new JButton();
-		registerButton.setText("Registrar");
-		registerButton.setForeground(Color.white);
-		registerButton.setBackground(Color.BLUE);
-		
-		registerButton.addMouseListener(escuchaM);
-		JPanel southPanel = new JPanel(new FlowLayout());
-		southPanel.add(registerButton);
-		
-		mainPanel.add(southPanel, BorderLayout.SOUTH);
-		setupForm();
-		
-		mainContenedor.add(mainPanel);
+     * Creates new form ds_admin_user
+     */
+    
+    public RegisterGUI() {
+    	control = new ControlRegister();
+    	
+    	// Tema Nimbus
+		/*
+		 * try { for (javax.swing.UIManager.LookAndFeelInfo info :
+		 * javax.swing.UIManager.getInstalledLookAndFeels()) { if
+		 * ("Nimbus".equals(info.getName())) {
+		 * javax.swing.UIManager.setLookAndFeel(info.getClassName()); break; } } } catch
+		 * (ClassNotFoundException ex) {
+		 * java.util.logging.Logger.getLogger(RegisterGUI.class.getName()).log(java.util
+		 * .logging.Level.SEVERE, null, ex); } catch (InstantiationException ex) {
+		 * java.util.logging.Logger.getLogger(RegisterGUI.class.getName()).log(java.util
+		 * .logging.Level.SEVERE, null, ex); } catch (IllegalAccessException ex) {
+		 * java.util.logging.Logger.getLogger(RegisterGUI.class.getName()).log(java.util
+		 * .logging.Level.SEVERE, null, ex); } catch
+		 * (javax.swing.UnsupportedLookAndFeelException ex) {
+		 * java.util.logging.Logger.getLogger(RegisterGUI.class.getName()).log(java.util
+		 * .logging.Level.SEVERE, null, ex); }
+		 */
+    	
+    	
+        //Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(100,30);
+        initComponents();
+        jButton1.setBorderPainted(false);
+        jButton1.setFocusPainted(false);
+        jButton1.setContentAreaFilled(false);
+    }
+    
+    public void valoresVacios(){
+        JOptionPane.showMessageDialog(this, "Todos los campos deben ser llenados correctamente");
+    }
+    
+    public void wrongCedula(){
+        JOptionPane.showMessageDialog(this, "El campo identificacion debe ser llenado unicamente con numeros");
+    }
 
-		this.pack();
-		this.setLocationRelativeTo(null);
-		this.setVisible(true);
-	}
-	
-	/**
-	 * Configura los elementos que irán en la mitad de la interfaz.
-	 * Es decir, los campos que recopilan la información del nuevo usuario.
-	 */
-	private void setupForm() {
-		
-		initLeftPanel();
-		initRightPanel();
-		
-		mainPanel.add(rightPanel, BorderLayout.EAST);
-		mainPanel.add(leftPanel, BorderLayout.WEST);
-	}
-	
-	private void initLeftPanel() {
-		leftPanel = new JPanel();
-		leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
-		
-		nombre1Label = new JLabel("Primer nombre");
-		primerNombreTxt = new JTextField();
-		primerNombreTxt.setPreferredSize(new Dimension(200,25));
-		
-		apellido1Txt = new JTextField();
-		apellido1Txt.setPreferredSize(new Dimension(200, 25));
-		apellido1Label = new JLabel("Primer apellido");
-				
-		emailLabel = new JLabel("Email");
-		emailTxt = new JTextField();
-		emailTxt.setPreferredSize(new Dimension(200, 25));
-				
-		passwordLabel = new JLabel("Contraseña");
-		passwordTxt = new JPasswordField();
-		passwordTxt.setPreferredSize(new Dimension(200, 25));
+    
+    private void initComponents() {
 
-		
-		leftPanel.add(nombre1Label);
-		leftPanel.add(primerNombreTxt);
-		leftPanel.add(Box.createRigidArea(new Dimension(0,5)));
-		
-		leftPanel.add(apellido1Label);
-		leftPanel.add(apellido1Txt);
-		leftPanel.add(Box.createRigidArea(new Dimension(0,5)));
-		
-		leftPanel.add(emailLabel);
-		leftPanel.add(emailTxt);
-		leftPanel.add(Box.createRigidArea(new Dimension(0,5)));
-		
-		leftPanel.add(passwordLabel);
-		leftPanel.add(passwordTxt);
-		leftPanel.add(Box.createRigidArea(new Dimension(0,15)));
-	}
-	
-	private void initRightPanel() {
-		rightPanel = new JPanel();
-		rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
-		rightPanel.setFont(new Font("DejaVu Sans", Font.PLAIN, 12));
-		
-		nombre2Label = new JLabel("Segundo nombre");
-		segundoNombreTxt = new JTextField();
-		segundoNombreTxt.setPreferredSize(new Dimension(200, 25));
+        jPanel2 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
+        jTextField4 = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        jTextField6 = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
-		
-		apellido2Txt = new JTextField();
-		apellido2Txt.setPreferredSize(new Dimension(200, 25));
-		apellido2Label = new JLabel("Segundo apellido");
-		
-		cedulaLabel = new JLabel("Cédula");
-		cedulaLabel.setHorizontalAlignment(SwingConstants.LEFT);
-		cedulaTxt = new JTextField();
-		cedulaTxt.setPreferredSize(new Dimension(200,25));
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(254, 254, 254));
+        setUndecorated(true);
+        setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-		
-		rolLabel = new JLabel("Cargo");
-		rolComboBox = new JComboBox<String>(roles);
-		rolComboBox.setPreferredSize(new Dimension(200,25));
-		
-		
-		rightPanel.add(nombre2Label);
-		rightPanel.add(segundoNombreTxt);
-		rightPanel.add(Box.createRigidArea(new Dimension(0,5)));
-		
-		rightPanel.add(apellido2Label);
-		rightPanel.add(apellido2Txt);
-		rightPanel.add(Box.createRigidArea(new Dimension(0,5)));
-		
-		rightPanel.add(cedulaLabel);
-		rightPanel.add(cedulaTxt);
-		rightPanel.add(Box.createRigidArea(new Dimension(0,5)));
-		
-		rightPanel.add(rolLabel);
-		rightPanel.add(rolComboBox);
-		rightPanel.add(Box.createRigidArea(new Dimension(0,15)));
-		
-		rightPanel.setAlignmentY(Component.LEFT_ALIGNMENT);
+        jPanel2.setBackground(new java.awt.Color(50, 55, 61));
+        jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 1, new java.awt.Color(0, 0, 0)));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-	}
-	
-	/**
-	 * Obtiene los valores de todos los JTextFields de la interfaz
-	 * y los añade al HashMap para futuros calculos.
-	 */
-	private void getFields() {
-		datos.put("primer_nombre", primerNombreTxt.getText());
-		datos.put("segundo_nombre", segundoNombreTxt.getText());
-		datos.put("primer_apellido", apellido1Txt.getText());
-		datos.put("segundo_apellido", apellido2Txt.getText());
-		datos.put("cedula", cedulaTxt.getText());
-		datos.put("email", emailTxt.getText());
-		datos.put("password", String.valueOf(passwordTxt.getPassword()));
-		datos.put("rol", rolComboBox.getSelectedItem().toString());
-	}
+        jPanel1.setBackground(new java.awt.Color(50, 55, 61));
+        jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-	
-	private class EscuchaMouse implements MouseListener {
+        jLabel6.setBackground(new java.awt.Color(254, 254, 254));
+        jLabel6.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(254, 254, 254));
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("Cerrar Sesion");
+        jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel6MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel6MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel6MouseExited(evt);
+            }
+        });
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 110, 20));
+
+        jLabel2.setBackground(new java.awt.Color(254, 254, 254));
+        jLabel2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(254, 254, 254));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Salir del programa");
+        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel2MouseExited(evt);
+            }
+        });
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 120, 20));
+
+        jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 650, 230, 20));
+
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/avatar.png"))); // NOI18N
+        jPanel4.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 100, -1));
+
+        jLabel1.setBackground(new java.awt.Color(1, 1, 1));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/bg_1.png"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 180));
+
+        jPanel2.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 180));
+
+        jPanel5.setBackground(new java.awt.Color(50, 55, 61));
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(254, 254, 254));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Registrar usuarios");
+        jLabel3.setAlignmentX(0.6F);
+        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel3MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel3MouseExited(evt);
+            }
+        });
+        jPanel5.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 230, 30));
+
+        jLabel4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(254, 254, 254));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Inicio");
+        jLabel4.setAlignmentX(0.6F);
+        jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel4MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel4MouseExited(evt);
+            }
+        });
+        jPanel5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 30));
+
+        jLabel5.setBackground(new java.awt.Color(254, 254, 254));
+        jLabel5.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(254, 254, 254));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("Sistema de gestion electrica");
+        jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPanel5.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 450, 230, 20));
+
+        jLabel16.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(254, 254, 254));
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel16.setText("Modificar usuarios");
+        jLabel16.setAlignmentX(0.6F);
+        jLabel16.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel16.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabel16.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel16MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel16MouseExited(evt);
+            }
+        });
+        jPanel5.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 230, 30));
+
+        jPanel2.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 230, 470));
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 670));
+
+        jPanel3.setBackground(java.awt.Color.white);
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 640, -1, -1));
+
+        jLabel8.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jLabel8.setText("Registro de nuevos usuarios");
+        jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 40, -1, -1));
+
+        jLabel10.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel10.setText("Primer apellido del usuario");
+        jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, -1, -1));
+
+        jLabel11.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel11.setText("Correo");
+        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 100, -1, -1));
+
+        jTextField1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel3.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 280, 240, 30));
+
+        jTextField2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 120, 240, 30));
+
+        jLabel12.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel12.setText("Numero de documento");
+        jPanel3.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, -1, -1));
+
+        jLabel13.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel13.setText("Primer nombre del usuario");
+        jPanel3.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 180, -1, -1));
+
+        jTextField3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel3.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, 240, 30));
+
+        jTextField4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField4ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 240, 30));
+
+        jLabel14.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel14.setText("Rol");
+        jPanel3.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 180, -1, -1));
+
+        jTextField6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField6ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 280, 240, 30));
+
+        jLabel15.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel15.setText("Contraseña");
+        jPanel3.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 260, -1, -1));
+
+        jLabel17.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel17.setText("Registrar usuario");
+        jPanel3.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 430, -1, -1));
+
+        jButton1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/button.png"))); // NOI18N
+        jButton1.addMouseListener(escuchaM);
+        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 420, 160, 40));
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Gerente", "Operador" }));
+        jPanel3.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 200, 240, 30));
+
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 0, 870, 670));
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void jLabel6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseEntered
+
+        jLabel6.setOpaque(true);
+        jLabel6.setBackground(new Color(2, 143, 224));
+    }//GEN-LAST:event_jLabel6MouseEntered
+
+    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+        this.dispose();
+    }//GEN-LAST:event_jLabel6MouseClicked
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        this.dispose();
+    }//GEN-LAST:event_jLabel2MouseClicked
+
+    private void jLabel6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseExited
+        jLabel6.setOpaque(false);
+        jLabel6.setBackground(new Color(50,55,61));
+// TODO add your handling code here:
+    }//GEN-LAST:event_jLabel6MouseExited
+
+    private void jLabel2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseEntered
+        jLabel2.setOpaque(true);
+        jLabel2.setBackground(new Color(2, 143, 224));// TODO add your handling code here:
+    }//GEN-LAST:event_jLabel2MouseEntered
+
+    private void jLabel2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseExited
+        jLabel2.setOpaque(false);
+        jLabel2.setBackground(new Color(50,55,61));// TODO add your handling code here:
+    }//GEN-LAST:event_jLabel2MouseExited
+
+    private void jLabel3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseEntered
+        jLabel3.setOpaque(true);
+        jLabel3.setBackground(new Color(2, 143, 224));// TODO add your handling code here:
+    }//GEN-LAST:event_jLabel3MouseEntered
+
+    private void jLabel3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseExited
+        jLabel3.setOpaque(false);
+        jLabel3.setBackground(new Color(50,55,61));// TODO add your handling code here:
+    }//GEN-LAST:event_jLabel3MouseExited
+
+    private void jLabel4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseEntered
+        jLabel4.setOpaque(true);
+        jLabel4.setBackground(new Color(2, 143, 224));// TODO add your handling code here:
+    }//GEN-LAST:event_jLabel4MouseEntered
+
+    private void jLabel4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseExited
+        jLabel4.setOpaque(false);
+        jLabel4.setBackground(new Color(50,55,61));// TODO add your handling code here:
+    }//GEN-LAST:event_jLabel4MouseExited
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
+
+    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField4ActionPerformed
+
+    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField6ActionPerformed
+
+    
+    /**
+     * Se encarga de llenar la tabla hash con los valores ingresados en cada JTextField
+     * @param none
+     */
+    private void getFields() {
+    	datos.put("cedula", jTextField4.getText());
+    	datos.put("primer_nombre", jTextField3.getText());
+    	datos.put("primer_apellido", jTextField1.getText());
+    	datos.put("password", jTextField6.getText());
+    	datos.put("email", jTextField2.getText() );
+    	datos.put("rol", String.valueOf(jComboBox1.getSelectedItem()));
+    }
+    
+    private class EscuchaMouse implements MouseListener {
 
 		public void mouseClicked(MouseEvent arg0) {
 			getFields();
-
-			if (control.datosCompletos(datos) ) {
-				
-				if (datos.get("password").length() >= 6) {
-					JOptionPane.showMessageDialog(mainPanel, "Usuario creado correctamente.");
-				} 
-				else {
-					JOptionPane.showMessageDialog(null, "La contraseña debe tener al menos 6 caracteres.",
+	        System.out.println("click");
+	        if (control.datosCompletos(datos)) {
+	        	if (datos.get("password").length() >= 6) {
+	        		control.writeData(datos);
+	        		System.out.println("ABCD");
+	        	}
+	        	else {
+	        		JOptionPane.showMessageDialog(null, "La contraseña debe tener al menos 6 caracteres.",
 							"Información", 
 							JOptionPane.INFORMATION_MESSAGE);
-				}
-				
-			}
-			else {
-				JOptionPane.showMessageDialog(mainPanel, "Hay campos sin rellenar.");
-			}
+	        	}
+	        } else {
+	        	 System.out.println("NO");
+	        	valoresVacios();
+	        }
+			
 		}
 
 		@Override
@@ -236,12 +417,55 @@ public class RegisterGUI extends JFrame {
 			// TODO Auto-generated method stub
 			
 		}
-		
+
 		@Override
 		public void mouseReleased(MouseEvent arg0) {
 			// TODO Auto-generated method stub
 			
 		}
-		
-	}
+    	
+    }
+    
+    private void jLabel16MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel16MouseEntered
+        jLabel16.setOpaque(true);
+        jLabel16.setBackground(new Color(2, 143, 224));// TODO add your handling code here:
+    }//GEN-LAST:event_jLabel16MouseEntered
+
+    private void jLabel16MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel16MouseExited
+        jLabel16.setOpaque(false);
+        jLabel16.setBackground(new Color(50,55,61));// TODO add your handling code here:
+    }//GEN-LAST:event_jLabel16MouseExited
+
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField6;
+    // End of variables declaration//GEN-END:variables
 }
