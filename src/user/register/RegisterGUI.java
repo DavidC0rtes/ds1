@@ -24,9 +24,8 @@ public class RegisterGUI extends javax.swing.JFrame {
     	
         this.setLocation(100,30);
         initComponents();
-        jButton1.setBorderPainted(false);
-        jButton1.setFocusPainted(false);
-        jButton1.setContentAreaFilled(false);
+        //registerBtn.setBorderPainted(false);
+        
         this.setVisible(true);
     }
     
@@ -65,10 +64,10 @@ public class RegisterGUI extends javax.swing.JFrame {
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        passwordTxt = new javax.swing.JPasswordField();
         jLabel15 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        registerBtn = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -253,27 +252,36 @@ public class RegisterGUI extends javax.swing.JFrame {
         jLabel14.setText("Rol");
         jPanel3.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 180, -1, -1));
 
-        jTextField6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+        passwordTxt.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        passwordTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField6ActionPerformed(evt);
             }
         });
-        jPanel3.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 280, 240, 30));
+        jPanel3.add(passwordTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 280, 240, 30));
 
         jLabel15.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel15.setText("Contraseña");
         jPanel3.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 260, -1, -1));
 
-        jLabel17.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel17.setFont(new java.awt.Font("Arial", Font.BOLD, 12)); // NOI18N
+        jLabel17.setForeground(Color.WHITE);
+        
+        ImageIcon iconoBoton = new ImageIcon(getClass().getResource("/assets/button2.png"));
+        jLabel17.setIcon(iconoBoton);
         jLabel17.setText("Registrar usuario");
-        jPanel3.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 430, -1, -1));
+        jLabel17.setHorizontalTextPosition(SwingConstants.CENTER);
+        jLabel17.setHorizontalAlignment(JLabel.CENTER);
+        
 
-        jButton1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/button.png"))); // NOI18N
-        jButton1.addMouseListener(escuchaM);
-        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 420, 160, 40));
+        registerBtn.setFocusPainted(false);
+        registerBtn.setContentAreaFilled(false);
+        //registerBtn.setLayout(new BoxLayout(registerBtn, BoxLayout.X_AXIS));
+        registerBtn.add(jLabel17);
+
+        registerBtn.addMouseListener(escuchaM);
+        
+        jPanel3.add(registerBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 420,160,40));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Gerente", "Operador" }));
         jPanel3.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 200, 240, 30));
@@ -354,7 +362,7 @@ public class RegisterGUI extends javax.swing.JFrame {
     	datos.put("cedula", jTextField4.getText());
     	datos.put("primer_nombre", jTextField3.getText());
     	datos.put("primer_apellido", jTextField1.getText());
-    	datos.put("password", jTextField6.getText());
+    	datos.put("password", String.valueOf(passwordTxt.getPassword()));
     	datos.put("email", jTextField2.getText() );
     	datos.put("rol", String.valueOf(jComboBox1.getSelectedItem()));
     }
@@ -363,22 +371,25 @@ public class RegisterGUI extends javax.swing.JFrame {
 
 		public void mouseClicked(MouseEvent arg0) {
 			getFields();
-	        System.out.println("click");
 	        if (control.datosCompletos(datos)) {
 	        	if (datos.get("password").length() >= 6) {
-	        		control.writeData(datos);
-	        		System.out.println("ABCD");
+	        		if (control.writeData(datos) > 0) {
+	        			JOptionPane.showMessageDialog(null, "Usuario nuevo creado exitosamente.");
+	        		}
+	        		else {
+	        			JOptionPane.showMessageDialog(
+	        					null, "Error guardando la información, es probable que ya exista un usuario con esa cédula.", 
+	        					"Error", JOptionPane.ERROR_MESSAGE);
+	        		}
 	        	}
 	        	else {
 	        		JOptionPane.showMessageDialog(null, "La contraseña debe tener al menos 6 caracteres.",
-							"Información", 
-							JOptionPane.INFORMATION_MESSAGE);
+							"Atención", 
+							JOptionPane.WARNING_MESSAGE);
 	        	}
 	        } else {
-	        	 System.out.println("NO");
 	        	valoresVacios();
 	        }
-			
 		}
 
 		@Override
@@ -419,7 +430,7 @@ public class RegisterGUI extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton registerBtn;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -447,6 +458,6 @@ public class RegisterGUI extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField6;
+    private javax.swing.JPasswordField passwordTxt;
     // End of variables declaration//GEN-END:variables
 }

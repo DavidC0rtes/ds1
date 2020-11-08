@@ -17,14 +17,15 @@ public class ControlRegister {
 		return true;
 	}
 	
-	public void writeData(HashMap<String, String> datos) {
+	public int writeData(HashMap<String, String> datos) {
 		datos.forEach((k,v) -> setData(k,v));
 		
 		try {
-			usuario.createUser();
+			return usuario.createUser();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return 0;
 	}
 	
 	private void setData(String field, String value) {

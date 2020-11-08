@@ -71,7 +71,7 @@ public class User {
 	 * @param User usuario, instancia de la clase User
 	 * @throws SQLException 
 	 */
-	public void createUser() throws SQLException {
+	public int createUser() throws SQLException {
 		/**
 		 * Antes de hacer persistentes los datos, hay que hacer
 		 * ciertas validaciones.
@@ -90,9 +90,9 @@ public class User {
 						email,
 						Integer.toString(getIdRol(rol))
 				};
-			System.out.println("iedede");
-			conn.updateRecord(createUserSQL, userParams);
+			return conn.updateRecord(createUserSQL, userParams);
 		}
+		return -1;
 	}
 	
 	private int getIdRol(String rol) throws SQLException {
