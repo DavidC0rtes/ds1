@@ -11,6 +11,8 @@ public class Register extends javax.swing.JFrame {
     */
    public Register() {
        initComponents();
+       this.setVisible(true);
+       this.pack();
    }
 
    /**

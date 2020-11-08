@@ -1,5 +1,6 @@
 package user.register;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import db.JDBCConnection;
@@ -10,12 +11,19 @@ import db.JDBCConnection;
  */
 public class User {
 	private int cedula;
-	private int idRol;
 	
 	private String rol;
-	private String[] nombre;
+	private String primerNombre;
+	private String segundoNombre;
+	private String primerApellido;
+	private String segundoApellido;
 	private String email;
 	private String password;
+	private JDBCConnection conn;
+	
+	public User() {
+		conn = new JDBCConnection();
+	}
 
 	
 	/**
@@ -33,7 +41,7 @@ public class User {
 				+ "WHERE num_documento = "
 				+ cedula;
 		
-		if (!JDBCConnection.getRecords(query).isBeforeFirst()) {
+		if (!conn.getRecords(query).isBeforeFirst()) {
 			return false;
 		}
 		
@@ -42,18 +50,15 @@ public class User {
 	
 	/**
 	 * Verifica que el rol asignado al usuario sea válido.
-	 * @param idRol
+	 * @param String rol
 	 * @return true | false
 	 * @throws SQLException
 	 */
-	public boolean roleIsValid(int idRol) throws SQLException {
-		String query =
-				"SELECT * "
-				+ "FROM roles"
-				+ "WHERE id ="
-				+ idRol;
+	public boolean roleIsValid(String rol) throws SQLException {
+		String query ="SELECT * FROM roles WHERE nombre_rol = ?";
+		String[] params = {rol};
 		
-		if (JDBCConnection.getRecords(query).isBeforeFirst()) {
+		if (conn.getRecords(query, params).isBeforeFirst()) {
 			return true;
 		}
 		return false;
@@ -66,29 +71,36 @@ public class User {
 	 * @param User usuario, instancia de la clase User
 	 * @throws SQLException 
 	 */
-	public void createUser() throws SQLException {
+	public int createUser() throws SQLException {
 		/**
 		 * Antes de hacer persistentes los datos, hay que hacer
 		 * ciertas validaciones.
 		 */
-		if (!userExists(cedula) && roleIsValid(idRol) ) {
+		if (!userExists(cedula) && roleIsValid(rol) ) {
 			String createUserSQL = 
-					"INSERT INTO usuarios"
-					+ "VALUES (?,?,?,?,?,?,?)";
+					"INSERT "
+					+ "INTO usuarios(num_documento,primer_nombre,primer_apellido,password,email,id_rol) "
+					+ "VALUES(?,?,?,?,?,?)";
 			
 			String[] userParams = {
 						Integer.toString(cedula),
-						nombre[0],
-						nombre[1],
+						primerNombre,
+						primerApellido,
 						password,
 						email,
-						Integer.toString(1),
-						Integer.toString(idRol)
+						Integer.toString(getIdRol(rol))
 				};
-			
-			JDBCConnection.updateRecord(createUserSQL, userParams);
+			return conn.updateRecord(createUserSQL, userParams);
 		}
-		
+		return -1;
+	}
+	
+	private int getIdRol(String rol) throws SQLException {
+		ResultSet rs = conn.getRecords("select id from roles where nombre_rol='"+rol+"'");
+		if(rs.next()) {
+			return rs.getInt("id");
+		}
+		return 0;
 	}
 	
 	/** setters **/
@@ -96,23 +108,25 @@ public class User {
 	
 	public void setEmail(String email) {this.email = email;}
 	
-	public void setName(String[] nombre) {this.nombre = nombre;}
+	public void setPrimerNombre(String nombre) {this.primerNombre = nombre;}
+	
+	public void setSegundoNombre(String nombre) {this.segundoNombre = nombre;}
+	
+	public void setPrimerApellido(String apellido) {this.primerApellido = apellido;}
 	
 	public void setPassword(String password) {this.password = password;}
 	
-	public void setIDRol(int idRol) {this.idRol = idRol;}
+	public void setRol(String Rol) {this.rol = Rol;}
 	
 	
 	/* getters */
-	public int getID() {return idRol;}
+	//public int getID() {return idRol;}
 	
 	public int getCC() {return cedula;}
 	
-	public int getIdRol() {return idRol;}
+	//public int getIdRol() {return idRol;}
 	
 	public String getEmail() {return email;}
-	
-	public String[] getName() {return nombre;}
 	
 	public String getPassword() {return password;}
 }
