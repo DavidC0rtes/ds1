@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ds_project.vista;
+package user.project.ds_project.vista;
 
-import ds_project.admin_vista.ds_admin_user;
-import ds_project.ds_bd;
+import user.project.ds_project.admin_vista.ds_admin_user;
+import user.project.ds_project.ds_bd;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
