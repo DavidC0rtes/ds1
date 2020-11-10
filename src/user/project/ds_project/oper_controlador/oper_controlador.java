@@ -3,12 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ds_project.oper_controlador;
+package user.project.ds_project.oper_controlador;
 
 import java.util.ArrayList;
 import javax.swing.JTextField;
-import ds_project.ds_bd;
-import javax.swing.JOptionPane;
+import user.project.ds_project.ds_bd;
 
 /**
  *

@@ -3,33 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ds_project.admin_vista;
+package user.project.ds_project.admin_vista;
 
-import ds_project.TableCellListener;
-import ds_project.ds_bd;
-import ds_project.vista.ds_template1;
-import ds_project.vista.ds_template1;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Point;
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.util.ArrayList;
-import javax.swing.AbstractAction;
-import javax.swing.Action;
-import javax.swing.JFrame;
-import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
-import javax.swing.UIDefaults;
-import javax.swing.UIManager;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
+import user.project.ds_project.TableCellListener;
+import user.project.ds_project.ds_bd;
+import user.project.ds_project.vista.ds_template1;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
 
 /**
  *

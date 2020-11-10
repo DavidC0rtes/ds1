@@ -3,41 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ds_project.vista;
+package user.project.ds_project.vista;
 
-import ds_project.ds_bd;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Point;
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.util.ArrayList;
-import javax.swing.AbstractAction;
-import javax.swing.Action;
-import javax.swing.JFrame;
-import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
-import javax.swing.UIDefaults;
-import javax.swing.UIManager;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
-
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
 /**
  *
  * @author daveybtw
  */
 public class ds_template1 extends javax.swing.JFrame {
-
-    /**
+	private static final long serialVersionUID = 1L;
+	/**
      * Creates new form ds_admin_user
      */
-    ds_bd gestorBD = new ds_bd();
     public ds_template1() {
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(100, 30);
