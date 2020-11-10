@@ -23,7 +23,7 @@ public class JDBCConnection {
 		try {
 			FileReader reader = new FileReader("src/db/db.properties");
 			props.load(reader);
-			System.out.println(props.getProperty("DB_HOST"));
+			
 			dbHost = props.getProperty("DB_HOST");
 			dbUser = props.getProperty("DB_USER");
 			dbName = props.getProperty("DB_NAME");
@@ -42,21 +42,9 @@ public class JDBCConnection {
 		}
 	}
 	
-	public Connection getConnection() {
+	public static Connection getConnection() {
 		// TODO Auto-generated method stub
 		return conn;
-	}
-	
-	
-	public ResultSet getRecords(String query) {
-		ResultSet rs = null;
-		try (Statement stmt = conn.createStatement()){
-			rs = stmt.executeQuery(query);
-			
-		}catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return rs;
 	}
 	
 	/**
@@ -68,14 +56,11 @@ public class JDBCConnection {
 	 * @return ResultSet | Null
 	 * @throws SQLException
 	 */
-	public ResultSet getRecords(String query, String[] params) {
+	public static ResultSet getRecords(String query) {
 		ResultSet rs = null;
 		try {
-			PreparedStatement recordStatement = conn.prepareStatement(query);
-			for (int i=0; i < params.length; i++) {
-				recordStatement.setString(i+1, params[i]);
-			}
-			rs = recordStatement.executeQuery();
+			Statement recordStatement = conn.createStatement();
+			rs = recordStatement.executeQuery(query);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -90,23 +75,13 @@ public class JDBCConnection {
 	 * 
 	 * @return int número de filas afectadas ó 0.
 	 */
-	public int updateRecord(String query, String[] params) {
+	public static int updateRecord(String query, String[] params) {
 		int rows = 0;
 		try {
 			PreparedStatement updateStatement = conn.prepareStatement(query);
+			
 			for( int i = 0; i < params.length; i++) {
-				if (params[i].chars().allMatch( Character::isDigit )) {	
-					updateStatement.setInt(i+1, Integer.parseInt(params[i]));
-				}
-                                else  {
-                                    if(params[i].equals("true")){
-                                        updateStatement.setBoolean(i+1, true);
-                                    } else if(params[i].equals("false")){
-                                        updateStatement.setBoolean(i+1, false);
-                                    } else {
-                                        updateStatement.setString(i+1, params[i]);
-                                    }
-				}
+				updateStatement.setString(i+1, params[i]);
 			}
 			rows = updateStatement.executeUpdate();
 			

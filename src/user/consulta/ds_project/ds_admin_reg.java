@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package user;
+package user.consulta.ds_project;
 
-import tables.ds_bd;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -17,7 +16,6 @@ import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.UIDefaults;
 import javax.swing.UIManager;
@@ -30,20 +28,27 @@ import javax.swing.table.TableCellRenderer;
  *
  * @author daveybtw
  */
-public class registrar_users extends javax.swing.JFrame {
+public class ds_admin_reg extends javax.swing.JFrame {
 
     /**
      * Creates new form ds_admin_user
      */
     ds_bd gestorBD = new ds_bd();
-    admin_controller controlador = new admin_controller();
-    public registrar_users() {
+    public ds_admin_reg() {
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(100, 30);
         initComponents();
         jButton1.setBorderPainted(false);
         jButton1.setFocusPainted(false);
         jButton1.setContentAreaFilled(false);
+    }
+    
+    public void valoresVacios(){
+        JOptionPane.showMessageDialog(this, "Todos los campos deben ser llenados correctamente");
+    }
+    
+    public void wrongCedula(){
+        JOptionPane.showMessageDialog(this, "El campo identificacion debe ser llenado unicamente con numeros");
     }
 
     /**
@@ -141,11 +146,11 @@ public class registrar_users extends javax.swing.JFrame {
 
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ds_ims/avatar.png"))); // NOI18N
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/avatar.png"))); // NOI18N
         jPanel4.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 100, -1));
 
         jLabel1.setBackground(new java.awt.Color(1, 1, 1));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ds_ims/bg_1.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/bg_1.png"))); // NOI18N
         jLabel1.setText("jLabel1");
         jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 180));
 
@@ -285,7 +290,7 @@ public class registrar_users extends javax.swing.JFrame {
         jPanel3.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 430, -1, -1));
 
         jButton1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ds_ims/button.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/button.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -365,12 +370,7 @@ public class registrar_users extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int rol = 0;
-        ArrayList<JTextField> Componentes = new ArrayList<JTextField>();
-        Componentes.add(jTextField2);
-        Componentes.add(jTextField3);
-        Componentes.add(jTextField4);
-        Componentes.add(jTextField6);
-        if(controlador.valoresVacios(Componentes) == 0){
+        if(jTextField4.getText().length() != 0 && jTextField3.getText().length() != 0 && jTextField2.getText().length() != 0 && jTextField6.getText().length() != 0){
             try{
                 switch(String.valueOf(jComboBox1.getSelectedItem())){
                 case "Administrador":
@@ -389,11 +389,11 @@ public class registrar_users extends javax.swing.JFrame {
                 
             } catch (NumberFormatException nfe) {
                     System.out.println("Invalido");
-                    JOptionPane.showMessageDialog(this, "El campo identificacion debe ser llenado unicamente con numeros");
+                    wrongCedula();
                 }
                 
         } else {
-            JOptionPane.showMessageDialog(this, "Todos los campos deben ser llenados correctamente");
+            valoresVacios();
         }
         
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -426,22 +426,14 @@ public class registrar_users extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(registrar_users.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ds_admin_reg.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(registrar_users.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ds_admin_reg.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(registrar_users.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ds_admin_reg.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(registrar_users.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ds_admin_reg.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -454,7 +446,7 @@ public class registrar_users extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new registrar_users().setVisible(true);
+                new ds_admin_reg().setVisible(true);
             }
         });
     }

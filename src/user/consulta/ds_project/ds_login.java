@@ -3,16 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package user;
+package user.consulta.ds_project;
 
-import java.awt.Point;
-import tables.ds_bd;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import javax.swing.BorderFactory;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -27,33 +22,6 @@ public class ds_login extends javax.swing.JFrame {
     public ds_login() {
         initComponents();
         changeComponents();
-        FrameDragListener frameDragListener = new FrameDragListener(this);
-        this.addMouseListener(frameDragListener);
-        this.addMouseMotionListener(frameDragListener);
-        this.setLocation(100, 30);
-    }
-    
-    public static class FrameDragListener extends MouseAdapter {
-
-        private final JFrame frame;
-        private Point mouseDownCompCoords = null;
-
-        public FrameDragListener(JFrame frame) {
-            this.frame = frame;
-        }
-
-        public void mouseReleased(MouseEvent e) {
-            mouseDownCompCoords = null;
-        }
-
-        public void mousePressed(MouseEvent e) {
-            mouseDownCompCoords = e.getPoint();
-        }
-
-        public void mouseDragged(MouseEvent e) {
-            Point currCoords = e.getLocationOnScreen();
-            frame.setLocation(currCoords.x - mouseDownCompCoords.x, currCoords.y - mouseDownCompCoords.y);
-        }
     }
     
     public void exit(){
@@ -93,10 +61,9 @@ public class ds_login extends javax.swing.JFrame {
                             wrongUserPassword();
                             break;
                         case 1:
-                            System.out.println("Welcome back admin");
-                            ver_users adminInterface = new ver_users();
+                            ds_admin_user adminInterface = new ds_admin_user();
                             adminInterface.setVisible(true);
-                            
+                            System.out.println("Welcome back admin");
                             exit();
                             break;
                         case 2:
@@ -134,10 +101,6 @@ public class ds_login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel8 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        cls_btn = new javax.swing.JLabel();
-        min_btn = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -148,42 +111,15 @@ public class ds_login extends javax.swing.JFrame {
         jPasswordField1 = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel8.setBackground(new java.awt.Color(50, 55, 61));
-        jPanel8.setBorder(new javax.swing.border.MatteBorder(null));
-        jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("SiGE");
-        jPanel8.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 0, -1, 20));
-
-        cls_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/btn_close.png"))); // NOI18N
-        cls_btn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cls_btnMouseClicked(evt);
-            }
-        });
-        jPanel8.add(cls_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 0, 20, 20));
-
-        min_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/btn_minimize.png"))); // NOI18N
-        min_btn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                min_btnMouseClicked(evt);
-            }
-        });
-        jPanel8.add(min_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 0, 20, 20));
-
-        getContentPane().add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 20));
 
         jPanel1.setBackground(new java.awt.Color(153, 204, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/login_bg.png"))); // NOI18N
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, 410, 640));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 410, 620));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 410, 600));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, 600));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -213,18 +149,10 @@ public class ds_login extends javax.swing.JFrame {
         jPasswordField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(228, 228, 228)));
         jPanel2.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 400, 40));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 20, 490, 600));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, 490, 600));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void min_btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_min_btnMouseClicked
-        this.setState(JFrame.ICONIFIED);// TODO add your handling code here:
-    }//GEN-LAST:event_min_btnMouseClicked
-
-    private void cls_btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cls_btnMouseClicked
-        this.dispose();// TODO add your handling code here:
-    }//GEN-LAST:event_cls_btnMouseClicked
 
     /**
      * @param args the command line arguments
@@ -262,17 +190,13 @@ public class ds_login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel cls_btn;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel8;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JLabel min_btn;
     // End of variables declaration//GEN-END:variables
 }
