@@ -3,11 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ds_project.oper_vista;
+package activos;
 
-import ds_project.vista.*;
-import ds_project.oper_controlador.*;
-import ds_project.ds_bd;
+import tables.ds_bd;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -38,7 +36,7 @@ import javax.swing.table.TableCellRenderer;
  *
  * @author daveybtw
  */
-public class ds_oper_sube extends javax.swing.JFrame {
+public class subestaciones_add extends javax.swing.JFrame {
 
     /**
      * Creates new form ds_admin_user
@@ -46,7 +44,7 @@ public class ds_oper_sube extends javax.swing.JFrame {
     ds_bd gestorBD = new ds_bd();
     ArrayList<JTextField> Components = new ArrayList<JTextField>();
     oper_controlador controlador = new oper_controlador();
-    public ds_oper_sube() {
+    public subestaciones_add() {
         
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(100, 30);
@@ -146,11 +144,11 @@ public class ds_oper_sube extends javax.swing.JFrame {
 
         left_header.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ds_ims/avatar.png"))); // NOI18N
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/avatar.png"))); // NOI18N
         left_header.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 100, -1));
 
         jLabel1.setBackground(new java.awt.Color(1, 1, 1));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ds_ims/bg_1.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/bg_1.png"))); // NOI18N
         jLabel1.setText("jLabel1");
         left_header.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 180));
         left_header.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, 1100, 20));
@@ -217,7 +215,7 @@ public class ds_oper_sube extends javax.swing.JFrame {
         jPanel8.setBorder(new javax.swing.border.MatteBorder(null));
         jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        min_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ds_ims/btn_minimize.png"))); // NOI18N
+        min_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/btn_minimize.png"))); // NOI18N
         min_btn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 min_btnMouseClicked(evt);
@@ -225,7 +223,7 @@ public class ds_oper_sube extends javax.swing.JFrame {
         });
         jPanel8.add(min_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 0, 20, 20));
 
-        cls_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ds_ims/btn_close.png"))); // NOI18N
+        cls_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/btn_close.png"))); // NOI18N
         cls_btn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cls_btnMouseClicked(evt);
@@ -276,7 +274,7 @@ public class ds_oper_sube extends javax.swing.JFrame {
         jLabel7.setText("Registrar subestacion");
         content_panel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 420, -1, 30));
 
-        btn_registro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ds_ims/button.png"))); // NOI18N
+        btn_registro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/button.png"))); // NOI18N
         btn_registro.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_registroMouseClicked(evt);
@@ -342,6 +340,7 @@ public class ds_oper_sube extends javax.swing.JFrame {
     }//GEN-LAST:event_min_btnMouseClicked
 
     private void btn_registroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_registroMouseClicked
+
         switch(controlador.createNewSubestacion(Components, text_encargado.getText(), text_ciudad.getText(), text_direccion.getText(), String.valueOf(combo_estado.getSelectedItem()))){
             case 0:
                 JOptionPane.showMessageDialog(this, "Fallo la creacion de la nueva subestacion");
@@ -376,14 +375,22 @@ public class ds_oper_sube extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ds_oper_sube.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(subestaciones_add.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ds_oper_sube.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(subestaciones_add.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ds_oper_sube.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(subestaciones_add.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ds_oper_sube.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(subestaciones_add.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -396,7 +403,7 @@ public class ds_oper_sube extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ds_oper_sube().setVisible(true);
+                new subestaciones_add().setVisible(true);
             }
         });
     }

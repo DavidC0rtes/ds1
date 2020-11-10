@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ds_project.admin_controlador;
+package user;
 
 import java.awt.Component;
 import java.util.ArrayList;
@@ -13,7 +13,7 @@ import javax.swing.JTextField;
  *
  * @author USER
  */
-public class ds_reg {
+public class admin_controller {
     public int valoresVacios(ArrayList<JTextField> Componentes){
         for(int i = 0; i < Componentes.size(); i++){
             if(Componentes.get(i).getText().length() == 0){

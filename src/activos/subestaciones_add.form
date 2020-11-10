@@ -114,7 +114,7 @@
             <Component class="javax.swing.JLabel" name="jLabel9">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ds_ims/avatar.png"/>
+                  <Image iconType="3" name="/assets/avatar.png"/>
                 </Property>
               </Properties>
               <Constraints>
@@ -129,7 +129,7 @@
                   <Color blue="1" green="1" red="1" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/ds_ims/bg_1.png"/>
+                  <Image iconType="3" name="/assets/bg_1.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="jLabel1"/>
               </Properties>
@@ -272,7 +272,7 @@
         <Component class="javax.swing.JLabel" name="min_btn">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/ds_ims/btn_minimize.png"/>
+              <Image iconType="3" name="/assets/btn_minimize.png"/>
             </Property>
           </Properties>
           <Events>
@@ -287,7 +287,7 @@
         <Component class="javax.swing.JLabel" name="cls_btn">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/ds_ims/btn_close.png"/>
+              <Image iconType="3" name="/assets/btn_close.png"/>
             </Property>
           </Properties>
           <Events>
@@ -467,7 +467,7 @@
         <Component class="javax.swing.JLabel" name="btn_registro">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/ds_ims/button.png"/>
+              <Image iconType="3" name="/assets/button.png"/>
             </Property>
           </Properties>
           <Events>

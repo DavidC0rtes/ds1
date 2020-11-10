@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package user.consulta.ds_project;
+package tables;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
