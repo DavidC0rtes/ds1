@@ -3,20 +3,41 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package user.project.ds_project.vista;
+package template;
 
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
+import tables.ds_bd;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Point;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.JFrame;
+import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import javax.swing.UIDefaults;
+import javax.swing.UIManager;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
+
 /**
  *
  * @author daveybtw
  */
 public class ds_template1 extends javax.swing.JFrame {
-	private static final long serialVersionUID = 1L;
-	/**
+
+    /**
      * Creates new form ds_admin_user
      */
+    ds_bd gestorBD = new ds_bd();
     public ds_template1() {
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(100, 30);
@@ -90,11 +111,11 @@ public class ds_template1 extends javax.swing.JFrame {
 
         left_header.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ds_ims/avatar.png"))); // NOI18N
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/avatar.png"))); // NOI18N
         left_header.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 100, -1));
 
         jLabel1.setBackground(new java.awt.Color(1, 1, 1));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ds_ims/bg_1.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/bg_1.png"))); // NOI18N
         jLabel1.setText("jLabel1");
         left_header.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 180));
         left_header.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, 1100, 20));
@@ -161,7 +182,7 @@ public class ds_template1 extends javax.swing.JFrame {
         jPanel8.setBorder(new javax.swing.border.MatteBorder(null));
         jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        min_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ds_ims/btn_minimize.png"))); // NOI18N
+        min_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/btn_minimize.png"))); // NOI18N
         min_btn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 min_btnMouseClicked(evt);
@@ -169,7 +190,7 @@ public class ds_template1 extends javax.swing.JFrame {
         });
         jPanel8.add(min_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 0, 20, 20));
 
-        cls_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ds_ims/btn_close.png"))); // NOI18N
+        cls_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/btn_close.png"))); // NOI18N
         cls_btn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cls_btnMouseClicked(evt);
@@ -185,43 +206,39 @@ public class ds_template1 extends javax.swing.JFrame {
 
         content_panel.setBackground(java.awt.Color.white);
         content_panel.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 1, new java.awt.Color(0, 0, 0)));
-        content_panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        content_panel.setLayout(new java.awt.CardLayout());
         getContentPane().add(content_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, 870, 670));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void registrar_usuariosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registrar_usuariosMouseEntered
-        registrar_usuarios.setOpaque(true);
-        registrar_usuarios.setBackground(new Color(2, 143, 224));// TODO add your handling code here:
-    }//GEN-LAST:event_registrar_usuariosMouseEntered
+    private void modificar_leftMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modificar_leftMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_modificar_leftMouseExited
 
-    private void registrar_usuariosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registrar_usuariosMouseExited
-        registrar_usuarios.setOpaque(false);
-        registrar_usuarios.setBackground(new Color(50,55,61));// TODO add your handling code here:
-    }//GEN-LAST:event_registrar_usuariosMouseExited
-
-    private void inicio_leftMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inicio_leftMouseEntered
-        inicio_left.setOpaque(true);
-        inicio_left.setBackground(new Color(2, 143, 224));// TODO add your handling code here:
-    }//GEN-LAST:event_inicio_leftMouseEntered
+    private void modificar_leftMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modificar_leftMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_modificar_leftMouseEntered
 
     private void inicio_leftMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inicio_leftMouseExited
         inicio_left.setOpaque(false);
         inicio_left.setBackground(new Color(50,55,61));// TODO add your handling code here:
     }//GEN-LAST:event_inicio_leftMouseExited
 
-    private void modificar_leftMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modificar_leftMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_modificar_leftMouseEntered
+    private void inicio_leftMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inicio_leftMouseEntered
+        inicio_left.setOpaque(true);
+        inicio_left.setBackground(new Color(2, 143, 224));// TODO add your handling code here:
+    }//GEN-LAST:event_inicio_leftMouseEntered
 
-    private void modificar_leftMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modificar_leftMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_modificar_leftMouseExited
+    private void registrar_usuariosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registrar_usuariosMouseExited
+        registrar_usuarios.setOpaque(false);
+        registrar_usuarios.setBackground(new Color(50,55,61));// TODO add your handling code here:
+    }//GEN-LAST:event_registrar_usuariosMouseExited
 
-    private void cls_btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cls_btnMouseClicked
-        this.dispose();// TODO add your handling code here:
-    }//GEN-LAST:event_cls_btnMouseClicked
+    private void registrar_usuariosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registrar_usuariosMouseEntered
+        registrar_usuarios.setOpaque(true);
+        registrar_usuarios.setBackground(new Color(2, 143, 224));// TODO add your handling code here:
+    }//GEN-LAST:event_registrar_usuariosMouseEntered
 
     private void Cerrar_SesionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Cerrar_SesionMouseExited
         Cerrar_Sesion.setOpaque(false);
@@ -238,6 +255,10 @@ public class ds_template1 extends javax.swing.JFrame {
     private void Cerrar_SesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Cerrar_SesionMouseClicked
         this.dispose();
     }//GEN-LAST:event_Cerrar_SesionMouseClicked
+
+    private void cls_btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cls_btnMouseClicked
+        this.dispose();// TODO add your handling code here:
+    }//GEN-LAST:event_cls_btnMouseClicked
 
     private void min_btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_min_btnMouseClicked
         this.setState(JFrame.ICONIFIED);// TODO add your handling code here:
