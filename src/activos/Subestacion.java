@@ -3,27 +3,50 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package user.project.ds_project.vista;
+package activos;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 import javax.swing.*;
+
+import deprecated.ds_bd;
+
 /**
  *
  * @author daveybtw
  */
-public class ds_template1 extends javax.swing.JFrame {
-	private static final long serialVersionUID = 1L;
-	/**
+public class Subestacion extends javax.swing.JFrame {
+
+    /**
      * Creates new form ds_admin_user
      */
-    public ds_template1() {
+    ds_bd gestorBD = new ds_bd();
+    ArrayList<JTextField> Components = new ArrayList<JTextField>();
+    ControlSubestacion controlador = new ControlSubestacion();
+    public Subestacion() {
+        
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(100, 30);
         FrameDragListener frameDragListener = new FrameDragListener(this);
         this.addMouseListener(frameDragListener);
         this.addMouseMotionListener(frameDragListener);
         initComponents();
+        Components.add(text_encargado);
+        Components.add(text_ciudad);
+        Components.add(text_direccion);
+        changeBorders(Components);
+        // ---------------------------------------------
+        
+        // ----------------------------------------------
+    }
+    
+    public void changeBorders(ArrayList<JTextField> Componentes){
+        for(int i = 0; i < Componentes.size(); i++){
+            Componentes.get(i).setBorder(BorderFactory.createCompoundBorder(
+            Componentes.get(i).getBorder(), 
+            BorderFactory.createEmptyBorder(5, 5, 5, 5)));
+        }
     }
 
     /**
@@ -52,6 +75,17 @@ public class ds_template1 extends javax.swing.JFrame {
         cls_btn = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         content_panel = new javax.swing.JPanel();
+        Title = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        text_encargado = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        text_ciudad = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        text_direccion = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        combo_estado = new javax.swing.JComboBox<>();
+        jLabel7 = new javax.swing.JLabel();
+        btn_registro = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(254, 254, 254));
@@ -186,6 +220,48 @@ public class ds_template1 extends javax.swing.JFrame {
         content_panel.setBackground(java.awt.Color.white);
         content_panel.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 1, new java.awt.Color(0, 0, 0)));
         content_panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Title.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Title.setText("Adicion de nuevas subestaciones de energia");
+        content_panel.add(Title, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 40, -1, -1));
+
+        jLabel3.setText("Documento del encargado");
+        content_panel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, -1, -1));
+
+        text_encargado.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        content_panel.add(text_encargado, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, 300, 30));
+
+        jLabel4.setText("Ciudad donde se encuentra la subestacion");
+        content_panel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, -1, -1));
+
+        text_ciudad.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        content_panel.add(text_ciudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, 300, 30));
+
+        jLabel5.setText("Direccion donde se encuentra la subestacion");
+        content_panel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, -1, -1));
+
+        text_direccion.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        content_panel.add(text_direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, 300, 30));
+
+        jLabel6.setText("Estado de la subestacion");
+        content_panel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 90, -1, -1));
+
+        combo_estado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
+        content_panel.add(combo_estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 110, 240, 30));
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Registrar subestacion");
+        content_panel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 420, -1, 30));
+
+        btn_registro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ds_ims/button.png"))); // NOI18N
+        btn_registro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_registroMouseClicked(evt);
+            }
+        });
+        content_panel.add(btn_registro, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 410, 160, -1));
+
         getContentPane().add(content_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, 870, 670));
 
         pack();
@@ -243,6 +319,23 @@ public class ds_template1 extends javax.swing.JFrame {
         this.setState(JFrame.ICONIFIED);// TODO add your handling code here:
     }//GEN-LAST:event_min_btnMouseClicked
 
+    private void btn_registroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_registroMouseClicked
+        switch(controlador.createNewSubestacion(Components, text_encargado.getText(), text_ciudad.getText(), text_direccion.getText(), String.valueOf(combo_estado.getSelectedItem()))){
+            case 0:
+                JOptionPane.showMessageDialog(this, "Fallo la creacion de la nueva subestacion");
+                break;
+            case 1:
+                JOptionPane.showMessageDialog(this, "Creacion de la subestacion completa");
+                break;
+            case 2:
+                JOptionPane.showMessageDialog(this, "Llene todos los campos e intente nuevamente");
+                break;
+            case 3:
+                JOptionPane.showMessageDialog(this, "El campo 'Documento del encargado' debe ser llenado unicamente con numeros");
+                break;
+        }
+    }//GEN-LAST:event_btn_registroMouseClicked
+
     
     /**
      * @param args the command line arguments
@@ -261,14 +354,18 @@ public class ds_template1 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ds_template1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Subestacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ds_template1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Subestacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ds_template1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Subestacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ds_template1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Subestacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -277,7 +374,7 @@ public class ds_template1 extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ds_template1().setVisible(true);
+                new Subestacion().setVisible(true);
             }
         });
     }
@@ -307,11 +404,19 @@ public class ds_template1 extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Cerrar_Sesion;
+    private javax.swing.JLabel Title;
+    private javax.swing.JLabel btn_registro;
     private javax.swing.JLabel cls_btn;
+    private javax.swing.JComboBox<String> combo_estado;
     private javax.swing.JPanel content_panel;
     private javax.swing.JLabel inicio_left;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
@@ -323,5 +428,8 @@ public class ds_template1 extends javax.swing.JFrame {
     private javax.swing.JLabel min_btn;
     private javax.swing.JLabel modificar_left;
     private javax.swing.JLabel registrar_usuarios;
+    private javax.swing.JTextField text_ciudad;
+    private javax.swing.JTextField text_direccion;
+    private javax.swing.JTextField text_encargado;
     // End of variables declaration//GEN-END:variables
 }

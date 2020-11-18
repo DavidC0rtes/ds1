@@ -4,7 +4,7 @@
  * que se integren las vistas con el módulo de acceso a la BD del proyecto.
  */
 
-package user.project.ds_project;
+package deprecated;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

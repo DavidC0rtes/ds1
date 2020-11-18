@@ -3,7 +3,7 @@
  * Este archivo y otros deben ser eliminados una vez
  * que se integren las vistas con el módulo de acceso a la BD del proyecto.
  */
-package user.project.ds_project;
+package deprecated;
 
 import java.sql.*;
 import java.util.*;
