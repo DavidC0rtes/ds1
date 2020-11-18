@@ -1,28 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/** 
+ * El modulo de acceso a la BD ya está terminado.
+ * Este archivo y otros deben ser eliminados una vez
+ * que se integren las vistas con el módulo de acceso a la BD del proyecto.
  */
-package user.consulta.ds_project;
+package deprecated;
 
-import java.util.List;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.sql.*;
+import java.util.*;
 /**
  *
  * @author daveybtw
  */
 public class ds_bd {
     
-    
-    
+    ds_bd_connection newConexion = new ds_bd_connection();
     /**
      *
      * @param args
@@ -33,7 +24,7 @@ public class ds_bd {
     
     public ArrayList<ArrayList<String>> returnData(){
         ArrayList<ArrayList<String>> data = new ArrayList<>();
-        try (Connection connection = DriverManager.getConnection("jdbc:postgresql://ec2-3-91-112-166.compute-1.amazonaws.com/d4fqjan9sskpd3", "slghhoagzebeie", "1a2b4c8f2d1adb828aab34c70784517bc57bbcca6ff8af5694457d3478cf1485")){
+        try (Connection connection = newConexion.retrieveConnection()){
  
             System.out.println("Java JDBC PostgreSQL Example");
             // When this class first attempts to establish a connection, it automatically loads any JDBC 4.0 drivers found within 
@@ -188,4 +179,25 @@ public class ds_bd {
         }
         return 0;
     }
+    
+    public int createNewSubE(int identificacion, String ciudad, String direccion, boolean estado){
+        int affectedrows = 0;
+        String SQL = "INSERT INTO public.subestaciones (id_jefe_subestacion, ciudad, direccion, estado) "
+                + "VALUES (?, ?, ?, ?)";
+        try (Connection connection = DriverManager.getConnection("jdbc:postgresql://ec2-3-91-112-166.compute-1.amazonaws.com/d4fqjan9sskpd3", "slghhoagzebeie", "1a2b4c8f2d1adb828aab34c70784517bc57bbcca6ff8af5694457d3478cf1485");
+                PreparedStatement pstmt = connection.prepareStatement(SQL)) {
+            
+            pstmt.setInt(1, identificacion);
+            pstmt.setString(2, ciudad);
+            pstmt.setString(3, direccion);
+            pstmt.setBoolean(4, estado);
+            affectedrows = pstmt.executeUpdate();
+            return affectedrows;
+            
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return 0;
+    }
+    
 }

@@ -1,43 +1,30 @@
-/*
+/**
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package user.consulta.ds_project;
+package misc;
 
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.util.ArrayList;
-import javax.swing.AbstractAction;
-import javax.swing.Action;
-import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
-import javax.swing.UIDefaults;
-import javax.swing.UIManager;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
 
-/**
- *
- * @author daveybtw
- */
-public class ds_admin_user extends javax.swing.JFrame {
+import activos.Subestacion.FrameDragListener;
+import deprecated.ds_bd;
+
+public class ds_template1 extends javax.swing.JFrame {
 
     /**
      * Creates new form ds_admin_user
      */
     ds_bd gestorBD = new ds_bd();
-    public ds_admin_user() {
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+    public ds_template1() {
+    	Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(100, 30);
+        FrameDragListener frameDragListener = new FrameDragListener(this);
+        this.addMouseListener(frameDragListener);
+        this.addMouseMotionListener(frameDragListener);
         initComponents();
-        construirTabla();
     }
 
     /**
@@ -60,10 +47,9 @@ public class ds_admin_user extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(254, 254, 254));
@@ -136,7 +122,7 @@ public class ds_admin_user extends javax.swing.JFrame {
 
         jLabel3.setForeground(new java.awt.Color(254, 254, 254));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Modificar usuarios");
+        jLabel3.setText("Registrar usuarios");
         jLabel3.setAlignmentX(0.6F);
         jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -148,7 +134,7 @@ public class ds_admin_user extends javax.swing.JFrame {
                 jLabel3MouseExited(evt);
             }
         });
-        jPanel5.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 230, 30));
+        jPanel5.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 230, 30));
 
         jLabel4.setForeground(new java.awt.Color(254, 254, 254));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -174,6 +160,22 @@ public class ds_admin_user extends javax.swing.JFrame {
         jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel5.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 450, 230, 20));
 
+        jLabel16.setForeground(new java.awt.Color(254, 254, 254));
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel16.setText("Modificar usuarios");
+        jLabel16.setAlignmentX(0.6F);
+        jLabel16.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel16.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabel16.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel16MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel16MouseExited(evt);
+            }
+        });
+        jPanel5.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 230, 30));
+
         jPanel2.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 230, 470));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 670));
@@ -181,31 +183,6 @@ public class ds_admin_user extends javax.swing.JFrame {
         jPanel3.setBackground(java.awt.Color.white);
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 640, -1, -1));
-
-        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
-        jScrollPane1.setBorder(null);
-        jScrollPane1.setFocusable(false);
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jTable1.setFocusable(false);
-        jTable1.setGridColor(new java.awt.Color(255, 255, 255));
-        jTable1.setIntercellSpacing(new java.awt.Dimension(0, 0));
-        jTable1.setRowHeight(25);
-        jTable1.setSelectionBackground(new java.awt.Color(2, 143, 224));
-        jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane1.setViewportView(jTable1);
-
-        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, 780, 530));
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 0, 870, 670));
 
@@ -262,44 +239,36 @@ public class ds_admin_user extends javax.swing.JFrame {
         jLabel4.setBackground(new Color(50,55,61));// TODO add your handling code here:
     }//GEN-LAST:event_jLabel4MouseExited
 
-    
+    private void jLabel16MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel16MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel16MouseEntered
+
+    private void jLabel16MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel16MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel16MouseExited
 
     
-    public void construirTabla(){
-        DefaultTableModel mDefaultTableMoadel = new DefaultTableModel();
-        String[] titlesInfo = new String[7];
-        titlesInfo[0] = "Cedula";
-        titlesInfo[1] = "Nombre";
-        titlesInfo[2] = "Apellido";
-        titlesInfo[3] = "Contraseña";
-        titlesInfo[4] = "Correo";
-        titlesInfo[5] = "Activo";
-        titlesInfo[6] = "Rol ID";
-        mDefaultTableMoadel.setDataVector(gestorBD.obtenerMatrizData(), titlesInfo);
-        jTable1.setModel(mDefaultTableMoadel);
-        jTable1.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
-        jTable1.getTableHeader().setOpaque(true);
-        jTable1.getTableHeader().setBackground(Color.WHITE);
-        jTable1.getTableHeader().setForeground(new Color(255, 255, 255));
-        jTable1.setRowHeight(25);
-        jTable1.setBackground(Color.WHITE);
-        jScrollPane1.getViewport().setBackground(Color.WHITE);
-        UIDefaults defaults = UIManager.getLookAndFeelDefaults();
-        jTable1.setCellSelectionEnabled(true);
-       Action action = new AbstractAction()
-    {
-        public void actionPerformed(ActionEvent e)
-        {
-            TableCellListener tcl = (TableCellListener)e.getSource();
-            gestorBD.updateData(tcl.getColumn(), (String) tcl.getNewValue(), (String) jTable1.getModel().getValueAt(tcl.getRow(), 0));
-            System.out.println("Row   : " + tcl.getRow());
-            System.out.println("Column: " + tcl.getColumn());
-            System.out.println("Old   : " + tcl.getOldValue());
-            System.out.println("New   : " + tcl.getNewValue());
+    public static class FrameDragListener extends MouseAdapter {
+
+        private final JFrame frame;
+        private Point mouseDownCompCoords = null;
+
+        public FrameDragListener(JFrame frame) {
+            this.frame = frame;
         }
-    };
 
-    TableCellListener tcl = new TableCellListener(jTable1, action);
+        public void mouseReleased(MouseEvent e) {
+            mouseDownCompCoords = null;
+        }
+
+        public void mousePressed(MouseEvent e) {
+            mouseDownCompCoords = e.getPoint();
+        }
+
+        public void mouseDragged(MouseEvent e) {
+            Point currCoords = e.getLocationOnScreen();
+            frame.setLocation(currCoords.x - mouseDownCompCoords.x, currCoords.y - mouseDownCompCoords.y);
+        }
     }
     
     /**
@@ -319,27 +288,30 @@ public class ds_admin_user extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ds_admin_user.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ds_template1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ds_admin_user.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ds_template1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ds_admin_user.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ds_template1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ds_admin_user.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ds_template1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ds_admin_user().setVisible(true);
+                new ds_template1().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -352,7 +324,5 @@ public class ds_admin_user extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
