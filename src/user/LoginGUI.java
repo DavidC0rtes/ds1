@@ -11,6 +11,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 
 import deprecated.ds_bd;
+import javax.swing.JFrame;
 import user.consulta.ConsultaGUI;
 
 /**
@@ -23,6 +24,8 @@ public class LoginGUI extends javax.swing.JFrame {
      * Creates new form ds_login
      */
     public LoginGUI() {
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
         initComponents();
         changeComponents();
     }

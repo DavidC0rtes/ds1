@@ -32,8 +32,8 @@ public class Main  	{
         EventQueue.invokeLater(new Runnable() {
             public void run() {
             	
-            	LoginGUI gui = new LoginGUI();
-            	gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            	new Dashboard();
+            	
 
             }
         });
