@@ -9,7 +9,7 @@ import db.JDBCConnection;
  * Sirve como modelo para los usuarios del sistema.
  * Capa de acceso a datos.
  */
-public class User {
+public class RegisterModel {
 	private int cedula;
 	
 	private String rol;
@@ -21,7 +21,7 @@ public class User {
 	private String password;
 	private JDBCConnection conn;
 	
-	public User() {
+	public RegisterModel() {
 		conn = new JDBCConnection();
 	}
 

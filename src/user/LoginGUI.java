@@ -1,5 +1,7 @@
-/**
- * Vista del ingreso al sistema de los usuarios.
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package user;
 
@@ -9,7 +11,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 
 import deprecated.ds_bd;
-import user.consulta.GUI;
+import user.consulta.ConsultaGUI;
 
 /**
  *
@@ -62,7 +64,7 @@ public class LoginGUI extends javax.swing.JFrame {
                             wrongUserPassword();
                             break;
                         case 1:
-                            GUI adminInterface = new GUI();
+                            ConsultaGUI adminInterface = new ConsultaGUI();
                             adminInterface.setVisible(true);
                             System.out.println("Welcome back admin");
                             exit();

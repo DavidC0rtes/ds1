@@ -1,4 +1,4 @@
-/**
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -8,18 +8,17 @@ package misc;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-
-import activos.Subestacion.FrameDragListener;
-import deprecated.ds_bd;
-
+/**
+ *
+ * @author daveybtw
+ */
 public class ds_template1 extends javax.swing.JFrame {
-
-    /**
+	private static final long serialVersionUID = 1L;
+	/**
      * Creates new form ds_admin_user
      */
-    ds_bd gestorBD = new ds_bd();
     public ds_template1() {
-    	Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(100, 30);
         FrameDragListener frameDragListener = new FrameDragListener(this);
         this.addMouseListener(frameDragListener);
@@ -36,20 +35,23 @@ public class ds_template1 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
+        left_menu = new javax.swing.JPanel();
+        left_footer = new javax.swing.JPanel();
+        Cerrar_Sesion = new javax.swing.JLabel();
+        left_header = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
+        left_options = new javax.swing.JPanel();
+        registrar_usuarios = new javax.swing.JLabel();
+        inicio_left = new javax.swing.JLabel();
+        modificar_left = new javax.swing.JLabel();
+        jPanel8 = new javax.swing.JPanel();
+        min_btn = new javax.swing.JLabel();
+        cls_btn = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        content_panel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(254, 254, 254));
@@ -57,219 +59,190 @@ public class ds_template1 extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(50, 55, 61));
-        jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 0, 1, new java.awt.Color(0, 0, 0)));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        left_menu.setBackground(new java.awt.Color(50, 55, 61));
+        left_menu.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 1, 1, new java.awt.Color(0, 0, 0)));
+        left_menu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(50, 55, 61));
-        jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        left_footer.setBackground(new java.awt.Color(50, 55, 61));
+        left_footer.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        left_footer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel6.setBackground(new java.awt.Color(254, 254, 254));
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(254, 254, 254));
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Cerrar Sesion");
-        jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+        Cerrar_Sesion.setBackground(new java.awt.Color(254, 254, 254));
+        Cerrar_Sesion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        Cerrar_Sesion.setForeground(new java.awt.Color(254, 254, 254));
+        Cerrar_Sesion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Cerrar_Sesion.setText("Cerrar Sesion");
+        Cerrar_Sesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Cerrar_Sesion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel6MouseClicked(evt);
+                Cerrar_SesionMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel6MouseEntered(evt);
+                Cerrar_SesionMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel6MouseExited(evt);
+                Cerrar_SesionMouseExited(evt);
             }
         });
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 110, 20));
+        left_footer.add(Cerrar_Sesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 20));
 
-        jLabel2.setBackground(new java.awt.Color(254, 254, 254));
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(254, 254, 254));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Salir del programa");
-        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel2MouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel2MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel2MouseExited(evt);
-            }
-        });
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 120, 20));
+        left_menu.add(left_footer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 650, 230, 20));
 
-        jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 650, 230, 20));
+        left_header.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/avatar.png"))); // NOI18N
-        jPanel4.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 100, -1));
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ds_ims/avatar.png"))); // NOI18N
+        left_header.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 100, -1));
 
         jLabel1.setBackground(new java.awt.Color(1, 1, 1));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/bg_1.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ds_ims/bg_1.png"))); // NOI18N
         jLabel1.setText("jLabel1");
-        jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 180));
+        left_header.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 180));
+        left_header.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, 1100, 20));
+        left_header.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, -1, -1));
 
-        jPanel2.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 180));
+        left_menu.add(left_header, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 180));
 
-        jPanel5.setBackground(new java.awt.Color(50, 55, 61));
-        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        left_options.setBackground(new java.awt.Color(50, 55, 61));
+        left_options.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setForeground(new java.awt.Color(254, 254, 254));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Registrar usuarios");
-        jLabel3.setAlignmentX(0.6F);
-        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+        registrar_usuarios.setForeground(new java.awt.Color(254, 254, 254));
+        registrar_usuarios.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        registrar_usuarios.setText("Registrar usuarios");
+        registrar_usuarios.setAlignmentX(0.6F);
+        registrar_usuarios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        registrar_usuarios.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        registrar_usuarios.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel3MouseEntered(evt);
+                registrar_usuariosMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel3MouseExited(evt);
+                registrar_usuariosMouseExited(evt);
             }
         });
-        jPanel5.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 230, 30));
+        left_options.add(registrar_usuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 230, 30));
 
-        jLabel4.setForeground(new java.awt.Color(254, 254, 254));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Inicio");
-        jLabel4.setAlignmentX(0.6F);
-        jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+        inicio_left.setForeground(new java.awt.Color(254, 254, 254));
+        inicio_left.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        inicio_left.setText("Inicio");
+        inicio_left.setAlignmentX(0.6F);
+        inicio_left.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        inicio_left.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        inicio_left.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel4MouseEntered(evt);
+                inicio_leftMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel4MouseExited(evt);
+                inicio_leftMouseExited(evt);
             }
         });
-        jPanel5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 30));
+        left_options.add(inicio_left, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 30));
 
-        jLabel5.setBackground(new java.awt.Color(254, 254, 254));
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(254, 254, 254));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Sistema de gestion electrica");
-        jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPanel5.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 450, 230, 20));
-
-        jLabel16.setForeground(new java.awt.Color(254, 254, 254));
-        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel16.setText("Modificar usuarios");
-        jLabel16.setAlignmentX(0.6F);
-        jLabel16.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel16.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel16.addMouseListener(new java.awt.event.MouseAdapter() {
+        modificar_left.setForeground(new java.awt.Color(254, 254, 254));
+        modificar_left.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        modificar_left.setText("Modificar usuarios");
+        modificar_left.setAlignmentX(0.6F);
+        modificar_left.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        modificar_left.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        modificar_left.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel16MouseEntered(evt);
+                modificar_leftMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel16MouseExited(evt);
+                modificar_leftMouseExited(evt);
             }
         });
-        jPanel5.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 230, 30));
+        left_options.add(modificar_left, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 230, 30));
 
-        jPanel2.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 230, 470));
+        left_menu.add(left_options, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 230, 470));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 670));
+        getContentPane().add(left_menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 230, 670));
 
-        jPanel3.setBackground(java.awt.Color.white);
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 640, -1, -1));
+        jPanel8.setBackground(new java.awt.Color(50, 55, 61));
+        jPanel8.setBorder(new javax.swing.border.MatteBorder(null));
+        jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 0, 870, 670));
+        min_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ds_ims/btn_minimize.png"))); // NOI18N
+        min_btn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                min_btnMouseClicked(evt);
+            }
+        });
+        jPanel8.add(min_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 0, 20, 20));
+
+        cls_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ds_ims/btn_close.png"))); // NOI18N
+        cls_btn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cls_btnMouseClicked(evt);
+            }
+        });
+        jPanel8.add(cls_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 0, 20, 20));
+
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("SiGE");
+        jPanel8.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 0, -1, 20));
+
+        getContentPane().add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, 20));
+
+        content_panel.setBackground(java.awt.Color.white);
+        content_panel.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 1, new java.awt.Color(0, 0, 0)));
+        content_panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(content_panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, 870, 670));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseEntered
+    private void registrar_usuariosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registrar_usuariosMouseEntered
+        registrar_usuarios.setOpaque(true);
+        registrar_usuarios.setBackground(new Color(2, 143, 224));// TODO add your handling code here:
+    }//GEN-LAST:event_registrar_usuariosMouseEntered
 
-        jLabel6.setOpaque(true);
-        jLabel6.setBackground(new Color(2, 143, 224));
-    }//GEN-LAST:event_jLabel6MouseEntered
+    private void registrar_usuariosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registrar_usuariosMouseExited
+        registrar_usuarios.setOpaque(false);
+        registrar_usuarios.setBackground(new Color(50,55,61));// TODO add your handling code here:
+    }//GEN-LAST:event_registrar_usuariosMouseExited
 
-    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
-        this.dispose();
-    }//GEN-LAST:event_jLabel6MouseClicked
+    private void inicio_leftMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inicio_leftMouseEntered
+        inicio_left.setOpaque(true);
+        inicio_left.setBackground(new Color(2, 143, 224));// TODO add your handling code here:
+    }//GEN-LAST:event_inicio_leftMouseEntered
 
-    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-        this.dispose();
-    }//GEN-LAST:event_jLabel2MouseClicked
+    private void inicio_leftMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inicio_leftMouseExited
+        inicio_left.setOpaque(false);
+        inicio_left.setBackground(new Color(50,55,61));// TODO add your handling code here:
+    }//GEN-LAST:event_inicio_leftMouseExited
 
-    private void jLabel6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseExited
-        jLabel6.setOpaque(false);
-        jLabel6.setBackground(new Color(50,55,61));
-// TODO add your handling code here:
-    }//GEN-LAST:event_jLabel6MouseExited
-
-    private void jLabel2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseEntered
-        jLabel2.setOpaque(true);
-        jLabel2.setBackground(new Color(2, 143, 224));// TODO add your handling code here:
-    }//GEN-LAST:event_jLabel2MouseEntered
-
-    private void jLabel2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseExited
-        jLabel2.setOpaque(false);
-        jLabel2.setBackground(new Color(50,55,61));// TODO add your handling code here:
-    }//GEN-LAST:event_jLabel2MouseExited
-
-    private void jLabel3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseEntered
-        jLabel3.setOpaque(true);
-        jLabel3.setBackground(new Color(2, 143, 224));// TODO add your handling code here:
-    }//GEN-LAST:event_jLabel3MouseEntered
-
-    private void jLabel3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseExited
-        jLabel3.setOpaque(false);
-        jLabel3.setBackground(new Color(50,55,61));// TODO add your handling code here:
-    }//GEN-LAST:event_jLabel3MouseExited
-
-    private void jLabel4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseEntered
-        jLabel4.setOpaque(true);
-        jLabel4.setBackground(new Color(2, 143, 224));// TODO add your handling code here:
-    }//GEN-LAST:event_jLabel4MouseEntered
-
-    private void jLabel4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseExited
-        jLabel4.setOpaque(false);
-        jLabel4.setBackground(new Color(50,55,61));// TODO add your handling code here:
-    }//GEN-LAST:event_jLabel4MouseExited
-
-    private void jLabel16MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel16MouseEntered
+    private void modificar_leftMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modificar_leftMouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel16MouseEntered
+    }//GEN-LAST:event_modificar_leftMouseEntered
 
-    private void jLabel16MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel16MouseExited
+    private void modificar_leftMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modificar_leftMouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel16MouseExited
+    }//GEN-LAST:event_modificar_leftMouseExited
 
-    
-    public static class FrameDragListener extends MouseAdapter {
+    private void cls_btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cls_btnMouseClicked
+        this.dispose();// TODO add your handling code here:
+    }//GEN-LAST:event_cls_btnMouseClicked
 
-        private final JFrame frame;
-        private Point mouseDownCompCoords = null;
+    private void Cerrar_SesionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Cerrar_SesionMouseExited
+        Cerrar_Sesion.setOpaque(false);
+        Cerrar_Sesion.setBackground(new Color(50,55,61));
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Cerrar_SesionMouseExited
 
-        public FrameDragListener(JFrame frame) {
-            this.frame = frame;
-        }
+    private void Cerrar_SesionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Cerrar_SesionMouseEntered
 
-        public void mouseReleased(MouseEvent e) {
-            mouseDownCompCoords = null;
-        }
+        Cerrar_Sesion.setOpaque(true);
+        Cerrar_Sesion.setBackground(new Color(2, 143, 224));
+    }//GEN-LAST:event_Cerrar_SesionMouseEntered
 
-        public void mousePressed(MouseEvent e) {
-            mouseDownCompCoords = e.getPoint();
-        }
+    private void Cerrar_SesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Cerrar_SesionMouseClicked
+        this.dispose();
+    }//GEN-LAST:event_Cerrar_SesionMouseClicked
 
-        public void mouseDragged(MouseEvent e) {
-            Point currCoords = e.getLocationOnScreen();
-            frame.setLocation(currCoords.x - mouseDownCompCoords.x, currCoords.y - mouseDownCompCoords.y);
-        }
-    }
+    private void min_btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_min_btnMouseClicked
+        this.setState(JFrame.ICONIFIED);// TODO add your handling code here:
+    }//GEN-LAST:event_min_btnMouseClicked
+
     
     /**
      * @param args the command line arguments
@@ -308,21 +281,47 @@ public class ds_template1 extends javax.swing.JFrame {
             }
         });
     }
+    
+    public static class FrameDragListener extends MouseAdapter {
+
+        private final JFrame frame;
+        private Point mouseDownCompCoords = null;
+
+        public FrameDragListener(JFrame frame) {
+            this.frame = frame;
+        }
+
+        public void mouseReleased(MouseEvent e) {
+            mouseDownCompCoords = null;
+        }
+
+        public void mousePressed(MouseEvent e) {
+            mouseDownCompCoords = e.getPoint();
+        }
+
+        public void mouseDragged(MouseEvent e) {
+            Point currCoords = e.getLocationOnScreen();
+            frame.setLocation(currCoords.x - mouseDownCompCoords.x, currCoords.y - mouseDownCompCoords.y);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Cerrar_Sesion;
+    private javax.swing.JLabel cls_btn;
+    private javax.swing.JPanel content_panel;
+    private javax.swing.JLabel inicio_left;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel left_footer;
+    private javax.swing.JPanel left_header;
+    private javax.swing.JPanel left_menu;
+    private javax.swing.JPanel left_options;
+    private javax.swing.JLabel min_btn;
+    private javax.swing.JLabel modificar_left;
+    private javax.swing.JLabel registrar_usuarios;
     // End of variables declaration//GEN-END:variables
 }

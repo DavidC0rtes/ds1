@@ -1,7 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/** 
+ * El modulo de acceso a la BD ya está terminado.
+ * Este archivo y otros deben ser eliminados una vez
+ * que se integren las vistas con el módulo de acceso a la BD del proyecto.
  */
 package misc;
 import java.awt.event.*;
