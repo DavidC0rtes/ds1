@@ -3,17 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package user.project.ds_project.oper_controlador;
+package activos;
 
 import java.util.ArrayList;
 import javax.swing.JTextField;
-import user.project.ds_project.ds_bd;
+
+import deprecated.ds_bd;
 
 /**
  *
  * @author USER
  */
-public class oper_controlador {
+public class ControlSubestacion {
     
     ds_bd GestorBD = new ds_bd();
     public int valoresVacios(ArrayList<JTextField> Componentes){

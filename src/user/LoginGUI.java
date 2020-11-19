@@ -3,25 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package user.project.ds_project.vista;
+package user;
 
-import user.project.ds_project.admin_vista.ds_admin_user;
-import user.project.ds_project.ds_bd;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 
+import deprecated.ds_bd;
+import user.consulta.ConsultaGUI;
+
 /**
  *
  * @author USER
  */
-public class ds_login extends javax.swing.JFrame {
+public class LoginGUI extends javax.swing.JFrame {
 
     /**
      * Creates new form ds_login
      */
-    public ds_login() {
+    public LoginGUI() {
         initComponents();
         changeComponents();
     }
@@ -63,7 +64,7 @@ public class ds_login extends javax.swing.JFrame {
                             wrongUserPassword();
                             break;
                         case 1:
-                            ds_admin_user adminInterface = new ds_admin_user();
+                            ConsultaGUI adminInterface = new ConsultaGUI();
                             adminInterface.setVisible(true);
                             System.out.println("Welcome back admin");
                             exit();
@@ -118,7 +119,7 @@ public class ds_login extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(153, 204, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ds_ims/login_bg.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/login_bg.png"))); // NOI18N
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 410, 620));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, 600));
@@ -141,7 +142,7 @@ public class ds_login extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(3, 255, 157));
         jButton1.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 14)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ds_ims/button.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/button.png"))); // NOI18N
         jButton1.setBorder(null);
         jButton1.setBorderPainted(false);
         jButton1.setFocusPainted(false);
@@ -173,20 +174,20 @@ public class ds_login extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ds_login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ds_login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ds_login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ds_login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ds_login().setVisible(true);
+                new LoginGUI().setVisible(true);
             }
         });
     }

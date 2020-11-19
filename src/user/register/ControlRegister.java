@@ -4,10 +4,10 @@ import java.sql.SQLException;
 import java.util.*;
 
 public class ControlRegister {
-	private User usuario;
+	private RegisterModel usuario;
 	
 	public ControlRegister() {
-		usuario = new User();
+		usuario = new RegisterModel();
 	}
 	
 	public boolean datosCompletos(HashMap<String, String> datos) {

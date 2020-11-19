@@ -3,27 +3,28 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package user.project.ds_project.admin_vista;
+package user.consulta;
 
-import user.project.ds_project.TableCellListener;
-import user.project.ds_project.ds_bd;
-import user.project.ds_project.vista.ds_template1;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
+import deprecated.ds_bd;
+import misc.TableCellListener;
+import misc.ds_template1;
+
 /**
  *
  * @author daveybtw
  */
-public class ds_admin_user extends javax.swing.JFrame {
+public class ConsultaGUI extends javax.swing.JFrame {
 
     /**
      * Creates new form ds_admin_user
      */
     ds_bd gestorBD = new ds_bd();
-    public ds_admin_user() {
+    public ConsultaGUI() {
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(100, 30);
         ds_template1.FrameDragListener frameDragListener = new ds_template1.FrameDragListener(this);
@@ -114,11 +115,11 @@ public class ds_admin_user extends javax.swing.JFrame {
 
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ds_ims/avatar.png"))); // NOI18N
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/avatar.png"))); // NOI18N
         jPanel4.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 100, -1));
 
         jLabel1.setBackground(new java.awt.Color(1, 1, 1));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ds_ims/bg_1.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/bg_1.png"))); // NOI18N
         jLabel1.setText("jLabel1");
         jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 180));
 
@@ -312,13 +313,13 @@ public class ds_admin_user extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ds_admin_user.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultaGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ds_admin_user.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultaGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ds_admin_user.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultaGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ds_admin_user.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultaGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -326,7 +327,7 @@ public class ds_admin_user extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ds_admin_user().setVisible(true);
+                new ConsultaGUI().setVisible(true);
             }
         });
     }

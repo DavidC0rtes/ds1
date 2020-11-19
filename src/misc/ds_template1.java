@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package user.project.ds_project.vista;
+package misc;
 
 import java.awt.*;
 import java.awt.event.*;
