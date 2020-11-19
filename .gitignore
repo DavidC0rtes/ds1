@@ -7,5 +7,4 @@ bin
 *.jar
 .metadata
 *.properties
-*.form
 /binTest/
