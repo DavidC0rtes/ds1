@@ -8,3 +8,4 @@ bin
 .metadata
 *.properties
 /binTest/
+src/db/db.properties
