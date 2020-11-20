@@ -15,7 +15,7 @@ import user.register.RegisterPanel;
  */
 public class Dashboard extends javax.swing.JFrame {
 
-    //private final RegisterPanel registerPanel = new RegisterPanel();
+    private final RegisterPanel registerPanel = new RegisterPanel();
     private final ConsultaPanel consultaPanel = new ConsultaPanel();
     /**
      * Creates new form Dashboard
@@ -252,7 +252,7 @@ public class Dashboard extends javax.swing.JFrame {
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         // TODO add your handling code here:
         jPanel3.removeAll();
-        //jPanel3.add(registerPanel);
+        jPanel3.add(registerPanel);
         jPanel3.repaint();
         jPanel3.revalidate();
     }//GEN-LAST:event_jLabel3MouseClicked
