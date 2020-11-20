@@ -5,17 +5,28 @@
  */
 package user.consulta;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.UIDefaults;
+import javax.swing.UIManager;
+import javax.swing.table.DefaultTableModel;
+import misc.TableCellListener;
+
 /**
  *
  * @author camilo
  */
 public class ConsultaPanel extends javax.swing.JPanel {
-
+ConsultaModelo modelo = new ConsultaModelo();
     /**
      * Creates new form ConsultaPanel
      */
     public ConsultaPanel() {
         initComponents();
+        construirTabla();
     }
 
     /**
@@ -82,6 +93,43 @@ public class ConsultaPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    public void construirTabla(){
+        DefaultTableModel mDefaultTableMoadel = new DefaultTableModel();
+        String[] titlesInfo = new String[7];
+        titlesInfo[0] = "Cedula";
+        titlesInfo[1] = "Nombre";
+        titlesInfo[2] = "Apellido";
+        titlesInfo[3] = "Contraseña";
+        titlesInfo[4] = "Correo";
+        titlesInfo[5] = "Activo";
+        titlesInfo[6] = "Rol ID";
+        mDefaultTableMoadel.setDataVector(modelo.obtenerMatrizData(), titlesInfo);
+        jTable1.setModel(mDefaultTableMoadel);
+        jTable1.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
+        jTable1.getTableHeader().setOpaque(true);
+        jTable1.getTableHeader().setBackground(Color.WHITE);
+        jTable1.getTableHeader().setForeground(new Color(255, 255, 255));
+        jTable1.setRowHeight(25);
+        jTable1.setBackground(Color.WHITE);
+        jScrollPane1.getViewport().setBackground(Color.WHITE);
+        UIDefaults defaults = UIManager.getLookAndFeelDefaults();
+        jTable1.setCellSelectionEnabled(true);
+       Action action = new AbstractAction()
+    {
+        public void actionPerformed(ActionEvent e)
+        {
+            TableCellListener tcl = (TableCellListener)e.getSource();
+            modelo.updateData(tcl.getColumn(), (String) tcl.getNewValue(), (String) jTable1.getModel().getValueAt(tcl.getRow(), 0));
+            System.out.println("Row   : " + tcl.getRow());
+            System.out.println("Column: " + tcl.getColumn());
+            System.out.println("Old   : " + tcl.getOldValue());
+            System.out.println("New   : " + tcl.getNewValue());
+        }
+    };
+
+    TableCellListener tcl = new TableCellListener(jTable1, action);
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel3;
