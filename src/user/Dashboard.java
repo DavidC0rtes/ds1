@@ -22,9 +22,10 @@ public class Dashboard extends javax.swing.JFrame {
      * Creates new form Dashboard
      */
     public Dashboard(User usuario) {
+    	this.usuario = usuario;
         initComponents();
         setVisible(true);
-        this.usuario = usuario;
+        
         
     }
 
@@ -134,7 +135,10 @@ public class Dashboard extends javax.swing.JFrame {
                 jLabel3MouseExited(evt);
             }
         });
-        jPanel5.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 230, 30));
+        if (usuario.getIdRol() == 1) {
+        	jPanel5.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 230, 30));
+        }
+        
 
         jLabel4.setForeground(new java.awt.Color(254, 254, 254));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -153,7 +157,10 @@ public class Dashboard extends javax.swing.JFrame {
                 jLabel4MouseExited(evt);
             }
         });
-        jPanel5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 30));
+        if (usuario.getIdRol() == 1) {
+        	jPanel5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 30));
+        }
+        
 
         jLabel5.setBackground(new java.awt.Color(254, 254, 254));
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -254,7 +261,9 @@ public class Dashboard extends javax.swing.JFrame {
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         // TODO add your handling code here:
         jPanel3.removeAll();
-        if (usuario.getIdRol() == 1) jPanel3.add(registerPanel);
+        if (usuario.getIdRol() == 1) {
+        	jPanel3.add(registerPanel);
+        }
         jPanel3.repaint();
         jPanel3.revalidate();
     }//GEN-LAST:event_jLabel3MouseClicked
@@ -262,7 +271,9 @@ public class Dashboard extends javax.swing.JFrame {
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         // TODO add your handling code here:
         jPanel3.removeAll();
-        if (usuario.getIdRol() == 1) jPanel3.add(consultaPanel);
+        if (usuario.getIdRol() == 1) {
+        	jPanel3.add(consultaPanel);
+        }
         jPanel3.repaint();
         jPanel3.revalidate();
     }//GEN-LAST:event_jLabel4MouseClicked
