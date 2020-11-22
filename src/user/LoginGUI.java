@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 
-import deprecated.ds_bd;
 import javax.swing.JFrame;
 
 /**
@@ -50,16 +49,19 @@ public class LoginGUI extends javax.swing.JFrame {
         {
           public void actionPerformed(ActionEvent e)
           {
-            //ds_bd BDGestor = new ds_bd();
+          
             if(jTextField2.getText().length() != 0 && String.valueOf(jPasswordField1.getPassword()).length() != 0){
                 try {
                     // intentional error
                 	
                     String s = jTextField2.getText();
                     
+                    /* Una vez se tengan el cc y la contraseña, se cre una instancia
+                     * de usuario, para poder realizar el login más adelante.
+                     */
                     usuario = new User(s, String.valueOf(jPasswordField1.getPassword()));
+                    
                     if (usuario.attemptLogin(s, String.valueOf(jPasswordField1.getPassword()))) {
-                    	//int rol = BDGestor.loginDatabase(Integer.parseInt(jTextField2.getText()), String.valueOf(jPasswordField1.getPassword()));
                         int rol = usuario.getIdRol();
                         switch(rol){
                             case 0:
