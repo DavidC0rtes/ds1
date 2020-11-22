@@ -54,9 +54,10 @@ public class User {
 				"SELECT id "
 				+ "FROM usuarios "
 				+ "WHERE num_documento=? "
-				+ "AND password=?";
+				+ "AND password=?"
+				+ "AND activo=?";
 		
-		String[] params = {cc, password};
+		String[] params = {cc, password, "true"};
 		ResultSet rs = DB.getRecords(query, params);
 		
 		try {
@@ -81,7 +82,7 @@ public class User {
 	}
 	
 	/**
-	 * Setters y getters
+	 * getters
 	 */
 	public int getIdRol() {return idRol;}
 
