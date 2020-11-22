@@ -90,11 +90,11 @@ public class ds_template1 extends javax.swing.JFrame {
 
         left_header.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ds_ims/avatar.png"))); // NOI18N
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/avatar.png"))); // NOI18N
         left_header.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 100, -1));
 
         jLabel1.setBackground(new java.awt.Color(1, 1, 1));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ds_ims/bg_1.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/bg_1.png"))); // NOI18N
         jLabel1.setText("jLabel1");
         left_header.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 180));
         left_header.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, 1100, 20));
@@ -161,7 +161,7 @@ public class ds_template1 extends javax.swing.JFrame {
         jPanel8.setBorder(new javax.swing.border.MatteBorder(null));
         jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        min_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ds_ims/btn_minimize.png"))); // NOI18N
+        min_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/btn_minimize.png"))); // NOI18N
         min_btn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 min_btnMouseClicked(evt);
@@ -169,7 +169,7 @@ public class ds_template1 extends javax.swing.JFrame {
         });
         jPanel8.add(min_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 0, 20, 20));
 
-        cls_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ds_ims/btn_close.png"))); // NOI18N
+        cls_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/btn_close.png"))); // NOI18N
         cls_btn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cls_btnMouseClicked(evt);
