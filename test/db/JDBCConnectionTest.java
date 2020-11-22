@@ -20,11 +20,11 @@ class JDBCConnectionTest {
 				testConn.getRecords("select * from clientes;"));
 	}
 	
-	@Test
-	void testInsertRole() {
-		JDBCConnection testConn = new JDBCConnection();
-		String[] params = {"gerente"};
-		String query = "insert into roles (nombre_rol) values (?)";
-		assertEquals(1, testConn.updateRecord(query, params));
-	}
+//	@Test
+//	void testInsertRole() {
+//		JDBCConnection testConn = new JDBCConnection();
+//		String[] params = {"gerente"};
+//		String query = "insert into roles (nombre_rol) values (?)";
+//		assertEquals(1, testConn.updateRecord(query, params));
+//	}
 }

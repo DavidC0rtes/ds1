@@ -15,8 +15,8 @@ import user.register.RegisterPanel;
  */
 public class Dashboard extends javax.swing.JFrame {
 
-    private RegisterPanel registerPanel = new RegisterPanel();
-    private ConsultaPanel consultaPanel = new ConsultaPanel();
+    private final RegisterPanel registerPanel = new RegisterPanel();
+    private final ConsultaPanel consultaPanel = new ConsultaPanel();
     /**
      * Creates new form Dashboard
      */

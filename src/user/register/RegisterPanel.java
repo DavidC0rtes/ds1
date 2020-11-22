@@ -117,9 +117,8 @@ public class RegisterPanel extends javax.swing.JPanel {
         jPanel3.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 260, -1, -1));
 
         jLabel17.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("Registrar usuario");
-        jPanel3.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 430, -1, -1));
+        jPanel3.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 430, -1, -1));
 
         registerBtn.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         registerBtn.setForeground(java.awt.Color.darkGray);
