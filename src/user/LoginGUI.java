@@ -68,7 +68,7 @@ public class LoginGUI extends javax.swing.JFrame {
                                 jPasswordField1.setText("");
                                 break;
                             case 1:
-                                Dashboard adminInterface = new Dashboard();
+                                Dashboard adminInterface = new Dashboard(usuario);
                                 adminInterface.setVisible(true);
                                 System.out.println("Welcome back admin");
                                 exit();
