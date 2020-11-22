@@ -23,8 +23,8 @@ public class Dashboard extends javax.swing.JFrame {
      */
     public Dashboard(User usuario) {
     	this.usuario = usuario;
-        initComponents();
-        setVisible(true);
+    	initComponents();
+    	setVisible(true);
         
         
     }
