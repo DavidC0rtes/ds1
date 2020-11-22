@@ -22,25 +22,10 @@ import db.JDBCConnection;
 public class User {
 	private JDBCConnection DB;
 	private int idRol;
-	private String email, primerNombre, primerApellido, cc;
+	private String email, primerNombre, primerApellido;
 
 	public User(String cc, String password) {
 		DB = new JDBCConnection();
-		if (attemptLogin(cc, password)) {
-			
-			this.cc = cc;
-			
-			ResultSet rs = getAll();
-
-			try {
-				this.primerNombre = rs.getString(1);
-				this.primerApellido = rs.getString(2);
-				this.email = rs.getString(3);
-				this.idRol = rs.getInt(4);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
 	}
 	
 	/**
@@ -49,9 +34,9 @@ public class User {
 	 * @param cc
 	 * @param password
 	 */
-	private boolean attemptLogin(String cc, String password) {
+	public boolean attemptLogin(String cc, String password) {
 		String query = 
-				"SELECT id "
+				"SELECT primer_nombre, primer_apellido, email, id_rol "
 				+ "FROM usuarios "
 				+ "WHERE num_documento=? "
 				+ "AND password=?"
@@ -64,21 +49,18 @@ public class User {
 			if (!rs.isBeforeFirst() ) {
 				return false;
 			}
+			else {
+				rs.next();
+				this.primerNombre = rs.getString(1);
+				this.primerApellido = rs.getString(2);
+				this.email = rs.getString(3);
+				this.idRol = rs.getInt(4);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
 		return true;
-	}
-	
-	private ResultSet getAll() {
-		String sql = 
-				"select primer_nombre, primer_apellido, email, id_rol"
-				+ "from usuarios"
-				+ "where num_documento = ?";
-		
-		String[] params = {cc};
-		return DB.getRecords(sql, params);
 	}
 	
 	/**
