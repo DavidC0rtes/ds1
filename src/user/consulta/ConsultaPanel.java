@@ -1,13 +1,15 @@
 package user.consulta;
 
-import java.awt.Color;
-import java.awt.Font;
+import java.awt.*;
 import java.awt.event.ActionEvent;
-import javax.swing.AbstractAction;
-import javax.swing.Action;
-import javax.swing.UIDefaults;
-import javax.swing.UIManager;
+import java.awt.event.KeyEvent;
+import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
+
 import misc.TableCellListener;
 
 /**
@@ -16,7 +18,10 @@ import misc.TableCellListener;
  * @author camilo
  */
 public class ConsultaPanel extends javax.swing.JPanel {
-	private ConsultaModelo modelo = new ConsultaModelo();
+	private final ConsultaModelo modelo = new ConsultaModelo();
+	private final DefaultTableModel mDefaultTableMoadel = new DefaultTableModel();
+	private final TableRowSorter<TableModel> rowSorter;
+
 
 	/**
 	 * Creates new form ConsultaPanel
@@ -24,8 +29,44 @@ public class ConsultaPanel extends javax.swing.JPanel {
 	public ConsultaPanel() {
 		initComponents();
 		construirTabla();
+		rowSorter  = new TableRowSorter<>(tablaUsuarios.getModel());
+		TestTableSortFilter();
 	}
 
+	public void TestTableSortFilter() {
+
+		tablaUsuarios.setRowSorter(rowSorter);
+		buscador.getDocument().addDocumentListener(new DocumentListener(){
+
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				String text = buscador.getText();
+
+				if (text.trim().length() == 0) {
+					rowSorter.setRowFilter(null);
+				} else {
+					rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+				}
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				String text = buscador.getText();
+
+				if (text.trim().length() == 0) {
+					rowSorter.setRowFilter(null);
+				} else {
+					rowSorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+				}
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+			}
+
+		});
+	}
 	/**
 	 * This method is called from within the constructor to initialize the form.
 	 * WARNING: Do NOT modify this code. The content of this method is always
@@ -33,56 +74,66 @@ public class ConsultaPanel extends javax.swing.JPanel {
 	 */
 	@SuppressWarnings("unchecked")
 	// <editor-fold defaultstate="collapsed" desc="Generated
-	// Code">//GEN-BEGIN:initComponents
-	private void initComponents() {
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
 
-		jPanel3 = new javax.swing.JPanel();
-		jLabel7 = new javax.swing.JLabel();
-		jScrollPane1 = new javax.swing.JScrollPane();
-		jTable1 = new javax.swing.JTable();
+        jPanel3 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaUsuarios = new javax.swing.JTable();
+        buscador = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
 
-		jPanel3.setBackground(java.awt.Color.white);
-		jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-		jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 640, -1, -1));
+        setLayout(new java.awt.BorderLayout());
 
-		jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
-		jScrollPane1.setBorder(null);
-		jScrollPane1.setFocusable(false);
+        jPanel3.setBackground(java.awt.Color.white);
+        jPanel3.setLayout(null);
 
-		jTable1.setModel(
-				new javax.swing.table.DefaultTableModel(
-						new Object[][] { { null, null, null, null }, { null, null, null, null },
-								{ null, null, null, null }, { null, null, null, null } },
-						new String[] { "Title 1", "Title 2", "Title 3", "Title 4" }));
-		jTable1.setFocusable(false);
-		jTable1.setGridColor(new java.awt.Color(255, 255, 255));
-		jTable1.setIntercellSpacing(new java.awt.Dimension(0, 0));
-		jTable1.setRowHeight(25);
-		jTable1.setSelectionBackground(new java.awt.Color(2, 143, 224));
-		jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane1.setBorder(null);
+        jScrollPane1.setFocusable(false);
 
-		jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, 780, 530));
+        tablaUsuarios.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tablaUsuarios.setFocusable(false);
+        tablaUsuarios.setGridColor(new java.awt.Color(255, 255, 255));
+        tablaUsuarios.setRowHeight(25);
+        tablaUsuarios.setSelectionBackground(new java.awt.Color(2, 143, 224));
+        jScrollPane1.setViewportView(tablaUsuarios);
 
-		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-		this.setLayout(layout);
-		layout.setHorizontalGroup(
-				layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGap(0, 870, Short.MAX_VALUE)
-						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-								.addGroup(layout.createSequentialGroup().addGap(0, 0, Short.MAX_VALUE)
-										.addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 870,
-												javax.swing.GroupLayout.PREFERRED_SIZE)
-										.addGap(0, 0, Short.MAX_VALUE))));
-		layout.setVerticalGroup(
-				layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGap(0, 670, Short.MAX_VALUE)
-						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-								.addGroup(layout.createSequentialGroup().addGap(0, 0, Short.MAX_VALUE)
-										.addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 670,
-												javax.swing.GroupLayout.PREFERRED_SIZE)
-										.addGap(0, 0, Short.MAX_VALUE))));
-	}// </editor-fold>//GEN-END:initComponents
+        jPanel3.add(jScrollPane1);
+        jScrollPane1.setBounds(50, 120, 780, 480);
+
+        buscador.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                buscadorKeyPressed(evt);
+            }
+        });
+        jPanel3.add(buscador);
+        buscador.setBounds(90, 70, 670, 30);
+
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("Fira Code", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("Buscador");
+        jPanel3.add(jLabel2);
+        jLabel2.setBounds(360, 40, 72, 18);
+
+        add(jPanel3, java.awt.BorderLayout.CENTER);
+    }// </editor-fold>//GEN-END:initComponents
+
+	private void buscadorKeyPressed(KeyEvent evt) {//GEN-FIRST:event_buscadorKeyPressed
+	}//GEN-LAST:event_buscadorKeyPressed
 
 	public void construirTabla() {
-		DefaultTableModel mDefaultTableMoadel = new DefaultTableModel();
 		String[] titlesInfo = new String[7];
 		titlesInfo[0] = "Cedula";
 		titlesInfo[1] = "Nombre";
@@ -92,21 +143,21 @@ public class ConsultaPanel extends javax.swing.JPanel {
 		titlesInfo[5] = "Activo";
 		titlesInfo[6] = "Rol ID";
 		mDefaultTableMoadel.setDataVector(modelo.obtenerMatrizData(), titlesInfo);
-		jTable1.setModel(mDefaultTableMoadel);
-		jTable1.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
-		jTable1.getTableHeader().setOpaque(true);
-		jTable1.getTableHeader().setBackground(Color.WHITE);
-		jTable1.getTableHeader().setForeground(new Color(255, 255, 255));
-		jTable1.setRowHeight(25);
-		jTable1.setBackground(Color.WHITE);
+		tablaUsuarios.setModel(mDefaultTableMoadel);
+		tablaUsuarios.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
+		tablaUsuarios.getTableHeader().setOpaque(true);
+		tablaUsuarios.getTableHeader().setBackground(Color.WHITE);
+		tablaUsuarios.getTableHeader().setForeground(new Color(255, 255, 255));
+		tablaUsuarios.setRowHeight(25);
+		tablaUsuarios.setBackground(Color.WHITE);
 		jScrollPane1.getViewport().setBackground(Color.WHITE);
 		UIDefaults defaults = UIManager.getLookAndFeelDefaults();
-		jTable1.setCellSelectionEnabled(true);
+		tablaUsuarios.setCellSelectionEnabled(true);
 		Action action = new AbstractAction() {
 			public void actionPerformed(ActionEvent e) {
 				TableCellListener tcl = (TableCellListener) e.getSource();
 				modelo.updateData(tcl.getColumn(), (String) tcl.getNewValue(),
-						(String) jTable1.getModel().getValueAt(tcl.getRow(), 0));
+						(String) tablaUsuarios.getModel().getValueAt(tcl.getRow(), 0));
 				System.out.println("Row   : " + tcl.getRow());
 				System.out.println("Column: " + tcl.getColumn());
 				System.out.println("Old   : " + tcl.getOldValue());
@@ -114,13 +165,14 @@ public class ConsultaPanel extends javax.swing.JPanel {
 			}
 		};
 
-		TableCellListener tcl = new TableCellListener(jTable1, action);
+		TableCellListener tcl = new TableCellListener(tablaUsuarios, action);
 	}
 
-	// Variables declaration - do not modify//GEN-BEGIN:variables
-	private javax.swing.JLabel jLabel7;
-	private javax.swing.JPanel jPanel3;
-	private javax.swing.JScrollPane jScrollPane1;
-	private javax.swing.JTable jTable1;
-	// End of variables declaration//GEN-END:variables
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField buscador;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tablaUsuarios;
+    // End of variables declaration//GEN-END:variables
 }
