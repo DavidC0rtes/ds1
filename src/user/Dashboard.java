@@ -58,7 +58,7 @@ public class Dashboard extends javax.swing.JFrame {
         itemRegistrar = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         itemTitle3 = new javax.swing.JLabel();
-        intemSubestaciones = new javax.swing.JPanel();
+        itemSubestaciones = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         itemTitle4 = new javax.swing.JLabel();
         intemConfigurar = new javax.swing.JPanel();
@@ -232,26 +232,26 @@ public class Dashboard extends javax.swing.JFrame {
         if (usuario.getIdRol() == 1) {
           panelMenu.add(itemRegistrar);
         }
-        intemSubestaciones.setBorder(new javax.swing.border.LineBorder(java.awt.Color.white, 1, true));
-        intemSubestaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        intemSubestaciones.setOpaque(false);
-        intemSubestaciones.addMouseListener(new java.awt.event.MouseAdapter() {
+        itemSubestaciones.setBorder(new javax.swing.border.LineBorder(java.awt.Color.white, 1, true));
+        itemSubestaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        itemSubestaciones.setOpaque(false);
+        itemSubestaciones.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                intemSubestacionesMouseClicked(evt);
+                itemSubestacionesMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                intemSubestacionesMouseEntered(evt);
+                itemSubestacionesMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                intemSubestacionesMouseExited(evt);
+                itemSubestacionesMouseExited(evt);
             }
         });
         java.awt.FlowLayout flowLayout4 = new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 10, 5);
         flowLayout4.setAlignOnBaseline(true);
-        intemSubestaciones.setLayout(flowLayout4);
+        itemSubestaciones.setLayout(flowLayout4);
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/transformador.png"))); // NOI18N
-        intemSubestaciones.add(jLabel10);
+        itemSubestaciones.add(jLabel10);
 
         itemTitle4.setFont(new java.awt.Font("Fira Code", 1, 12)); // NOI18N
         itemTitle4.setForeground(new java.awt.Color(254, 254, 254));
@@ -271,9 +271,11 @@ public class Dashboard extends javax.swing.JFrame {
                 itemTitle4MouseExited(evt);
             }
         });
-        intemSubestaciones.add(itemTitle4);
+        itemSubestaciones.add(itemTitle4);
 
-        panelMenu.add(intemSubestaciones);
+        if (usuario.getIdRol() == 2) {
+        	panelMenu.add(itemSubestaciones);
+        }
 
         intemConfigurar.setBorder(new javax.swing.border.LineBorder(java.awt.Color.white, 1, true));
         intemConfigurar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -554,22 +556,22 @@ public class Dashboard extends javax.swing.JFrame {
         itemRegistrar.setBackground(new Color(50,55,61));
     }//GEN-LAST:event_itemRegistrarMouseExited
 
-    private void intemSubestacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_intemSubestacionesMouseClicked
+    private void itemSubestacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemSubestacionesMouseClicked
            jPanel3.removeAll();
         jPanel3.add(subestacionPanel);
         jPanel3.repaint();
         jPanel3.revalidate();
-    }//GEN-LAST:event_intemSubestacionesMouseClicked
+    }//GEN-LAST:event_itemSubestacionesMouseClicked
 
-    private void intemSubestacionesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_intemSubestacionesMouseEntered
-              intemSubestaciones.setOpaque(true);
-        intemSubestaciones.setBackground(Color.ORANGE);
-    }//GEN-LAST:event_intemSubestacionesMouseEntered
+    private void itemSubestacionesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemSubestacionesMouseEntered
+              itemSubestaciones.setOpaque(true);
+        itemSubestaciones.setBackground(Color.ORANGE);
+    }//GEN-LAST:event_itemSubestacionesMouseEntered
 
-    private void intemSubestacionesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_intemSubestacionesMouseExited
-        intemSubestaciones.setOpaque(false);
-        intemSubestaciones.setBackground(new Color(50,55,61));
-    }//GEN-LAST:event_intemSubestacionesMouseExited
+    private void itemSubestacionesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemSubestacionesMouseExited
+        itemSubestaciones.setOpaque(false);
+        itemSubestaciones.setBackground(new Color(50,55,61));
+    }//GEN-LAST:event_itemSubestacionesMouseExited
 
     private void intemConfigurarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_intemConfigurarMouseClicked
        // jPanel3.removeAll();
@@ -625,7 +627,7 @@ public class Dashboard extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel intemConfigurar;
-    private javax.swing.JPanel intemSubestaciones;
+    private javax.swing.JPanel itemSubestaciones;
     private javax.swing.JPanel itemInicio;
     private javax.swing.JPanel itemListaUsuarios;
     private javax.swing.JPanel itemRegistrar;
