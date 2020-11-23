@@ -72,7 +72,18 @@ public class JDBCConnection {
 		try {
 			PreparedStatement recordStatement = conn.prepareStatement(query);
 			for (int i=0; i < params.length; i++) {
-				recordStatement.setString(i+1, params[i]);
+				if (params[i].chars().allMatch( Character::isDigit )) {	
+					recordStatement.setInt(i+1, Integer.parseInt(params[i]));
+				
+				} else  if (params[i].equals("true") || params[i].equals("t")) {
+                	recordStatement.setBoolean(i+1, true);
+                
+				} else if(params[i].equals("false") || params[i].equals("f")){
+                   	recordStatement.setBoolean(i+1, false);
+                   	
+				} else {
+					recordStatement.setString(i+1, params[i]);
+				}
 			}
 			rs = recordStatement.executeQuery();
 		} catch (SQLException e) {

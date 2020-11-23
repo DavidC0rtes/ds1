@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package user;
 
 import java.awt.event.ActionEvent;
@@ -10,7 +5,6 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 
-import deprecated.ds_bd;
 import javax.swing.JFrame;
 
 /**
@@ -18,7 +12,8 @@ import javax.swing.JFrame;
  * @author USER
  */
 public class LoginGUI extends javax.swing.JFrame {
-
+	
+	private User usuario;
     /**
      * Creates new form ds_login
      */
@@ -54,35 +49,48 @@ public class LoginGUI extends javax.swing.JFrame {
         {
           public void actionPerformed(ActionEvent e)
           {
-            ds_bd BDGestor = new ds_bd();
+          
             if(jTextField2.getText().length() != 0 && String.valueOf(jPasswordField1.getPassword()).length() != 0){
                 try {
                     // intentional error
+                	
                     String s = jTextField2.getText();
-                    int rol = BDGestor.loginDatabase(Integer.parseInt(jTextField2.getText()), String.valueOf(jPasswordField1.getPassword()));
-                    switch(rol){
-                        case 0:
-                            System.out.println("Not found");
-                            wrongUserPassword();
-                            jPasswordField1.setText("");
-                            break;
-                        case 1:
-                            Dashboard adminInterface = new Dashboard();
-                            adminInterface.setVisible(true);
-                            System.out.println("Welcome back admin");
-                            exit();
-                            break;
-                        case 2:
-                            System.out.println("Welcome back operator");
-                            break;
-                        case 3:
-                            System.out.println("Welcome back 3rd role");
-                            break;
-                        case 4:
-                            System.out.println("Couldn't find a proper window");
-                            break;
+                    
+                    /* Una vez se tengan el cc y la contraseña, se cre una instancia
+                     * de usuario, para poder realizar el login más adelante.
+                     */
+                    usuario = new User(s, String.valueOf(jPasswordField1.getPassword()));
+                    
+                    if (usuario.attemptLogin(s, String.valueOf(jPasswordField1.getPassword()))) {
+                        int rol = usuario.getIdRol();
+                        switch(rol){
+                            case 0:
+                                System.out.println("Not found");
+                                wrongUserPassword();
+                                jPasswordField1.setText("");
+                                break;
+                            case 1:
+                                Dashboard adminInterface = new Dashboard(usuario);
+                                adminInterface.setVisible(true);
+                                System.out.println("Welcome back admin");
+                                exit();
+                                break;
+                            case 2:
+                                System.out.println("Welcome back operator");
+                                Dashboard operatorInterface = new Dashboard(usuario);
+                                operatorInterface.setVisible(true);
+                                exit();
+                                break;
+                            case 3:
+                                System.out.println("Welcome back 3rd role");
+                                break;
+                            case 4:
+                                System.out.println("Couldn't find a proper window");
+                                break;
+                        }
+                    } else {
+                    	wrongUserPassword();
                     }
-
                 }
                 catch (NumberFormatException nfe) {
                     System.out.println("Invalido");

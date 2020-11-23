@@ -20,16 +20,17 @@ public class Dashboard extends javax.swing.JFrame {
     private final ConsultaPanel consultaPanel = new ConsultaPanel();
     private final DashboardPanel dashboardPanel = new DashboardPanel();
     private final SubestacionPanel subestacionPanel = new SubestacionPanel();
+    private User usuario;
 
     
     /**
      * Creates new form Dashboard
      */
-    public Dashboard() {
+    public Dashboard(User usuario) {
+        this.usuario = usuario;
         this.setTitle("SiGe");
         initComponents();
         setVisible(true);
- 
     }
 
     /**
@@ -183,8 +184,10 @@ public class Dashboard extends javax.swing.JFrame {
         });
         itemListaUsuarios.add(itemTitle2);
 
-        panelMenu.add(itemListaUsuarios);
-
+        if (usuario.getIdRol() == 1) {
+          panelMenu.add(itemListaUsuarios);
+        }
+      
         itemRegistrar.setBorder(new javax.swing.border.LineBorder(java.awt.Color.white, 1, true));
         itemRegistrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         itemRegistrar.setOpaque(false);
@@ -226,8 +229,9 @@ public class Dashboard extends javax.swing.JFrame {
         });
         itemRegistrar.add(itemTitle3);
 
-        panelMenu.add(itemRegistrar);
-
+        if (usuario.getIdRol() == 1) {
+          panelMenu.add(itemRegistrar);
+        }
         intemSubestaciones.setBorder(new javax.swing.border.LineBorder(java.awt.Color.white, 1, true));
         intemSubestaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         intemSubestaciones.setOpaque(false);
@@ -337,6 +341,7 @@ public class Dashboard extends javax.swing.JFrame {
                 jLabel2MouseExited(evt);
             }
         });
+
         panelLogOut.add(jLabel2);
         jLabel2.setBounds(110, 30, 120, 20);
 
@@ -347,6 +352,7 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel6.setText("Cerrar Sesion");
         jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel6MouseClicked(evt);
             }
@@ -357,8 +363,11 @@ public class Dashboard extends javax.swing.JFrame {
                 jLabel6MouseExited(evt);
             }
         });
+
         panelLogOut.add(jLabel6);
         jLabel6.setBounds(0, 30, 110, 20);
+
+
 
         jLabel14.setForeground(java.awt.Color.white);
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -494,6 +503,7 @@ public class Dashboard extends javax.swing.JFrame {
     private void itemInicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemInicioMouseClicked
         jPanel3.removeAll();
         jPanel3.add(dashboardPanel);
+
         jPanel3.repaint();
         jPanel3.revalidate();
     }//GEN-LAST:event_itemInicioMouseClicked
@@ -510,7 +520,9 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void itemListaUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemListaUsuariosMouseClicked
         jPanel3.removeAll();
-        jPanel3.add(consultaPanel);
+        if (usuario.getIdRol() == 1) {
+        	jPanel3.add(consultaPanel);
+        }
         jPanel3.repaint();
         jPanel3.revalidate();
     }//GEN-LAST:event_itemListaUsuariosMouseClicked
@@ -579,37 +591,37 @@ public class Dashboard extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Dashboard().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Dashboard().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel intemConfigurar;
