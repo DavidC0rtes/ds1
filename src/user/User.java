@@ -66,6 +66,14 @@ public class User {
 	/**
 	 * getters
 	 */
+	public String getStringRol(){
+		if (idRol == 1 ) {	return "Administrador"; }
+		if (idRol == 2 ) {	return "Gerente"; }
+		if (idRol == 3 ) {	return "Operador"; }
+
+		return "Tester";
+	}
+
 	public int getIdRol() {return idRol;}
 
 	public String getEmail() {return email;}
