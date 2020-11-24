@@ -8,3 +8,11 @@ bin
 .metadata
 *.properties
 /binTest/
+src/db/db.properties
+nbproject
+nbbuild
+.idea
+build.xml
+manifest.mf
+build
+*.iml

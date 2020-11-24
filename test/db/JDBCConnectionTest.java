@@ -15,14 +15,16 @@ class JDBCConnectionTest {
 	
 	@Test
 	void testQuery() {
+		JDBCConnection testConn = new JDBCConnection();
 		assertNotNull(
-				JDBCConnection.getRecords("select * from clientes;"));
+				testConn.getRecords("select * from clientes;"));
 	}
 	
-	@Test
-	void testInsertRole() {
-		String[] params = {"gerente"};
-		String query = "insert into roles (nombre_rol) values (?)";
-		assertEquals(1, JDBCConnection.updateRecord(query, params));
-	}
+//	@Test
+//	void testInsertRole() {
+//		JDBCConnection testConn = new JDBCConnection();
+//		String[] params = {"gerente"};
+//		String query = "insert into roles (nombre_rol) values (?)";
+//		assertEquals(1, testConn.updateRecord(query, params));
+//	}
 }
