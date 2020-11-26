@@ -24,15 +24,38 @@ public class Dashboard extends javax.swing.JFrame {
     private final SubestacionPanel subestacionPanel = new SubestacionPanel();
     private User usuario;
 
-    
     /**
      * Creates new form Dashboard
      */
     public Dashboard(User usuario) {
         this.usuario = usuario;
-        this.setTitle("SiGe");
         initComponents();
+        configUser();
+    }
+
+    private void configUser(){
+        //Esta funcion configura la interfaz para cada usuario
+        //Removiendole los paneles a los cuales no tiene acceso
+        usernameLabel.setText(usuario.getPrimer_nombre() + " " + usuario.getPrimer_apellido());
+        this.setTitle("SiGe | " + usuario.getStringRol());
+
+        if (usuario.getIdRol() == 1){
+            panelMenu.remove(itemSubestaciones);
+        }
+        if (usuario.getIdRol() == 2){
+            panelMenu.remove(itemRegistrar);
+            panelMenu.remove(itemListaUsuarios);
+
+        }
+        if (usuario.getIdRol() == 3){
+            panelMenu.remove(itemRegistrar);
+            panelMenu.remove(itemConfigurar);
+            panelMenu.remove(itemSubestaciones);
+        }
+        this.repaint();
+        this.revalidate();
         setVisible(true);
+
     }
 
     /**
@@ -63,7 +86,7 @@ public class Dashboard extends javax.swing.JFrame {
         intemSubestaciones = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         itemTitle4 = new javax.swing.JLabel();
-        intemConfigurar = new javax.swing.JPanel();
+        itemConfigurar = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         itemTitle5 = new javax.swing.JLabel();
         panelLogOut = new javax.swing.JPanel();
@@ -186,10 +209,8 @@ public class Dashboard extends javax.swing.JFrame {
         });
         itemListaUsuarios.add(itemTitle2);
 
-        if (usuario.getIdRol() == 1) {
-          panelMenu.add(itemListaUsuarios);
-        }
-      
+        panelMenu.add(itemListaUsuarios);
+
         itemRegistrar.setBorder(new javax.swing.border.LineBorder(java.awt.Color.white, 1, true));
         itemRegistrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         itemRegistrar.setOpaque(false);
@@ -211,59 +232,35 @@ public class Dashboard extends javax.swing.JFrame {
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/registro.png"))); // NOI18N
         itemRegistrar.add(jLabel13);
-        if (usuario.getIdRol() == 1) 
-        {  
-            itemTitle3.setFont(new java.awt.Font("Fira Code", 1, 12)); // NOI18N
-            itemTitle3.setForeground(new java.awt.Color(254, 254, 254));
-            itemTitle3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-            itemTitle3.setText("Registrar Usuarios");
-            itemTitle3.setAlignmentX(0.6F);
-            itemTitle3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-            itemTitle3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-            itemTitle3.addMouseListener(new java.awt.event.MouseAdapter() {
-                public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    itemTitle3MouseClicked(evt);
-                }
-                public void mouseEntered(java.awt.event.MouseEvent evt) {
-                    itemTitle3MouseEntered(evt);
-                }
-                public void mouseExited(java.awt.event.MouseEvent evt) {
-                    itemTitle3MouseExited(evt);
-                }
-            });
-            itemRegistrar.add(itemTitle3);
-    
-            panelMenu.add(itemRegistrar);
-        }
-        else if (usuario.getIdRol() == 2) 
-        {
-          itemTitle3.setFont(new java.awt.Font("Fira Code", 1, 12)); // NOI18N
-            itemTitle3.setForeground(new java.awt.Color(254, 254, 254));
-            itemTitle3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-            itemTitle3.setText("Registrar Cliente");
-            itemTitle3.setAlignmentX(0.6F);
-            itemTitle3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-            itemTitle3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-            itemTitle3.addMouseListener(new java.awt.event.MouseAdapter() {
-                public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    itemTitle3MouseClicked(evt);
-                }
-                public void mouseEntered(java.awt.event.MouseEvent evt) {
-                    itemTitle3MouseEntered(evt);
-                }
-                public void mouseExited(java.awt.event.MouseEvent evt) {
-                    itemTitle3MouseExited(evt);
-                }
-            });
-            itemRegistrar.add(itemTitle3);
-    
-            panelMenu.add(itemRegistrar);
-        }
-        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        intemSubestaciones.setBorder(new javax.swing.border.LineBorder(java.awt.Color.white, 1, true));
-        intemSubestaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        intemSubestaciones.setOpaque(false);
-        intemSubestaciones.addMouseListener(new java.awt.event.MouseAdapter() {
+
+
+        itemTitle3.setFont(new java.awt.Font("Fira Code", 1, 12)); // NOI18N
+        itemTitle3.setForeground(new java.awt.Color(254, 254, 254));
+        itemTitle3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        itemTitle3.setText("Registrar Usuarios");
+        itemTitle3.setAlignmentX(0.6F);
+        itemTitle3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        itemTitle3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        itemTitle3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                itemTitle3MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                itemTitle3MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                itemTitle3MouseExited(evt);
+            }
+        });
+        itemRegistrar.add(itemTitle3);
+
+        panelMenu.add(itemRegistrar);
+
+        itemSubestaciones.setBorder(new javax.swing.border.LineBorder(java.awt.Color.white, 1, true));
+        itemSubestaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        itemSubestaciones.setOpaque(false);
+        itemSubestaciones.addMouseListener(new java.awt.event.MouseAdapter() {
+
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 intemSubestacionesMouseClicked(evt);
             }
@@ -301,28 +298,28 @@ public class Dashboard extends javax.swing.JFrame {
         });
         intemSubestaciones.add(itemTitle4);
 
-        panelMenu.add(intemSubestaciones);
+        panelMenu.add(itemSubestaciones);
 
-        intemConfigurar.setBorder(new javax.swing.border.LineBorder(java.awt.Color.white, 1, true));
-        intemConfigurar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        intemConfigurar.setOpaque(false);
-        intemConfigurar.addMouseListener(new java.awt.event.MouseAdapter() {
+        itemConfigurar.setBorder(new javax.swing.border.LineBorder(java.awt.Color.white, 1, true));
+        itemConfigurar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        itemConfigurar.setOpaque(false);
+        itemConfigurar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                intemConfigurarMouseClicked(evt);
+                itemConfigurarMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                intemConfigurarMouseEntered(evt);
+                itemConfigurarMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                intemConfigurarMouseExited(evt);
+                itemConfigurarMouseExited(evt);
             }
         });
         java.awt.FlowLayout flowLayout7 = new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 10, 5);
         flowLayout7.setAlignOnBaseline(true);
-        intemConfigurar.setLayout(flowLayout7);
+        itemConfigurar.setLayout(flowLayout7);
 
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/ajustes.png"))); // NOI18N
-        intemConfigurar.add(jLabel15);
+        itemConfigurar.add(jLabel15);
 
         itemTitle5.setFont(new java.awt.Font("Fira Code", 1, 12)); // NOI18N
         itemTitle5.setForeground(new java.awt.Color(254, 254, 254));
@@ -342,9 +339,9 @@ public class Dashboard extends javax.swing.JFrame {
                 itemTitle5MouseExited(evt);
             }
         });
-        intemConfigurar.add(itemTitle5);
+        itemConfigurar.add(itemTitle5);
 
-        panelMenu.add(intemConfigurar);
+        panelMenu.add(itemConfigurar);
 
         panelLateral.add(panelMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 230, 420));
 
@@ -369,7 +366,6 @@ public class Dashboard extends javax.swing.JFrame {
                 jLabel2MouseExited(evt);
             }
         });
-
         panelLogOut.add(jLabel2);
         jLabel2.setBounds(110, 30, 120, 20);
 
@@ -380,7 +376,6 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel6.setText("Cerrar Sesion");
         jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
-
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel6MouseClicked(evt);
             }
@@ -391,11 +386,8 @@ public class Dashboard extends javax.swing.JFrame {
                 jLabel6MouseExited(evt);
             }
         });
-
         panelLogOut.add(jLabel6);
         jLabel6.setBounds(0, 30, 110, 20);
-
-
 
         jLabel14.setForeground(java.awt.Color.white);
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -467,11 +459,11 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel2MouseExited
 
     private void itemTitle3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemTitle3MouseEntered
-       
+
     }//GEN-LAST:event_itemTitle3MouseEntered
 
     private void itemTitle3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemTitle3MouseExited
-        
+
     }//GEN-LAST:event_itemTitle3MouseExited
 
     private void itemTitle2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemTitle2MouseEntered
@@ -479,20 +471,20 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_itemTitle2MouseEntered
 
     private void itemTitle2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemTitle2MouseExited
-     
+
     }//GEN-LAST:event_itemTitle2MouseExited
 
     private void itemTitle3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemTitle3MouseClicked
-    
+
     }//GEN-LAST:event_itemTitle3MouseClicked
 
     private void itemTitle2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemTitle2MouseClicked
-      
-     
+
+
     }//GEN-LAST:event_itemTitle2MouseClicked
 
     private void itemTitle4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemTitle4MouseClicked
- 
+
     }//GEN-LAST:event_itemTitle4MouseClicked
 
     private void itemTitle4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemTitle4MouseEntered
@@ -500,20 +492,20 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_itemTitle4MouseEntered
 
     private void itemTitle4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemTitle4MouseExited
-       itemTitle4.setOpaque(false);
-       itemTitle4.setBackground(new Color(50,55,61));
+        itemTitle4.setOpaque(false);
+        itemTitle4.setBackground(new Color(50,55,61));
     }//GEN-LAST:event_itemTitle4MouseExited
 
     private void itemTitle1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemTitle1MouseExited
-        
+
     }//GEN-LAST:event_itemTitle1MouseExited
 
     private void itemTitle1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemTitle1MouseEntered
-        
+
     }//GEN-LAST:event_itemTitle1MouseEntered
 
     private void itemTitle1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemTitle1MouseClicked
-        
+
     }//GEN-LAST:event_itemTitle1MouseClicked
 
     private void itemTitle5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemTitle5MouseClicked
@@ -531,7 +523,6 @@ public class Dashboard extends javax.swing.JFrame {
     private void itemInicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemInicioMouseClicked
         jPanel3.removeAll();
         jPanel3.add(dashboardPanel);
-
         jPanel3.repaint();
         jPanel3.revalidate();
     }//GEN-LAST:event_itemInicioMouseClicked
@@ -548,9 +539,7 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void itemListaUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemListaUsuariosMouseClicked
         jPanel3.removeAll();
-        if (usuario.getIdRol() == 1) {
-        	jPanel3.add(consultaPanel);
-        }
+        jPanel3.add(consultaPanel);
         jPanel3.repaint();
         jPanel3.revalidate();
     }//GEN-LAST:event_itemListaUsuariosMouseClicked
@@ -561,7 +550,7 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_itemListaUsuariosMouseEntered
 
     private void itemListaUsuariosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemListaUsuariosMouseExited
-       itemListaUsuarios.setOpaque(false);
+        itemListaUsuarios.setOpaque(false);
         itemListaUsuarios.setBackground(new Color(50,55,61));
     }//GEN-LAST:event_itemListaUsuariosMouseExited
 
@@ -580,7 +569,7 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_itemRegistrarMouseClicked
 
     private void itemRegistrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemRegistrarMouseEntered
-         itemRegistrar.setOpaque(true);
+        itemRegistrar.setOpaque(true);
         itemRegistrar.setBackground(new Color(2, 143, 224));
     }//GEN-LAST:event_itemRegistrarMouseEntered
 
@@ -589,81 +578,54 @@ public class Dashboard extends javax.swing.JFrame {
         itemRegistrar.setBackground(new Color(50,55,61));
     }//GEN-LAST:event_itemRegistrarMouseExited
 
-    private void intemSubestacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_intemSubestacionesMouseClicked
-           jPanel3.removeAll();
+
+    private void itemSubestacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemSubestacionesMouseClicked
+        jPanel3.removeAll();
         jPanel3.add(subestacionPanel);
         jPanel3.repaint();
         jPanel3.revalidate();
     }//GEN-LAST:event_intemSubestacionesMouseClicked
 
-    private void intemSubestacionesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_intemSubestacionesMouseEntered
-              intemSubestaciones.setOpaque(true);
-        intemSubestaciones.setBackground(Color.ORANGE);
-    }//GEN-LAST:event_intemSubestacionesMouseEntered
+
+    private void itemSubestacionesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemSubestacionesMouseEntered
+        itemSubestaciones.setOpaque(true);
+        itemSubestaciones.setBackground(Color.ORANGE);
+    }//GEN-LAST:event_itemSubestacionesMouseEntered
 
     private void intemSubestacionesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_intemSubestacionesMouseExited
         intemSubestaciones.setOpaque(false);
         intemSubestaciones.setBackground(new Color(50,55,61));
     }//GEN-LAST:event_intemSubestacionesMouseExited
 
-    private void intemConfigurarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_intemConfigurarMouseClicked
-       // jPanel3.removeAll();
-       // jPanel3.add(configuracionPanel);
-       // jPanel3.repaint();
-       // jPanel3.revalidate();
-    }//GEN-LAST:event_intemConfigurarMouseClicked
+    private void itemConfigurarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemConfigurarMouseClicked
+        // jPanel3.removeAll();
+        // jPanel3.add(configuracionPanel);
+        // jPanel3.repaint();
+        // jPanel3.revalidate();
+    }//GEN-LAST:event_itemConfigurarMouseClicked
 
-    private void intemConfigurarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_intemConfigurarMouseEntered
-             intemConfigurar.setOpaque(true);
-        intemConfigurar.setBackground(Color.RED);
-    }//GEN-LAST:event_intemConfigurarMouseEntered
+    private void itemConfigurarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemConfigurarMouseEntered
+        itemConfigurar.setOpaque(true);
+        itemConfigurar.setBackground(Color.RED);
+    }//GEN-LAST:event_itemConfigurarMouseEntered
 
-    private void intemConfigurarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_intemConfigurarMouseExited
-            intemConfigurar.setOpaque(false);
-        intemConfigurar.setBackground(new Color(50,55,61));
-    }//GEN-LAST:event_intemConfigurarMouseExited
+    private void itemConfigurarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemConfigurarMouseExited
+        itemConfigurar.setOpaque(false);
+        itemConfigurar.setBackground(new Color(50,55,61));
+    }//GEN-LAST:event_itemConfigurarMouseExited
 
     /**
      * @param args the command line arguments
      */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new Dashboard().setVisible(true);
-//            }
-//        });
-//    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel intemConfigurar;
-    private javax.swing.JPanel intemSubestaciones;
+
+    private javax.swing.JPanel itemConfigurar;
     private javax.swing.JPanel itemInicio;
     private javax.swing.JPanel itemListaUsuarios;
     private javax.swing.JPanel itemRegistrar;
+    private javax.swing.JPanel itemSubestaciones;
     private javax.swing.JLabel itemTitle1;
     private javax.swing.JLabel itemTitle2;
     private javax.swing.JLabel itemTitle3;
