@@ -44,7 +44,7 @@ public class ModeloRegistrarPago {
 	}
 	
 	/**
-	 * Añade todos los resultados del ResultSet a una lista
+	 * Añade todos los resultados del ResultSet a una tabla hash
 	 * para ser manejada por el control.
 	 * @param rs
 	 * @return
@@ -52,6 +52,7 @@ public class ModeloRegistrarPago {
 	private HashMap<String, Object> getArrayContrato(ResultSet rs) {
 		HashMap<String, Object> datosContrato = new HashMap<String, Object>();
 		try {
+			rs.next();
 			datosContrato.put("id_cliente", rs.getInt("id_cliente"));
 			datosContrato.put("estrato", rs.getInt("estrato"));
 			datosContrato.put("dir_instalacion", rs.getString("dir_instalacion"));
