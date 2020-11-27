@@ -31,5 +31,9 @@ public class ControlRegistrarPago {
 		return false;
 	}
 	
+	public boolean attemptPago(int numContrato, float monto, int userID) {
+		return modelo.registrarPago(numContrato, monto, userID);
+	}
+	
 	public HashMap<String, Object> getContrato() {return contrato;}
 }

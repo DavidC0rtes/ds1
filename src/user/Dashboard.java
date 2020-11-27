@@ -21,7 +21,7 @@ public class Dashboard extends javax.swing.JFrame {
     private final ConsultaPanel consultaPanel = new ConsultaPanel();
     private final DashboardPanel dashboardPanel = new DashboardPanel();
     private final SubestacionPanel subestacionPanel = new SubestacionPanel();
-    private final RegistrarPagoGUI registerPayPanel = new RegistrarPagoGUI();
+    private RegistrarPagoGUI registerPayPanel;
     private User usuario;
 
     /**
@@ -29,6 +29,7 @@ public class Dashboard extends javax.swing.JFrame {
      */
     public Dashboard(User usuario) {
         this.usuario = usuario;
+        registerPayPanel = new RegistrarPagoGUI(usuario);
         initComponents();
         configUser();
     }
@@ -671,11 +672,13 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_itemPagosMouseClicked
 
     private void itemPagosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemPagosMouseEntered
-        // TODO add your handling code here:
+    	itemPagos.setOpaque(true);
+        itemPagos.setBackground(new Color(2, 143, 224));
     }//GEN-LAST:event_itemPagosMouseEntered
 
     private void itemPagosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemPagosMouseExited
-        // TODO add your handling code here:
+    	itemPagos.setOpaque(false);
+        itemPagos.setBackground(new Color(50,55,61));
     }//GEN-LAST:event_itemPagosMouseExited
 
     /**

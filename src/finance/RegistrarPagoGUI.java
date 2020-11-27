@@ -6,6 +6,9 @@
 package finance;
 
 import javax.swing.JOptionPane;
+
+import user.User;
+
 import java.util.*;
 
 /**
@@ -15,13 +18,15 @@ import java.util.*;
 public class RegistrarPagoGUI extends javax.swing.JPanel {
     private ControlRegistrarPago control;
     private HashMap<String, Object> datosContrato;
+    private User loggedUser;
 
     /**
      * Creates new form RegistrarPagoGUI
      */
-    public RegistrarPagoGUI() {
+    public RegistrarPagoGUI(User usuario) {
         control = new ControlRegistrarPago();
         datosContrato = new HashMap<String, Object>();
+        loggedUser = usuario;
         initComponents();
         infoContratoPanel.setVisible(false);
         pagarPanel.setVisible(false);
@@ -32,12 +37,16 @@ public class RegistrarPagoGUI extends javax.swing.JPanel {
      * con la información contenida en datosContrato.
      */
     private void populateInfoContrato() {
-        clienteNombreLbl.setText((String) datosContrato.get("id_cliente"));
-        dirTextLabel.setText((String) datosContrato.get("dir_instalacion"));
-        deudaCantLabel.setText((String) datosContrato.get("deuda_actual"));
-        estratoNumLbl.setText((String) datosContrato.get("estrato"));
+        clienteNombreLbl.setText(datosContrato.get("nombre").toString());
+        dirTextLabel.setText(datosContrato.get("dir_instalacion").toString());
+        deudaCantLabel.setText(datosContrato.get("deuda_actual").toString());
+        estratoNumLbl.setText(datosContrato.get("estrato").toString());
         
         infoContratoPanel.setVisible(true);
+    }
+    
+    private void showMessage(String title, String msg, int tipo) {
+    	JOptionPane.showMessageDialog(this, msg, title, tipo);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -62,17 +71,19 @@ public class RegistrarPagoGUI extends javax.swing.JPanel {
         estratoNumLbl = new javax.swing.JLabel();
         dirTextLabel = new javax.swing.JLabel();
         pagarPanel = new javax.swing.JPanel();
-        tipoPagoCombo = new javax.swing.JComboBox<>();
-        pagarBtn = new javax.swing.JButton();
-        valorPagarLabel = new javax.swing.JLabel();
         valorPagarTxt = new javax.swing.JTextField();
-        tipoPagoLbl = new javax.swing.JLabel();
+        valorPagarLabel = new javax.swing.JLabel();
+        pagarBtn = new javax.swing.JButton();
+        cancelarPagoBtn = new javax.swing.JButton();
+
+        setBackground(new java.awt.Color(255, 255, 255));
+        setPreferredSize(new java.awt.Dimension(870, 670));
 
         tituloLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         tituloLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         tituloLabel.setText("Registrar pago");
 
-        contratoLabel.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        contratoLabel.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         contratoLabel.setText("#Contrato");
 
         contratoTxt.setToolTipText("");
@@ -82,7 +93,7 @@ public class RegistrarPagoGUI extends javax.swing.JPanel {
             }
         });
 
-        consultarBtn.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        consultarBtn.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         consultarBtn.setText("Consultar");
         consultarBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -95,15 +106,21 @@ public class RegistrarPagoGUI extends javax.swing.JPanel {
             }
         });
 
-        deudaLabel.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        infoContratoPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        infoContratoPanel.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+
+        deudaLabel.setFont(new java.awt.Font("DejaVu Sans", 1, 12)); // NOI18N
         deudaLabel.setText("Deuda total:");
 
         deudaCantLabel.setText("0");
 
+        clienteLabel.setFont(new java.awt.Font("DejaVu Sans", 1, 12)); // NOI18N
         clienteLabel.setText("Cliente:");
 
+        estratoLabel.setFont(new java.awt.Font("DejaVu Sans", 1, 12)); // NOI18N
         estratoLabel.setText("Estrato:");
 
+        dirLabel.setFont(new java.awt.Font("DejaVu Sans", 1, 12)); // NOI18N
         dirLabel.setText("Dirección:");
 
         clienteNombreLbl.setText("jLabel1");
@@ -157,19 +174,7 @@ public class RegistrarPagoGUI extends javax.swing.JPanel {
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
-        tipoPagoCombo.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
-        tipoPagoCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Directo", "Banco" }));
-
-        pagarBtn.setFont(new java.awt.Font("Dialog", 1, 10)); // NOI18N
-        pagarBtn.setText("Efectuar pago");
-        pagarBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pagarBtnActionPerformed(evt);
-            }
-        });
-
-        valorPagarLabel.setFont(new java.awt.Font("Dialog", 1, 10)); // NOI18N
-        valorPagarLabel.setText("Valor a pagar");
+        pagarPanel.setBackground(new java.awt.Color(255, 255, 255));
 
         valorPagarTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -177,42 +182,56 @@ public class RegistrarPagoGUI extends javax.swing.JPanel {
             }
         });
 
-        tipoPagoLbl.setFont(new java.awt.Font("Dialog", 1, 10)); // NOI18N
-        tipoPagoLbl.setText("Tipo de pago");
+        valorPagarLabel.setFont(new java.awt.Font("DejaVu Sans", 1, 12)); // NOI18N
+        valorPagarLabel.setText("Valor a pagar");
+
+        pagarBtn.setBackground(new java.awt.Color(153, 255, 153));
+        pagarBtn.setText("Efectuar pago");
+        pagarBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pagarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pagarBtnActionPerformed(evt);
+            }
+        });
+
+        cancelarPagoBtn.setBackground(new java.awt.Color(255, 102, 102));
+        cancelarPagoBtn.setText("Cancelar");
+        cancelarPagoBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cancelarPagoBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarPagoBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pagarPanelLayout = new javax.swing.GroupLayout(pagarPanel);
         pagarPanel.setLayout(pagarPanelLayout);
         pagarPanelLayout.setHorizontalGroup(
             pagarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pagarPanelLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(valorPagarLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(valorPagarTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
-                .addComponent(tipoPagoLbl)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tipoPagoCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(67, 67, 67))
-            .addGroup(pagarPanelLayout.createSequentialGroup()
-                .addGap(186, 186, 186)
-                .addComponent(pagarBtn)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(83, Short.MAX_VALUE)
+                .addGroup(pagarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cancelarPagoBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pagarPanelLayout.createSequentialGroup()
+                        .addComponent(valorPagarLabel)
+                        .addGap(16, 16, 16)))
+                .addGap(30, 30, 30)
+                .addGroup(pagarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(valorPagarTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pagarBtn))
+                .addGap(66, 66, 66))
         );
         pagarPanelLayout.setVerticalGroup(
             pagarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pagarPanelLayout.createSequentialGroup()
-                .addContainerGap(25, Short.MAX_VALUE)
-                .addGroup(pagarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pagarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(valorPagarLabel)
-                        .addComponent(valorPagarTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pagarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(tipoPagoCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(tipoPagoLbl)))
-                .addGap(18, 18, 18)
-                .addComponent(pagarBtn)
-                .addContainerGap())
+                .addContainerGap()
+                .addGroup(pagarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(valorPagarTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(valorPagarLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addGroup(pagarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(pagarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancelarPagoBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -220,35 +239,36 @@ public class RegistrarPagoGUI extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(tituloLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(pagarPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(195, 195, 195)
+                .addComponent(pagarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 236, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(272, 272, 272)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(infoContratoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(135, 135, 135)
-                        .addComponent(infoContratoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(110, 110, 110)
                         .addComponent(contratoLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(contratoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(consultarBtn)))
+                        .addComponent(contratoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(consultarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(tituloLabel)
-                .addGap(46, 46, 46)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(52, 52, 52)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(consultarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(contratoLabel)
-                    .addComponent(contratoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(consultarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(contratoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(infoContratoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(39, 39, 39)
                 .addComponent(pagarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(236, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -258,13 +278,18 @@ public class RegistrarPagoGUI extends javax.swing.JPanel {
 
     private void consultarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarBtnActionPerformed
         // TODO add your handling code here:
-        if (contratoTxt.getText().equals("")) {
+    	String s = contratoTxt.getText();
+        if (s.equals("")) {
             JOptionPane.showMessageDialog(pagarPanel, "Campo contrato debe estar lleno", "Advertencia", JOptionPane.WARNING_MESSAGE );
         }
         else {
             if (control.attemptConsultarContrato(contratoTxt.getText())) {
                 datosContrato = control.getContrato();
                 populateInfoContrato();
+                pagarPanel.setVisible(true);
+            } else {
+            	JOptionPane.showMessageDialog(
+            			pagarPanel, "El contrato "+s+" no existe.", "No encontrado", JOptionPane.INFORMATION_MESSAGE);
             }
         }
     }//GEN-LAST:event_consultarBtnActionPerformed
@@ -274,7 +299,28 @@ public class RegistrarPagoGUI extends javax.swing.JPanel {
     }//GEN-LAST:event_valorPagarTxtActionPerformed
 
     private void pagarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pagarBtnActionPerformed
-        // TODO add your handling code here:
+    	String montoAPagar = valorPagarTxt.getText();
+    	if (!montoAPagar.isEmpty() && montoAPagar.chars().allMatch( Character::isDigit )) {
+    		float monto = Float.parseFloat(montoAPagar);
+    		
+    		if (monto > 0.0) {
+    			
+    			if (control.attemptPago(Integer.parseInt(contratoTxt.getText()), monto, loggedUser.getUserID())) {
+    				showMessage("Éxito", "Pago realizado con éxito", JOptionPane.INFORMATION_MESSAGE);
+    				pagarPanel.setVisible(false);
+    		        infoContratoPanel.setVisible(false);
+    				
+    			} else {
+    				showMessage("Error", "Ha ocurrido un error, inténtelo de nuevo.", JOptionPane.ERROR_MESSAGE);
+    			}
+    			
+    		} else {
+    			showMessage("Monto inválido", "Introduza un monto válido", JOptionPane.WARNING_MESSAGE);
+    		}
+    	}
+    	else {
+    		showMessage("Campo inválido", "Introduza un valor válido", JOptionPane.WARNING_MESSAGE);
+    	}
     }//GEN-LAST:event_pagarBtnActionPerformed
 
     private void consultarBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_consultarBtnMouseClicked
@@ -282,8 +328,14 @@ public class RegistrarPagoGUI extends javax.swing.JPanel {
         
     }//GEN-LAST:event_consultarBtnMouseClicked
 
+    private void cancelarPagoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarPagoBtnActionPerformed
+        pagarPanel.setVisible(false);
+        infoContratoPanel.setVisible(false);
+    }//GEN-LAST:event_cancelarPagoBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton cancelarPagoBtn;
     private javax.swing.JLabel clienteLabel;
     private javax.swing.JLabel clienteNombreLbl;
     private javax.swing.JButton consultarBtn;
@@ -298,8 +350,6 @@ public class RegistrarPagoGUI extends javax.swing.JPanel {
     private javax.swing.JPanel infoContratoPanel;
     private javax.swing.JButton pagarBtn;
     private javax.swing.JPanel pagarPanel;
-    private javax.swing.JComboBox<String> tipoPagoCombo;
-    private javax.swing.JLabel tipoPagoLbl;
     private javax.swing.JLabel tituloLabel;
     private javax.swing.JLabel valorPagarLabel;
     private javax.swing.JTextField valorPagarTxt;

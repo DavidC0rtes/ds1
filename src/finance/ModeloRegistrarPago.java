@@ -15,6 +15,10 @@ import db.JDBCConnection;
 public class ModeloRegistrarPago {
 	private JDBCConnection DB;
 	
+	
+	public ModeloRegistrarPago() {
+		DB = new JDBCConnection();
+	}
 	/**
 	 * Función que se encarga de consultar un contrato
 	 * dado su número/código en la BD.
@@ -25,10 +29,13 @@ public class ModeloRegistrarPago {
 	 */
 	public HashMap<String, Object> consultarContrato(int numContrato) {
 		String SQL = 
-				"SELECT * "
-				+ "FROM contratos "
-				+ "WHERE id=? "
-				+ "AND activo=true";
+				"SELECT concat(primer_nombre,' ', segundo_nombre, ' ',primer_apellido, ' ', segundo_apellido),"
+				+ "estrato, dir_instalacion, deuda_actual, clientes.id "
+				+ "FROM contratos AS CON "
+				+ "INNER JOIN clientes "
+				+ "ON CON.id_cliente=clientes.id "
+				+ "WHERE CON.id=? "
+				+ "AND CON.activo=true";
 		
 		String[] params = {Integer.toString(numContrato)};
 		
@@ -53,7 +60,7 @@ public class ModeloRegistrarPago {
 		HashMap<String, Object> datosContrato = new HashMap<String, Object>();
 		try {
 			rs.next();
-			datosContrato.put("id_cliente", rs.getInt("id_cliente"));
+			datosContrato.put("nombre", rs.getString("concat"));
 			datosContrato.put("estrato", rs.getInt("estrato"));
 			datosContrato.put("dir_instalacion", rs.getString("dir_instalacion"));
 			datosContrato.put("deuda_actual", rs.getFloat("deuda_actual"));
@@ -73,18 +80,21 @@ public class ModeloRegistrarPago {
 	 * @param monto
 	 * @return boolean
 	 */
-	public boolean registrarPago(int numContrato, float monto) {
+	public boolean registrarPago(int numContrato, float monto, int userID) {
 		String SQL = 
-				"INSERT INTO pagos"
+				"INSERT INTO pagos(id_contrato,monto,created_by) "
 				+ "VALUES(?,?,?)";
 		
 		LocalDateTime date = LocalDateTime.now();
-		System.out.println(date.format(DateTimeFormatter.ISO_DATE_TIME));
-		String[] params = {Integer.toString(numContrato), "hola", Float.toString(monto)};
 		
-		//if ( DB.updateRecord(SQL, params) == 1) {
-		//	return true;
-		//}
+		String[] params = {
+				Integer.toString(numContrato), 
+				Float.toString(monto),
+				String.valueOf(userID)};
+		
+		if ( DB.updateRecord(SQL, params) == 1) {
+			return true;
+		}
 		return false;
 	}
 }

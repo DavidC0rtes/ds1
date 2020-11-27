@@ -21,7 +21,7 @@ import db.JDBCConnection;
  */
 public class User {
 	private JDBCConnection DB;
-	private int idRol;
+	private int idRol, idUser;
 	private String email, primerNombre, primerApellido;
 
 	public User(String cc, String password) {
@@ -36,7 +36,7 @@ public class User {
 	 */
 	public boolean attemptLogin(String cc, String password) {
 		String query = 
-				"SELECT primer_nombre, primer_apellido, email, id_rol "
+				"SELECT primer_nombre, primer_apellido, email, id_rol, id "
 				+ "FROM usuarios "
 				+ "WHERE num_documento=? "
 				+ "AND password=?"
@@ -55,6 +55,7 @@ public class User {
 				this.primerApellido = rs.getString(2);
 				this.email = rs.getString(3);
 				this.idRol = rs.getInt(4);
+				this.idUser = rs.getInt(5);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -81,4 +82,6 @@ public class User {
 	public String getPrimer_nombre() {return primerNombre;	}
 	
 	public String getPrimer_apellido() {return primerApellido;}
+	
+	public int getUserID() {return idUser;}
 }
