@@ -75,10 +75,10 @@ public class LoginGUI extends javax.swing.JFrame {
                                 System.out.println("Welcome back admin");
                                 exit();
                                 break;
-                            case 2:                           
+                            case 2:
+                                System.out.println("Welcome back operator");
                                 Dashboard operatorInterface = new Dashboard(usuario);
                                 operatorInterface.setVisible(true);
-                                System.out.println("Welcome back operator");
                                 exit();
                                 break;
                             case 3:
