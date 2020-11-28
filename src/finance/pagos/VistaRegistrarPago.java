@@ -99,7 +99,7 @@ public class VistaRegistrarPago extends javax.swing.JPanel {
         pagarBtn = new javax.swing.JButton();
         cancelarPagoBtn = new javax.swing.JButton();
 
-        //setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(858, 654));
         setMinimumSize(new java.awt.Dimension(858, 654));
         setPreferredSize(new java.awt.Dimension(858, 654));

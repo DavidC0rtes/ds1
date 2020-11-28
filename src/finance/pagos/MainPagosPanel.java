@@ -8,10 +8,6 @@ package finance.pagos;
 import java.awt.CardLayout;
 import java.awt.Color;
 
-import com.formdev.flatlaf.FlatDarkLaf;
-import com.formdev.flatlaf.FlatLaf;
-import com.formdev.flatlaf.FlatLightLaf;
-
 import user.User;
 
 /**
@@ -31,21 +27,6 @@ public class MainPagosPanel extends javax.swing.JPanel {
         initComponents();
         //backBtn.setVisible(false);
     }
-    
-    public void lightMode() {
-		FlatLightLaf.install();
-		FlatLaf.updateUI();
-		this.revalidate();
-		this.repaint();
-	}
-    
-    public void darkMode(){
-		FlatDarkLaf.install();
-		FlatLaf.updateUI();
-		this.revalidate();
-		this.repaint();
-
-	}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -68,15 +49,15 @@ public class MainPagosPanel extends javax.swing.JPanel {
         backBtn = new javax.swing.JButton();
         topLabel = new javax.swing.JLabel();
 
-        //setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(870, 670));
 
-        //cardsPanel.setBackground(new java.awt.Color(204, 204, 204));
+        cardsPanel.setBackground(new java.awt.Color(204, 204, 204));
         cardsPanel.setName(""); // NOI18N
         cardsPanel.setPreferredSize(new java.awt.Dimension(800, 600));
         cardsPanel.setLayout(new java.awt.CardLayout());
 
-        //mainPanel.setBackground(new java.awt.Color(255, 255, 255));
+        mainPanel.setBackground(new java.awt.Color(255, 255, 255));
         mainPanel.setMaximumSize(new java.awt.Dimension(858, 654));
         mainPanel.setMinimumSize(new java.awt.Dimension(858, 654));
         mainPanel.setPreferredSize(new java.awt.Dimension(858, 654));
@@ -167,7 +148,7 @@ public class MainPagosPanel extends javax.swing.JPanel {
 
         cardsPanel.add(mainPanel, "card2");
 
-        //topPanel.setBackground(new java.awt.Color(255, 255, 255));
+        topPanel.setBackground(new java.awt.Color(255, 255, 255));
 
         backBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/go-back.png"))); // NOI18N
         backBtn.setToolTipText("Volver al menú anterior");
