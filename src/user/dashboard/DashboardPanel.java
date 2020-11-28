@@ -6,6 +6,10 @@
 
 package user.dashboard;
 
+import com.formdev.flatlaf.FlatDarkLaf;
+import com.formdev.flatlaf.FlatLaf;
+import com.formdev.flatlaf.FlatLightLaf;
+
 /**
  *
  * @author camilo
@@ -16,7 +20,19 @@ public class DashboardPanel extends javax.swing.JPanel {
     public DashboardPanel() {
         initComponents();
     }
+    public void lightMode() {
+        FlatLightLaf.install();
+        FlatLaf.updateUI();
+        this.revalidate();
+        this.repaint();
+    }
+    public void darkMode(){
+        FlatDarkLaf.install();
+        FlatLaf.updateUI();
+        this.revalidate();
+        this.repaint();
 
+    }
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -41,11 +57,10 @@ public class DashboardPanel extends javax.swing.JPanel {
         itemTitlelabel3 = new javax.swing.JLabel();
         pagosRealizadosLabel3 = new javax.swing.JLabel();
 
-        resumenPanel.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel1.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel1.setText("Resumen Diario");
 
+        resumenItemPanel.setBorder(javax.swing.BorderFactory.createLineBorder(javax.swing.UIManager.getDefaults().getColor("Objects.Purple")));
         resumenItemPanel.setForeground(new java.awt.Color(255, 255, 255));
         resumenItemPanel.setPreferredSize(new java.awt.Dimension(146, 122));
 
@@ -59,7 +74,7 @@ public class DashboardPanel extends javax.swing.JPanel {
         resumenItemPanelLayout.setHorizontalGroup(
             resumenItemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, resumenItemPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(7, Short.MAX_VALUE)
                 .addComponent(itemTitlelabel)
                 .addGap(29, 29, 29))
             .addGroup(resumenItemPanelLayout.createSequentialGroup()
@@ -77,6 +92,7 @@ public class DashboardPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        resumenItemPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(javax.swing.UIManager.getDefaults().getColor("Objects.Purple")));
         resumenItemPanel1.setForeground(new java.awt.Color(255, 255, 255));
         resumenItemPanel1.setPreferredSize(new java.awt.Dimension(146, 122));
 
@@ -108,6 +124,7 @@ public class DashboardPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        resumenItemPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(javax.swing.UIManager.getDefaults().getColor("Objects.Purple")));
         resumenItemPanel2.setForeground(new java.awt.Color(255, 255, 255));
         resumenItemPanel2.setPreferredSize(new java.awt.Dimension(146, 122));
 
@@ -139,6 +156,7 @@ public class DashboardPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        resumenItemPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(javax.swing.UIManager.getDefaults().getColor("Objects.Purple")));
         resumenItemPanel3.setForeground(new java.awt.Color(255, 255, 255));
 
         itemTitlelabel3.setText("Pagos realizados");
@@ -183,7 +201,7 @@ public class DashboardPanel extends javax.swing.JPanel {
                         .addComponent(resumenItemPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                         .addComponent(resumenItemPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                         .addComponent(resumenItemPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 21, Short.MAX_VALUE)
                         .addComponent(resumenItemPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -196,13 +214,13 @@ public class DashboardPanel extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(resumenPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(resumenItemPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                    .addComponent(resumenItemPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, resumenPanelLayout.createSequentialGroup()
-                        .addGap(0, 6, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(resumenPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(resumenItemPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(resumenItemPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(resumenItemPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE))
+                    .addComponent(resumenItemPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -216,7 +234,7 @@ public class DashboardPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(resumenPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 234, Short.MAX_VALUE))
+                .addGap(0, 239, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

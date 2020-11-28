@@ -10,6 +10,10 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
+import com.formdev.flatlaf.FlatDarkLaf;
+import com.formdev.flatlaf.FlatLaf;
+import com.formdev.flatlaf.FlatLightLaf;
+import com.formdev.flatlaf.ui.FlatTableUI;
 import misc.TableCellListener;
 
 /**
@@ -31,6 +35,20 @@ public class ConsultaPanel extends javax.swing.JPanel {
 		construirTabla();
 		rowSorter  = new TableRowSorter<>(tablaUsuarios.getModel());
 		TestTableSortFilter();
+		FlatTableUI.createUI(tablaUsuarios);
+	}
+	public void lightMode() {
+		FlatLightLaf.install();
+		FlatLaf.updateUI();
+		this.revalidate();
+		this.repaint();
+	}
+	public void darkMode(){
+		FlatDarkLaf.install();
+		FlatLaf.updateUI();
+		this.revalidate();
+		this.repaint();
+
 	}
 
 	public void TestTableSortFilter() {
@@ -85,13 +103,15 @@ public class ConsultaPanel extends javax.swing.JPanel {
 
         setLayout(new java.awt.BorderLayout());
 
-        jPanel3.setBackground(java.awt.Color.white);
         jPanel3.setLayout(null);
 
-        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane1.setBackground(javax.swing.UIManager.getDefaults().getColor("Table.background"));
         jScrollPane1.setBorder(null);
         jScrollPane1.setFocusable(false);
+        jScrollPane1.setOpaque(false);
 
+        tablaUsuarios.setBackground(javax.swing.UIManager.getDefaults().getColor("Panel.background"));
+        tablaUsuarios.setBorder(new javax.swing.border.MatteBorder(null));
         tablaUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -104,9 +124,9 @@ public class ConsultaPanel extends javax.swing.JPanel {
             }
         ));
         tablaUsuarios.setFocusable(false);
-        tablaUsuarios.setGridColor(new java.awt.Color(255, 255, 255));
+        tablaUsuarios.setOpaque(false);
         tablaUsuarios.setRowHeight(25);
-        tablaUsuarios.setSelectionBackground(new java.awt.Color(2, 143, 224));
+        tablaUsuarios.setSelectionBackground(javax.swing.UIManager.getDefaults().getColor("Table.selectionBackground"));
         jScrollPane1.setViewportView(tablaUsuarios);
 
         jPanel3.add(jScrollPane1);
@@ -120,9 +140,8 @@ public class ConsultaPanel extends javax.swing.JPanel {
         jPanel3.add(buscador);
         buscador.setBounds(90, 70, 670, 30);
 
-        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setBackground(javax.swing.UIManager.getDefaults().getColor("TextField.background"));
         jLabel2.setFont(new java.awt.Font("Fira Code", 0, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Buscador");
         jPanel3.add(jLabel2);
         jLabel2.setBounds(360, 40, 72, 18);
@@ -146,12 +165,7 @@ public class ConsultaPanel extends javax.swing.JPanel {
 		tablaUsuarios.setModel(mDefaultTableMoadel);
 		tablaUsuarios.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
 		tablaUsuarios.getTableHeader().setOpaque(true);
-		tablaUsuarios.getTableHeader().setBackground(Color.WHITE);
-		tablaUsuarios.getTableHeader().setForeground(new Color(255, 255, 255));
 		tablaUsuarios.setRowHeight(25);
-		tablaUsuarios.setBackground(Color.WHITE);
-		jScrollPane1.getViewport().setBackground(Color.WHITE);
-		UIDefaults defaults = UIManager.getLookAndFeelDefaults();
 		tablaUsuarios.setCellSelectionEnabled(true);
 		Action action = new AbstractAction() {
 			public void actionPerformed(ActionEvent e) {
@@ -174,5 +188,5 @@ public class ConsultaPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablaUsuarios;
-    // End of variables declaration//GEN-END:variables
+	// End of variables declaration//GEN-END:variables
 }
