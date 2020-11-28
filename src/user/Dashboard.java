@@ -6,11 +6,19 @@
 package user;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+
+import com.formdev.flatlaf.FlatDarkLaf;
+import com.formdev.flatlaf.FlatLaf;
+import com.formdev.flatlaf.FlatLightLaf;
+import user.config.ConfigPanel;
 import user.consulta.ConsultaPanel;
 import user.register.RegisterPanel;
 import user.dashboard.DashboardPanel;
 import activos.SubestacionPanel;
 import finance.pagos.VistaRegistrarPago;
+
+import javax.swing.*;
 
 /**
  *
@@ -18,11 +26,13 @@ import finance.pagos.VistaRegistrarPago;
  */
 public class Dashboard extends javax.swing.JFrame {
     private final RegisterPanel registerPanel = new RegisterPanel();
-    private final ConsultaPanel consultaPanel = new ConsultaPanel();
+    public final ConsultaPanel consultaPanel = new ConsultaPanel();
     private final DashboardPanel dashboardPanel = new DashboardPanel();
     private final SubestacionPanel subestacionPanel = new SubestacionPanel();
+    public final ConfigPanel configPanel = new ConfigPanel();
     private VistaRegistrarPago registerPayPanel;
     private User usuario;
+    private JFrame window;
 
     /**
      * Creates new form Dashboard
@@ -31,7 +41,30 @@ public class Dashboard extends javax.swing.JFrame {
         this.usuario = usuario;
         registerPayPanel = new VistaRegistrarPago(usuario);
         initComponents();
+        window = this;
         configUser();
+        darkMode();
+    }
+
+    public  void darkMode(){
+        configPanel.itemDarkMode.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                if (configPanel.itemDarkMode.isSelected()) {
+                    FlatDarkLaf.install();
+                    consultaPanel.darkMode();
+                    window.revalidate();
+                    window.repaint();
+
+                } else {
+                    FlatLightLaf.install();
+                    window.revalidate();
+                    window.repaint();
+                }
+                FlatLaf.updateUI();
+            }
+
+
+        });
     }
 
     private void configUser(){
@@ -48,12 +81,15 @@ public class Dashboard extends javax.swing.JFrame {
             panelMenu.remove(itemRegistrar);
             panelMenu.remove(itemListaUsuarios);
             panelMenu.remove(registerPayPanel);
+            configPanel.remove(configPanel.panelMantenimiento);
 
         }
         if (usuario.getIdRol() == 3){
             panelMenu.remove(itemRegistrar);
             panelMenu.remove(itemConfigurar);
             panelMenu.remove(itemSubestaciones);
+            configPanel.remove(configPanel.panelMantenimiento);
+
         }
         this.repaint();
         this.revalidate();
@@ -570,8 +606,12 @@ public class Dashboard extends javax.swing.JFrame {
     private void itemInicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemInicioMouseClicked
         jPanel3.removeAll();
         jPanel3.add(dashboardPanel);
-        jPanel3.repaint();
-        jPanel3.revalidate();
+        if(configPanel.itemDarkMode.isSelected()){
+            dashboardPanel.darkMode();
+        }
+        else{
+            dashboardPanel.lightMode();
+        }
     }//GEN-LAST:event_itemInicioMouseClicked
 
     private void itemInicioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemInicioMouseEntered
@@ -587,8 +627,13 @@ public class Dashboard extends javax.swing.JFrame {
     private void itemListaUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemListaUsuariosMouseClicked
         jPanel3.removeAll();
         jPanel3.add(consultaPanel);
-        jPanel3.repaint();
-        jPanel3.revalidate();
+        if(configPanel.itemDarkMode.isSelected()){
+            consultaPanel.darkMode();
+        }
+        else{
+            consultaPanel.lightMode();
+        }
+
     }//GEN-LAST:event_itemListaUsuariosMouseClicked
 
     private void itemListaUsuariosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemListaUsuariosMouseEntered
@@ -604,8 +649,12 @@ public class Dashboard extends javax.swing.JFrame {
     private void itemRegistrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemRegistrarMouseClicked
         jPanel3.removeAll();
         jPanel3.add(registerPanel);
-        jPanel3.repaint();
-        jPanel3.revalidate();
+        if(configPanel.itemDarkMode.isSelected()){
+            registerPanel.darkMode();
+        }
+        else{
+            registerPanel.lightMode();
+        }
     }//GEN-LAST:event_itemRegistrarMouseClicked
 
     private void itemRegistrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemRegistrarMouseEntered
@@ -621,8 +670,12 @@ public class Dashboard extends javax.swing.JFrame {
     private void itemSubestacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemSubestacionesMouseClicked
         jPanel3.removeAll();
         jPanel3.add(subestacionPanel);
-        jPanel3.repaint();
-        jPanel3.revalidate();
+        if(configPanel.itemDarkMode.isSelected()){
+            subestacionPanel.darkMode();
+        }
+        else{
+            subestacionPanel.lightMode();
+        }
     }//GEN-LAST:event_itemSubestacionesMouseClicked
 
     private void itemSubestacionesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemSubestacionesMouseEntered
@@ -636,10 +689,17 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_itemSubestacionesMouseExited
 
     private void itemConfigurarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemConfigurarMouseClicked
-        // jPanel3.removeAll();
-        // jPanel3.add(configuracionPanel);
-        // jPanel3.repaint();
-        // jPanel3.revalidate();
+
+        jPanel3.removeAll();
+        jPanel3.add(configPanel);
+        jPanel3.revalidate();
+        jPanel3.repaint();
+//        FlatDarkLaf.install();
+//        this.revalidate();
+//
+//         this.repaint();
+//         FlatLaf.updateUI();
+
     }//GEN-LAST:event_itemConfigurarMouseClicked
 
     private void itemConfigurarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemConfigurarMouseEntered
@@ -667,8 +727,12 @@ public class Dashboard extends javax.swing.JFrame {
     private void itemPagosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemPagosMouseClicked
         jPanel3.removeAll();
         jPanel3.add(registerPayPanel);
-        jPanel3.repaint();
-        jPanel3.revalidate();
+        if(configPanel.itemDarkMode.isSelected()){
+            registerPayPanel.darkMode();
+        }
+        else{
+            registerPayPanel.lightMode();
+        }
     }//GEN-LAST:event_itemPagosMouseClicked
 
     private void itemPagosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemPagosMouseEntered

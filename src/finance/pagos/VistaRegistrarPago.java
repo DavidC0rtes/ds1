@@ -7,6 +7,9 @@ package finance.pagos;
 
 import javax.swing.JOptionPane;
 
+import com.formdev.flatlaf.FlatDarkLaf;
+import com.formdev.flatlaf.FlatLaf;
+import com.formdev.flatlaf.FlatLightLaf;
 import user.User;
 
 import java.util.*;
@@ -51,6 +54,19 @@ public class VistaRegistrarPago extends javax.swing.JPanel {
     private void showMessage(String title, String msg, int tipo) {
     	JOptionPane.showMessageDialog(this, msg, title, tipo);
     }
+    public void lightMode() {
+        FlatLightLaf.install();
+        FlatLaf.updateUI();
+        this.revalidate();
+        this.repaint();
+    }
+    public void darkMode(){
+        FlatDarkLaf.install();
+        FlatLaf.updateUI();
+        this.revalidate();
+        this.repaint();
+
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -81,7 +97,6 @@ public class VistaRegistrarPago extends javax.swing.JPanel {
         pagarBtn = new javax.swing.JButton();
         cancelarPagoBtn = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(870, 670));
 
         tituloLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -161,7 +176,7 @@ public class VistaRegistrarPago extends javax.swing.JPanel {
                             .addComponent(dirTextLabel)
                             .addComponent(estratoNumLbl)
                             .addComponent(clienteNombreLbl))))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         infoContratoPanelLayout.setVerticalGroup(
             infoContratoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,8 +204,6 @@ public class VistaRegistrarPago extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        pagarPanel.setBackground(new java.awt.Color(255, 255, 255));
-
         valorPagarTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 valorPagarTxtActionPerformed(evt);
@@ -200,18 +213,20 @@ public class VistaRegistrarPago extends javax.swing.JPanel {
         valorPagarLabel.setFont(new java.awt.Font("DejaVu Sans", 1, 12)); // NOI18N
         valorPagarLabel.setText("Valor a pagar");
 
-        pagarBtn.setBackground(new java.awt.Color(153, 255, 153));
+        pagarBtn.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Green"));
+        pagarBtn.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
         pagarBtn.setText("Efectuar pago");
-        pagarBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pagarBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         pagarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pagarBtnActionPerformed(evt);
             }
         });
 
-        cancelarPagoBtn.setBackground(new java.awt.Color(255, 102, 102));
+        cancelarPagoBtn.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Red"));
+        cancelarPagoBtn.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
         cancelarPagoBtn.setText("Cancelar");
-        cancelarPagoBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cancelarPagoBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         cancelarPagoBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelarPagoBtnActionPerformed(evt);
@@ -257,7 +272,7 @@ public class VistaRegistrarPago extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(195, 195, 195)
                 .addComponent(pagarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 236, Short.MAX_VALUE))
+                .addGap(0, 234, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(272, 272, 272)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
