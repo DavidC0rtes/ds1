@@ -10,6 +10,7 @@ import user.consulta.ConsultaPanel;
 import user.register.RegisterPanel;
 import user.dashboard.DashboardPanel;
 import activos.SubestacionPanel;
+import finance.pagos.VistaRegistrarPago;
 
 /**
  *
@@ -20,6 +21,7 @@ public class Dashboard extends javax.swing.JFrame {
     private final ConsultaPanel consultaPanel = new ConsultaPanel();
     private final DashboardPanel dashboardPanel = new DashboardPanel();
     private final SubestacionPanel subestacionPanel = new SubestacionPanel();
+    private VistaRegistrarPago registerPayPanel;
     private User usuario;
 
     /**
@@ -27,6 +29,7 @@ public class Dashboard extends javax.swing.JFrame {
      */
     public Dashboard(User usuario) {
         this.usuario = usuario;
+        registerPayPanel = new VistaRegistrarPago(usuario);
         initComponents();
         configUser();
     }
@@ -39,10 +42,12 @@ public class Dashboard extends javax.swing.JFrame {
 
         if (usuario.getIdRol() == 1){
             panelMenu.remove(itemSubestaciones);
+            panelMenu.remove(registerPayPanel);
         }
         if (usuario.getIdRol() == 2){
             panelMenu.remove(itemRegistrar);
             panelMenu.remove(itemListaUsuarios);
+            panelMenu.remove(registerPayPanel);
 
         }
         if (usuario.getIdRol() == 3){
@@ -84,6 +89,9 @@ public class Dashboard extends javax.swing.JFrame {
         itemSubestaciones = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         itemTitle4 = new javax.swing.JLabel();
+        itemPagos = new javax.swing.JPanel();
+        jLabel16 = new javax.swing.JLabel();
+        itemTitle6 = new javax.swing.JLabel();
         itemConfigurar = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         itemTitle5 = new javax.swing.JLabel();
@@ -111,6 +119,7 @@ public class Dashboard extends javax.swing.JFrame {
         panelPerfil.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, 100, -1));
 
         jUsername.setFont(new java.awt.Font("Fira Code", 2, 14)); // NOI18N
+        //jUsername.setText(username);
         panelPerfil.add(jUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, -1, -1));
 
         jLabel1.setBackground(new java.awt.Color(1, 1, 1));
@@ -121,10 +130,10 @@ public class Dashboard extends javax.swing.JFrame {
         panelLateral.add(panelPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 180));
 
         panelMenu.setBackground(new java.awt.Color(50, 55, 61));
-        panelMenu.setLayout(new java.awt.GridLayout(5, 0, 60, 2));
+        panelMenu.setLayout(new java.awt.GridLayout(6, 0, 60, 2));
 
         itemInicio.setBorder(new javax.swing.border.LineBorder(java.awt.Color.white, 1, true));
-        itemInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        itemInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         itemInicio.setOpaque(false);
         itemInicio.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -167,7 +176,7 @@ public class Dashboard extends javax.swing.JFrame {
         panelMenu.add(itemInicio);
 
         itemListaUsuarios.setBorder(new javax.swing.border.LineBorder(java.awt.Color.white, 1, true));
-        itemListaUsuarios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        itemListaUsuarios.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         itemListaUsuarios.setOpaque(false);
         itemListaUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -210,7 +219,7 @@ public class Dashboard extends javax.swing.JFrame {
         panelMenu.add(itemListaUsuarios);
 
         itemRegistrar.setBorder(new javax.swing.border.LineBorder(java.awt.Color.white, 1, true));
-        itemRegistrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        itemRegistrar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         itemRegistrar.setOpaque(false);
         itemRegistrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -253,7 +262,7 @@ public class Dashboard extends javax.swing.JFrame {
         panelMenu.add(itemRegistrar);
 
         itemSubestaciones.setBorder(new javax.swing.border.LineBorder(java.awt.Color.white, 1, true));
-        itemSubestaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        itemSubestaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         itemSubestaciones.setOpaque(false);
         itemSubestaciones.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -295,8 +304,51 @@ public class Dashboard extends javax.swing.JFrame {
 
         panelMenu.add(itemSubestaciones);
 
+        itemPagos.setBorder(new javax.swing.border.LineBorder(java.awt.Color.white, 1, true));
+        itemPagos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        itemPagos.setOpaque(false);
+        itemPagos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                itemPagosMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                itemPagosMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                itemPagosMouseExited(evt);
+            }
+        });
+        java.awt.FlowLayout flowLayout5 = new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 10, 5);
+        flowLayout5.setAlignOnBaseline(true);
+        itemPagos.setLayout(flowLayout5);
+
+        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/pila-de-dinero.png"))); // NOI18N
+        itemPagos.add(jLabel16);
+
+        itemTitle6.setFont(new java.awt.Font("Fira Code", 1, 12)); // NOI18N
+        itemTitle6.setForeground(new java.awt.Color(254, 254, 254));
+        itemTitle6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        itemTitle6.setText("Registrar Pagos");
+        itemTitle6.setAlignmentX(0.6F);
+        itemTitle6.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        itemTitle6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        itemTitle6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                itemTitle6MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                itemTitle6MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                itemTitle6MouseExited(evt);
+            }
+        });
+        itemPagos.add(itemTitle6);
+
+        panelMenu.add(itemPagos);
+
         itemConfigurar.setBorder(new javax.swing.border.LineBorder(java.awt.Color.white, 1, true));
-        itemConfigurar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        itemConfigurar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         itemConfigurar.setOpaque(false);
         itemConfigurar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -600,6 +652,35 @@ public class Dashboard extends javax.swing.JFrame {
         itemConfigurar.setBackground(new Color(50,55,61));
     }//GEN-LAST:event_itemConfigurarMouseExited
 
+    private void itemTitle6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemTitle6MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_itemTitle6MouseClicked
+
+    private void itemTitle6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemTitle6MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_itemTitle6MouseEntered
+
+    private void itemTitle6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemTitle6MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_itemTitle6MouseExited
+
+    private void itemPagosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemPagosMouseClicked
+        jPanel3.removeAll();
+        jPanel3.add(registerPayPanel);
+        jPanel3.repaint();
+        jPanel3.revalidate();
+    }//GEN-LAST:event_itemPagosMouseClicked
+
+    private void itemPagosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemPagosMouseEntered
+    	itemPagos.setOpaque(true);
+        itemPagos.setBackground(new Color(2, 143, 224));
+    }//GEN-LAST:event_itemPagosMouseEntered
+
+    private void itemPagosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemPagosMouseExited
+    	itemPagos.setOpaque(false);
+        itemPagos.setBackground(new Color(50,55,61));
+    }//GEN-LAST:event_itemPagosMouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -609,6 +690,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel itemConfigurar;
     private javax.swing.JPanel itemInicio;
     private javax.swing.JPanel itemListaUsuarios;
+    private javax.swing.JPanel itemPagos;
     private javax.swing.JPanel itemRegistrar;
     private javax.swing.JPanel itemSubestaciones;
     private javax.swing.JLabel itemTitle1;
@@ -616,6 +698,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel itemTitle3;
     private javax.swing.JLabel itemTitle4;
     private javax.swing.JLabel itemTitle5;
+    private javax.swing.JLabel itemTitle6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -623,6 +706,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel9;
