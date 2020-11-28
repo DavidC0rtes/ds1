@@ -5,6 +5,10 @@
  */
 package user.register;
 
+import com.formdev.flatlaf.FlatDarkLaf;
+import com.formdev.flatlaf.FlatLaf;
+import com.formdev.flatlaf.FlatLightLaf;
+
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.HashMap;
@@ -35,6 +39,19 @@ public class RegisterPanel extends javax.swing.JPanel {
     public void wrongCedula(){
         JOptionPane.showMessageDialog(this, "El campo identificacion debe ser llenado unicamente con numeros");
     }
+    public void lightMode() {
+        FlatLightLaf.install();
+        FlatLaf.updateUI();
+        this.revalidate();
+        this.repaint();
+    }
+    public void darkMode(){
+        FlatDarkLaf.install();
+        FlatLaf.updateUI();
+        this.revalidate();
+        this.repaint();
+
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -62,7 +79,6 @@ public class RegisterPanel extends javax.swing.JPanel {
         jComboBox1 = new javax.swing.JComboBox<>();
         passwordTxt = new javax.swing.JPasswordField();
 
-        jPanel3.setBackground(java.awt.Color.white);
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 640, -1, -1));
 
