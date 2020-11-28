@@ -4,4 +4,5 @@ module sige {
 	requires AbsoluteLayout;
     requires java.logging;
     requires com.formdev.flatlaf;
+    requires org.postgresql.jdbc;
 }

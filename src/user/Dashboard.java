@@ -18,6 +18,7 @@ import user.dashboard.DashboardPanel;
 import activos.SubestacionPanel;
 import finance.pagos.MainPagosPanel;
 import finance.pagos.VistaRegistrarPago;
+import finance.clientes.RegisterPanelCliente;
 
 import javax.swing.*;
 
@@ -27,12 +28,12 @@ import javax.swing.*;
  */
 public class Dashboard extends javax.swing.JFrame {
     private final RegisterPanel registerPanel = new RegisterPanel();
+    private final RegisterPanelCliente registerPanelCliente = new RegisterPanelCliente();
     public final ConsultaPanel consultaPanel = new ConsultaPanel();
     private final DashboardPanel dashboardPanel = new DashboardPanel();
     private final SubestacionPanel subestacionPanel = new SubestacionPanel();
     private MainPagosPanel registerPayPanel;
     public final ConfigPanel configPanel = new ConfigPanel();
- 
     private User usuario;
     private JFrame window;
 
@@ -87,7 +88,6 @@ public class Dashboard extends javax.swing.JFrame {
 
         }
         if (usuario.getIdRol() == 3){
-            panelMenu.remove(itemRegistrar);
             panelMenu.remove(itemConfigurar);
             panelMenu.remove(itemSubestaciones);
             configPanel.remove(configPanel.panelMantenimiento);
@@ -280,7 +280,12 @@ public class Dashboard extends javax.swing.JFrame {
         itemTitle3.setFont(new java.awt.Font("Fira Code", 1, 12)); // NOI18N
         itemTitle3.setForeground(new java.awt.Color(254, 254, 254));
         itemTitle3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        itemTitle3.setText("Registrar Usuarios");
+        if (usuario.getIdRol()==1){
+            itemTitle3.setText("Registrar Usuarios");
+        }
+        else if(usuario.getIdRol()==3){
+            itemTitle3.setText("Registrar Cliente");
+        }
         itemTitle3.setAlignmentX(0.6F);
         itemTitle3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         itemTitle3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -650,7 +655,15 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void itemRegistrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemRegistrarMouseClicked
         jPanel3.removeAll();
-        jPanel3.add(registerPanel);
+        
+        
+        if(usuario.getIdRol() == 1){
+            jPanel3.add(registerPanel);
+        }
+        else if(usuario.getIdRol() == 3)
+        {
+         jPanel3.add(registerPanelCliente);
+        }
         if(configPanel.itemDarkMode.isSelected()){
             registerPanel.darkMode();
         }
@@ -729,12 +742,12 @@ public class Dashboard extends javax.swing.JFrame {
     private void itemPagosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemPagosMouseClicked
         jPanel3.removeAll();
         jPanel3.add(registerPayPanel);
-        if(configPanel.itemDarkMode.isSelected()){
+        /*if(configPanel.itemDarkMode.isSelected()){
             registerPayPanel.darkMode();
         }
         else{
             registerPayPanel.lightMode();
-        }
+        }*/
     }//GEN-LAST:event_itemPagosMouseClicked
 
     private void itemPagosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemPagosMouseEntered
