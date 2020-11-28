@@ -242,7 +242,6 @@ public class Dashboard extends javax.swing.JFrame {
         else{
             itemTitle3.setText("Registrar Cliente");
         }
-        itemTitle3.setText("Registrar Usuarios");
         itemTitle3.setAlignmentX(0.6F);
         itemTitle3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         itemTitle3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
