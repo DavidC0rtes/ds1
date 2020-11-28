@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package finance;
+package finance.pagos;
 
 import javax.swing.JOptionPane;
 
@@ -15,7 +15,7 @@ import java.util.*;
  *
  * @author david
  */
-public class RegistrarPagoGUI extends javax.swing.JPanel {
+public class VistaRegistrarPago extends javax.swing.JPanel {
     private ControlRegistrarPago control;
     private HashMap<String, Object> datosContrato;
     private User loggedUser;
@@ -23,7 +23,7 @@ public class RegistrarPagoGUI extends javax.swing.JPanel {
     /**
      * Creates new form RegistrarPagoGUI
      */
-    public RegistrarPagoGUI(User usuario) {
+    public VistaRegistrarPago(User usuario) {
         control = new ControlRegistrarPago();
         datosContrato = new HashMap<String, Object>();
         loggedUser = usuario;
@@ -42,8 +42,11 @@ public class RegistrarPagoGUI extends javax.swing.JPanel {
         deudaCantLabel.setText(datosContrato.get("deuda_actual").toString());
         estratoNumLbl.setText(datosContrato.get("estrato").toString());
         
+        corteTxtLabel.setText(datosContrato.get("fecha_corte").toString() + corteTxtLabel.getText());
+        
         infoContratoPanel.setVisible(true);
     }
+    
     
     private void showMessage(String title, String msg, int tipo) {
     	JOptionPane.showMessageDialog(this, msg, title, tipo);
@@ -70,6 +73,8 @@ public class RegistrarPagoGUI extends javax.swing.JPanel {
         clienteNombreLbl = new javax.swing.JLabel();
         estratoNumLbl = new javax.swing.JLabel();
         dirTextLabel = new javax.swing.JLabel();
+        corteLabel = new javax.swing.JLabel();
+        corteTxtLabel = new javax.swing.JLabel();
         pagarPanel = new javax.swing.JPanel();
         valorPagarTxt = new javax.swing.JTextField();
         valorPagarLabel = new javax.swing.JLabel();
@@ -129,6 +134,10 @@ public class RegistrarPagoGUI extends javax.swing.JPanel {
 
         dirTextLabel.setText("jLabel3");
 
+        corteLabel.setText("Fecha de corte:");
+
+        corteTxtLabel.setText(" de cada mes");
+
         javax.swing.GroupLayout infoContratoPanelLayout = new javax.swing.GroupLayout(infoContratoPanel);
         infoContratoPanel.setLayout(infoContratoPanelLayout);
         infoContratoPanelLayout.setHorizontalGroup(
@@ -144,13 +153,15 @@ public class RegistrarPagoGUI extends javax.swing.JPanel {
                         .addGroup(infoContratoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(clienteLabel)
                             .addComponent(estratoLabel)
-                            .addComponent(dirLabel))
-                        .addGap(36, 36, 36)
+                            .addComponent(dirLabel)
+                            .addComponent(corteLabel))
+                        .addGap(44, 44, 44)
                         .addGroup(infoContratoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(corteTxtLabel)
                             .addComponent(dirTextLabel)
                             .addComponent(estratoNumLbl)
                             .addComponent(clienteNombreLbl))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         infoContratoPanelLayout.setVerticalGroup(
             infoContratoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,7 +182,11 @@ public class RegistrarPagoGUI extends javax.swing.JPanel {
                 .addGroup(infoContratoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(dirLabel)
                     .addComponent(dirTextLabel))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addGroup(infoContratoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(corteLabel)
+                    .addComponent(corteTxtLabel))
+                .addContainerGap())
         );
 
         pagarPanel.setBackground(new java.awt.Color(255, 255, 255));
@@ -266,9 +281,9 @@ public class RegistrarPagoGUI extends javax.swing.JPanel {
                     .addComponent(contratoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(infoContratoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
+                .addGap(18, 18, 18)
                 .addComponent(pagarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(236, Short.MAX_VALUE))
+                .addContainerGap(234, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -331,6 +346,7 @@ public class RegistrarPagoGUI extends javax.swing.JPanel {
     private void cancelarPagoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarPagoBtnActionPerformed
         pagarPanel.setVisible(false);
         infoContratoPanel.setVisible(false);
+        corteTxtLabel.setText(" de cada mes");
     }//GEN-LAST:event_cancelarPagoBtnActionPerformed
 
 
@@ -341,6 +357,8 @@ public class RegistrarPagoGUI extends javax.swing.JPanel {
     private javax.swing.JButton consultarBtn;
     private javax.swing.JLabel contratoLabel;
     private javax.swing.JTextField contratoTxt;
+    private javax.swing.JLabel corteLabel;
+    private javax.swing.JLabel corteTxtLabel;
     private javax.swing.JLabel deudaCantLabel;
     private javax.swing.JLabel deudaLabel;
     private javax.swing.JLabel dirLabel;

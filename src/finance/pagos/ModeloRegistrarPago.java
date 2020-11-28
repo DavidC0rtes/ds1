@@ -1,8 +1,6 @@
-package finance;
+package finance.pagos;
 
 import java.sql.*;
-import java.time.*;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 import db.JDBCConnection;
@@ -30,7 +28,7 @@ public class ModeloRegistrarPago {
 	public HashMap<String, Object> consultarContrato(int numContrato) {
 		String SQL = 
 				"SELECT concat(primer_nombre,' ', segundo_nombre, ' ',primer_apellido, ' ', segundo_apellido),"
-				+ "estrato, dir_instalacion, deuda_actual, clientes.id "
+				+ "estrato, dir_instalacion, deuda_actual, clientes.id, fecha_corte "
 				+ "FROM contratos AS CON "
 				+ "INNER JOIN clientes "
 				+ "ON CON.id_cliente=clientes.id "
@@ -64,6 +62,7 @@ public class ModeloRegistrarPago {
 			datosContrato.put("estrato", rs.getInt("estrato"));
 			datosContrato.put("dir_instalacion", rs.getString("dir_instalacion"));
 			datosContrato.put("deuda_actual", rs.getFloat("deuda_actual"));
+			datosContrato.put("fecha_corte", rs.getInt("fecha_corte"));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -84,8 +83,6 @@ public class ModeloRegistrarPago {
 		String SQL = 
 				"INSERT INTO pagos(id_contrato,monto,created_by) "
 				+ "VALUES(?,?,?)";
-		
-		LocalDateTime date = LocalDateTime.now();
 		
 		String[] params = {
 				Integer.toString(numContrato), 

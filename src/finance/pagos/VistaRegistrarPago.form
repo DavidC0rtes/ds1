@@ -58,9 +58,9 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="infoContratoPanel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="pagarPanel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="236" max="32767" attributes="0"/>
+              <EmptySpace pref="234" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -131,9 +131,11 @@
                               <Component id="clienteLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="estratoLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="dirLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="corteLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="corteTxtLabel" min="-2" max="-2" attributes="0"/>
                               <Component id="dirTextLabel" min="-2" max="-2" attributes="0"/>
                               <Component id="estratoNumLbl" min="-2" max="-2" attributes="0"/>
                               <Component id="clienteNombreLbl" min="-2" max="-2" attributes="0"/>
@@ -167,7 +169,12 @@
                       <Component id="dirLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="dirTextLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="19" max="32767" attributes="0"/>
+                  <EmptySpace pref="15" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="corteLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="corteTxtLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -223,6 +230,16 @@
         <Component class="javax.swing.JLabel" name="dirTextLabel">
           <Properties>
             <Property name="text" type="java.lang.String" value="jLabel3"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="corteLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Fecha de corte:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="corteTxtLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value=" de cada mes"/>
           </Properties>
         </Component>
       </SubComponents>

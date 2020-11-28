@@ -1,6 +1,5 @@
-package finance;
+package finance.pagos;
 
-import java.sql.ResultSet;
 import java.util.*;
 
 public class ControlRegistrarPago {
