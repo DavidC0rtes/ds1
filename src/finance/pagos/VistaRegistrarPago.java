@@ -324,6 +324,7 @@ public class VistaRegistrarPago extends javax.swing.JPanel {
     				showMessage("Éxito", "Pago realizado con éxito", JOptionPane.INFORMATION_MESSAGE);
     				pagarPanel.setVisible(false);
     		        infoContratoPanel.setVisible(false);
+    		        corteTxtLabel.setText(" de cada mes");
     				
     			} else {
     				showMessage("Error", "Ha ocurrido un error, inténtelo de nuevo.", JOptionPane.ERROR_MESSAGE);
