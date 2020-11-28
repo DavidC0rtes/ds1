@@ -43,7 +43,6 @@ public class Dashboard extends javax.swing.JFrame {
             panelMenu.remove(itemSubestaciones);
         }
         if (usuario.getIdRol() == 2){
-            panelMenu.remove(itemRegistrar);
             panelMenu.remove(itemListaUsuarios);
 
         }
@@ -83,7 +82,7 @@ public class Dashboard extends javax.swing.JFrame {
         itemRegistrar = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         itemTitle3 = new javax.swing.JLabel();
-        intemSubestaciones = new javax.swing.JPanel();
+        itemSubestaciones = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         itemTitle4 = new javax.swing.JLabel();
         itemConfigurar = new javax.swing.JPanel();
@@ -237,6 +236,12 @@ public class Dashboard extends javax.swing.JFrame {
         itemTitle3.setFont(new java.awt.Font("Fira Code", 1, 12)); // NOI18N
         itemTitle3.setForeground(new java.awt.Color(254, 254, 254));
         itemTitle3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        if (usuario.getIdRol()==1){
+            itemTitle3.setText("Registrar Usuarios");
+        }
+        else{
+            itemTitle3.setText("Registrar Cliente");
+        }
         itemTitle3.setText("Registrar Usuarios");
         itemTitle3.setAlignmentX(0.6F);
         itemTitle3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -262,21 +267,21 @@ public class Dashboard extends javax.swing.JFrame {
         itemSubestaciones.addMouseListener(new java.awt.event.MouseAdapter() {
 
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                intemSubestacionesMouseClicked(evt);
+                itemSubestacionesMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                intemSubestacionesMouseEntered(evt);
+                itemSubestacionesMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                intemSubestacionesMouseExited(evt);
+                itemSubestacionesMouseExited(evt);
             }
         });
         java.awt.FlowLayout flowLayout4 = new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 10, 5);
         flowLayout4.setAlignOnBaseline(true);
-        intemSubestaciones.setLayout(flowLayout4);
+        itemSubestaciones.setLayout(flowLayout4);
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/transformador.png"))); // NOI18N
-        intemSubestaciones.add(jLabel10);
+        itemSubestaciones.add(jLabel10);
 
         itemTitle4.setFont(new java.awt.Font("Fira Code", 1, 12)); // NOI18N
         itemTitle4.setForeground(new java.awt.Color(254, 254, 254));
@@ -296,7 +301,7 @@ public class Dashboard extends javax.swing.JFrame {
                 itemTitle4MouseExited(evt);
             }
         });
-        intemSubestaciones.add(itemTitle4);
+        itemSubestaciones.add(itemTitle4);
 
         panelMenu.add(itemSubestaciones);
 
@@ -584,7 +589,7 @@ public class Dashboard extends javax.swing.JFrame {
         jPanel3.add(subestacionPanel);
         jPanel3.repaint();
         jPanel3.revalidate();
-    }//GEN-LAST:event_intemSubestacionesMouseClicked
+    }//GEN-LAST:event_itemSubestacionesMouseClicked
 
 
     private void itemSubestacionesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemSubestacionesMouseEntered
@@ -592,10 +597,10 @@ public class Dashboard extends javax.swing.JFrame {
         itemSubestaciones.setBackground(Color.ORANGE);
     }//GEN-LAST:event_itemSubestacionesMouseEntered
 
-    private void intemSubestacionesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_intemSubestacionesMouseExited
-        intemSubestaciones.setOpaque(false);
-        intemSubestaciones.setBackground(new Color(50,55,61));
-    }//GEN-LAST:event_intemSubestacionesMouseExited
+    private void itemSubestacionesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemSubestacionesMouseExited
+        itemSubestaciones.setOpaque(false);
+        itemSubestaciones.setBackground(new Color(50,55,61));
+    }//GEN-LAST:event_itemSubestacionesMouseExited
 
     private void itemConfigurarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemConfigurarMouseClicked
         // jPanel3.removeAll();
