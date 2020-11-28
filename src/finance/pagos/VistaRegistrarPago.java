@@ -29,10 +29,12 @@ public class VistaRegistrarPago extends javax.swing.JPanel {
     public VistaRegistrarPago(User usuario) {
         control = new ControlRegistrarPago();
         datosContrato = new HashMap<String, Object>();
+        
         loggedUser = usuario;
         initComponents();
         infoContratoPanel.setVisible(false);
         pagarPanel.setVisible(false);
+        
     }
     
     /**
@@ -97,7 +99,11 @@ public class VistaRegistrarPago extends javax.swing.JPanel {
         pagarBtn = new javax.swing.JButton();
         cancelarPagoBtn = new javax.swing.JButton();
 
-        setPreferredSize(new java.awt.Dimension(870, 670));
+        setBackground(new java.awt.Color(255, 255, 255));
+        setMaximumSize(new java.awt.Dimension(858, 654));
+        setMinimumSize(new java.awt.Dimension(858, 654));
+        setPreferredSize(new java.awt.Dimension(858, 654));
+
 
         tituloLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         tituloLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -289,7 +295,7 @@ public class VistaRegistrarPago extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(tituloLabel)
-                .addGap(52, 52, 52)
+                .addGap(61, 61, 61)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(consultarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(contratoLabel)
@@ -298,7 +304,7 @@ public class VistaRegistrarPago extends javax.swing.JPanel {
                 .addComponent(infoContratoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(pagarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(234, Short.MAX_VALUE))
+                .addContainerGap(225, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

@@ -16,6 +16,7 @@ import user.consulta.ConsultaPanel;
 import user.register.RegisterPanel;
 import user.dashboard.DashboardPanel;
 import activos.SubestacionPanel;
+import finance.pagos.MainPagosPanel;
 import finance.pagos.VistaRegistrarPago;
 
 import javax.swing.*;
@@ -29,8 +30,9 @@ public class Dashboard extends javax.swing.JFrame {
     public final ConsultaPanel consultaPanel = new ConsultaPanel();
     private final DashboardPanel dashboardPanel = new DashboardPanel();
     private final SubestacionPanel subestacionPanel = new SubestacionPanel();
+    private MainPagosPanel registerPayPanel;
     public final ConfigPanel configPanel = new ConfigPanel();
-    private VistaRegistrarPago registerPayPanel;
+ 
     private User usuario;
     private JFrame window;
 
@@ -39,7 +41,7 @@ public class Dashboard extends javax.swing.JFrame {
      */
     public Dashboard(User usuario) {
         this.usuario = usuario;
-        registerPayPanel = new VistaRegistrarPago(usuario);
+        registerPayPanel = new MainPagosPanel(usuario);
         initComponents();
         window = this;
         configUser();
