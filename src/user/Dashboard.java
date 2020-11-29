@@ -78,20 +78,20 @@ public class Dashboard extends javax.swing.JFrame {
         usernameLabel.setText(usuario.getPrimer_nombre() + " " + usuario.getPrimer_apellido());
         this.setTitle("SiGe | " + usuario.getStringRol());
 
-        if (usuario.getIdRol() == 1){
+        if (usuario.getIdRol() == 1){   //Administrador
             itemTitle2.setText("Lista de Usuarios");
             itemTitle3.setText("Registrar Usuarios");
             panelMenu.remove(itemSubestaciones);
             panelMenu.remove(registerPayPanel);
         }
-        if (usuario.getIdRol() == 2){
+        if (usuario.getIdRol() == 2){   //Gerente
             panelMenu.remove(itemRegistrar);
             panelMenu.remove(itemListaUsuarios);
             panelMenu.remove(registerPayPanel);
             configPanel.remove(configPanel.panelMantenimiento);
 
         }
-        if (usuario.getIdRol() == 3){
+        if (usuario.getIdRol() == 3){   //Operador
             itemTitle2.setText("Lista de Clientes");
             itemTitle3.setText("Registrar Clientes");
             panelMenu.remove(itemConfigurar);
