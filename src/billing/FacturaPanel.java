@@ -77,6 +77,7 @@ public class FacturaPanel extends javax.swing.JPanel {
 	        tablaUsuarios = new javax.swing.JTable();
 	        buscador = new javax.swing.JTextField();
 	        jLabel2 = new javax.swing.JLabel();
+	        jButton1 = new javax.swing.JButton();
 
 	        setLayout(new java.awt.BorderLayout());
 
@@ -123,20 +124,30 @@ public class FacturaPanel extends javax.swing.JPanel {
 	        jLabel2.setBounds(360, 40, 72, 18);
 
 	        add(jPanel3, java.awt.BorderLayout.CENTER);
+	        jButton1.setText("Refrescar");
+	        jButton1.addActionListener(new java.awt.event.ActionListener() {
+	            public void actionPerformed(java.awt.event.ActionEvent evt) {
+	                jButton1ActionPerformed(evt);
+	            }
+	        });
+	        jPanel3.add(jButton1);
+	        jButton1.setBounds(740, 70, 90, 30);
+
 	    }// </editor-fold>//GEN-END:initComponents
 
 		private void buscadorKeyPressed(KeyEvent evt) {//GEN-FIRST:event_buscadorKeyPressed
 		}//GEN-LAST:event_buscadorKeyPressed
 
 		public void construirTabla() {
-			String[] titlesInfo = new String[7];
-			titlesInfo[0] = "Cedula";
+			String[] titlesInfo = new String[8];
+			titlesInfo[0] = "ID";
 			titlesInfo[1] = "Nombre";
 			titlesInfo[2] = "Apellido";
-			titlesInfo[3] = "Contraseña";
-			titlesInfo[4] = "Correo";
-			titlesInfo[5] = "Activo";
-			titlesInfo[6] = "Rol ID";
+			titlesInfo[3] = "Correo";
+			titlesInfo[4] = "Contrato";
+			titlesInfo[5] = "Fecha de Expedicion";
+			titlesInfo[6] = "Fecha de vencimiento";
+			titlesInfo[8] = "Generar factura";
 			mDefaultTableMoadel.setDataVector(modelo.obtenerMatrizData(), titlesInfo);
 			tablaUsuarios.setModel(mDefaultTableMoadel);
 			tablaUsuarios.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
@@ -148,7 +159,7 @@ public class FacturaPanel extends javax.swing.JPanel {
 			jScrollPane1.getViewport().setBackground(Color.WHITE);
 			UIDefaults defaults = UIManager.getLookAndFeelDefaults();
 			tablaUsuarios.setCellSelectionEnabled(true);
-			Action action = new AbstractAction() {
+			 /*Action action = new AbstractAction() {
 				public void actionPerformed(ActionEvent e) {
 					TableCellListener tcl = (TableCellListener) e.getSource();
 					modelo.updateData(tcl.getColumn(), (String) tcl.getNewValue(),
@@ -160,11 +171,12 @@ public class FacturaPanel extends javax.swing.JPanel {
 				}
 			};
 
-			TableCellListener tcl = new TableCellListener(tablaUsuarios, action);
+			TableCellListener tcl = new TableCellListener(tablaUsuarios, action);*/
 		}
 
 	    // Variables declaration - do not modify//GEN-BEGIN:variables
 	    private javax.swing.JTextField buscador;
+	    private javax.swing.JButton jButton1;
 	    private javax.swing.JLabel jLabel2;
 	    private javax.swing.JPanel jPanel3;
 	    private javax.swing.JScrollPane jScrollPane1;

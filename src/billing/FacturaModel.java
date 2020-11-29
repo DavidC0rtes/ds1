@@ -19,17 +19,25 @@ public class FacturaModel {
         
         public ArrayList<ArrayList<String>> returnData(){
         ArrayList<ArrayList<String>> data = new ArrayList<>();
-        ResultSet resultSet = DB.getRecords("SELECT * FROM usuarios");
+        ResultSet resultSet = DB.getRecords("SELECT \r\n"
+        		+ "	clientes.id, \r\n"
+        		+ "	clientes.primer_nombre,  \r\n"
+        		+ "	clientes.primer_apellido,\r\n"
+        		+ "	clientes.email,\r\n"
+        		+ "	facturas.id_contrato,\r\n"
+        		+ "	facturas.fecha_expedicion,\r\n"
+        		+ "	facturas.fecha_vencimiento\r\n"
+        		+ "FROM clientes FULL OUTER JOIN facturas ON clientes.id=facturas.id_cliente;");
         try {
 			while (resultSet.next()) {
 			    ArrayList<String> usuarios = new ArrayList<>();
-			    usuarios.add(resultSet.getString("num_documento"));
+			    usuarios.add(resultSet.getString("id"));
 			    usuarios.add(resultSet.getString("primer_nombre"));
 			    usuarios.add(resultSet.getString("primer_apellido"));
-			    usuarios.add(resultSet.getString("password"));
 			    usuarios.add(resultSet.getString("email"));
-			    usuarios.add(resultSet.getString("activo"));
-			    usuarios.add(resultSet.getString("id_rol"));
+			    usuarios.add(resultSet.getString("id_contrato"));
+			    usuarios.add(resultSet.getString("fecha_expedicion"));
+			    usuarios.add(resultSet.getString("fecha_vencimiento"));
 			    data.add(usuarios);
 			}
 		} catch (SQLException e) {
@@ -55,6 +63,7 @@ public class FacturaModel {
         return dataInfo;
     }
     
+    /**    
     public void updateData(int Column, String dato, String identificador){
     	String SQL = "UPDATE usuarios SET ";
         String[] params = {dato, identificador};
@@ -87,5 +96,5 @@ public class FacturaModel {
         }
         int affectedrows = DB.updateRecord(SQL, params);
         System.out.println("Affected rows: " + affectedrows);
-    }
+    } */
 }
