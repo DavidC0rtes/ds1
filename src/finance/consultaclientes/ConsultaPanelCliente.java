@@ -98,6 +98,7 @@ public class ConsultaPanelCliente extends javax.swing.JPanel {
         tablaClientes = new javax.swing.JTable();
         buscador = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -136,7 +137,7 @@ public class ConsultaPanelCliente extends javax.swing.JPanel {
             }
         });
         jPanel3.add(buscador);
-        buscador.setBounds(90, 70, 670, 30);
+        buscador.setBounds(50, 70, 670, 30);
 
         jLabel2.setBackground(javax.swing.UIManager.getDefaults().getColor("TextField.background"));
         jLabel2.setFont(new java.awt.Font("Fira Code", 0, 14)); // NOI18N
@@ -145,11 +146,23 @@ public class ConsultaPanelCliente extends javax.swing.JPanel {
         jLabel2.setBounds(360, 40, 72, 18);
 
         add(jPanel3, java.awt.BorderLayout.CENTER);
+        jButton1.setText("Refrescar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton1);
+        jButton1.setBounds(740, 70, 90, 30);
 
     }// </editor-fold>//GEN-END:initComponents
 
     private void buscadorKeyPressed(KeyEvent evt) {//GEN-FIRST:event_buscadorKeyPressed
     }//GEN-LAST:event_buscadorKeyPressed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        construirTabla();
+    }//GEN-LAST:event_jButton1ActionPerformed
     public void construirTabla() {
 	String[] titlesInfo = new String[8];
         titlesInfo[0] = "Tipo de cliente";
@@ -190,6 +203,7 @@ public class ConsultaPanelCliente extends javax.swing.JPanel {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField buscador;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
