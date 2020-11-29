@@ -48,7 +48,7 @@ public class Dashboard extends javax.swing.JFrame {
         if (usuario.getIdRol() == 3){
             panelMenu.remove(itemRegistrar);
             panelMenu.remove(itemConfigurar);
-            panelMenu.remove(itemSubestaciones);
+          //  panelMenu.remove(itemSubestaciones);
         }
         this.repaint();
         this.revalidate();

@@ -1,15 +1,9 @@
 package billing;
 
-import java.awt.Color;
-import java.awt.Font;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-
-import javax.swing.AbstractAction;
-import javax.swing.Action;
-import javax.swing.RowFilter;
-import javax.swing.UIDefaults;
-import javax.swing.UIManager;
+import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
@@ -17,19 +11,17 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
 import misc.TableCellListener;
-import user.consulta.ConsultaModelo;
 
-public class FacturaPanel {
-	public class ConsultaPanel extends javax.swing.JPanel {
-		private final ConsultaModelo modelo = new ConsultaModelo();
+public class FacturaPanel extends javax.swing.JPanel {
+		private final FacturaModel modelo = new FacturaModel();
 		private final DefaultTableModel mDefaultTableMoadel = new DefaultTableModel();
 		private final TableRowSorter<TableModel> rowSorter;
 
 
 		/**
-		 * Creates new form ConsultaPanel
+		 * Creates new form FacturaPanel
 		 */
-		public ConsultaPanel() {
+		public FacturaPanel() {
 			initComponents();
 			construirTabla();
 			rowSorter  = new TableRowSorter<>(tablaUsuarios.getModel());
@@ -178,5 +170,5 @@ public class FacturaPanel {
 	    private javax.swing.JScrollPane jScrollPane1;
 	    private javax.swing.JTable tablaUsuarios;
 	    // End of variables declaration//GEN-END:variables
-	}
 }
+
