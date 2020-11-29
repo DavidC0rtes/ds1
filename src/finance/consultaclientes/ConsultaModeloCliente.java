@@ -19,11 +19,11 @@ public class ConsultaModeloCliente {
     
     public ArrayList<ArrayList<String>> returnData(){
         ArrayList<ArrayList<String>> data = new ArrayList<>();
-        ResultSet resultSet = DB.getRecords("SELECT * FROM clientes");
+        ResultSet resultSet = DB.getRecords("SELECT * FROM tipo_clientes tpc, clientes cl WHERE tpc.id=cl.tipo_cliente");
         try {
             while (resultSet.next()) {
-                ArrayList<String> clientes = new ArrayList<>();
-                clientes.add(resultSet.getString("tipo_cliente"));
+                ArrayList<String> clientes = new ArrayList<>();      
+                clientes.add(resultSet.getString("descripcion")); 
                 clientes.add(resultSet.getString("tipo_documento"));
                 clientes.add(resultSet.getString("num_documento"));
                 clientes.add(resultSet.getString("primer_nombre"));
