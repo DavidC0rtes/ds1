@@ -752,12 +752,12 @@ public class Dashboard extends javax.swing.JFrame {
     private void itemPagosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemPagosMouseClicked
         jPanel3.removeAll();
         jPanel3.add(registerPayPanel);
-        /*if(configPanel.itemDarkMode.isSelected()){
+        if(configPanel.itemDarkMode.isSelected()){
             registerPayPanel.darkMode();
         }
         else{
             registerPayPanel.lightMode();
-        }*/
+        }
     }//GEN-LAST:event_itemPagosMouseClicked
 
     private void itemPagosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemPagosMouseEntered
