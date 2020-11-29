@@ -19,6 +19,7 @@ import activos.SubestacionPanel;
 import finance.pagos.MainPagosPanel;
 import finance.pagos.VistaRegistrarPago;
 import finance.clientes.RegisterPanelCliente;
+import finance.consultaclientes.ConsultaPanelCliente;
 
 import javax.swing.*;
 
@@ -30,6 +31,7 @@ public class Dashboard extends javax.swing.JFrame {
     private final RegisterPanel registerPanel = new RegisterPanel();
     private final RegisterPanelCliente registerPanelCliente = new RegisterPanelCliente();
     public final ConsultaPanel consultaPanel = new ConsultaPanel();
+    public final ConsultaPanelCliente consultaPanelCliente = new ConsultaPanelCliente();
     private final DashboardPanel dashboardPanel = new DashboardPanel();
     private final SubestacionPanel subestacionPanel = new SubestacionPanel();
     private MainPagosPanel registerPayPanel;
@@ -76,18 +78,22 @@ public class Dashboard extends javax.swing.JFrame {
         usernameLabel.setText(usuario.getPrimer_nombre() + " " + usuario.getPrimer_apellido());
         this.setTitle("SiGe | " + usuario.getStringRol());
 
-        if (usuario.getIdRol() == 1){ // Administrador
+        if (usuario.getIdRol() == 1){
+            itemTitle2.setText("Lista de Usuarios");
+            itemTitle3.setText("Registrar Usuarios");
             panelMenu.remove(itemSubestaciones);
             panelMenu.remove(registerPayPanel);
         }
-        if (usuario.getIdRol() == 2){ // Gerente
+        if (usuario.getIdRol() == 2){
             panelMenu.remove(itemRegistrar);
             panelMenu.remove(itemListaUsuarios);
             panelMenu.remove(registerPayPanel);
             configPanel.remove(configPanel.panelMantenimiento);
 
         }
-        if (usuario.getIdRol() == 3){ // Operador
+        if (usuario.getIdRol() == 3){
+            itemTitle2.setText("Lista de Clientes");
+            itemTitle3.setText("Registrar Clientes");
             panelMenu.remove(itemConfigurar);
             panelMenu.remove(itemSubestaciones);
             configPanel.remove(configPanel.panelMantenimiento);
@@ -237,7 +243,6 @@ public class Dashboard extends javax.swing.JFrame {
         itemTitle2.setFont(new java.awt.Font("Fira Code", 1, 12)); // NOI18N
         itemTitle2.setForeground(new java.awt.Color(254, 254, 254));
         itemTitle2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        itemTitle2.setText("Lista de Usuarios");
         itemTitle2.setAlignmentX(0.6F);
         itemTitle2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         itemTitle2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -280,12 +285,6 @@ public class Dashboard extends javax.swing.JFrame {
         itemTitle3.setFont(new java.awt.Font("Fira Code", 1, 12)); // NOI18N
         itemTitle3.setForeground(new java.awt.Color(254, 254, 254));
         itemTitle3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        if (usuario.getIdRol()==1){
-            itemTitle3.setText("Registrar Usuarios");
-        }
-        else if(usuario.getIdRol()==3){
-            itemTitle3.setText("Registrar Cliente");
-        }
         itemTitle3.setAlignmentX(0.6F);
         itemTitle3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         itemTitle3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -633,7 +632,16 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void itemListaUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemListaUsuariosMouseClicked
         jPanel3.removeAll();
-        jPanel3.add(consultaPanel);
+        switch(usuario.getIdRol()){
+            case 1:
+                jPanel3.add(consultaPanel);
+                break;
+            case 3:
+                jPanel3.add(consultaPanelCliente);
+                break;
+            default:
+                break;
+        }
         if(configPanel.itemDarkMode.isSelected()){
             consultaPanel.darkMode();
         }
@@ -656,13 +664,15 @@ public class Dashboard extends javax.swing.JFrame {
     private void itemRegistrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemRegistrarMouseClicked
         jPanel3.removeAll();
         
-        
-        if(usuario.getIdRol() == 1){
-            jPanel3.add(registerPanel);
-        }
-        else if(usuario.getIdRol() == 3)
-        {
-         jPanel3.add(registerPanelCliente);
+        switch(usuario.getIdRol()){
+            case 1:
+                jPanel3.add(registerPanel);
+                break;
+            case 3:
+                jPanel3.add(registerPanelCliente);
+                break;
+            default:
+                break;
         }
         if(configPanel.itemDarkMode.isSelected()){
             registerPanel.darkMode();
