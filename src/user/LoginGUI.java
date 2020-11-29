@@ -76,13 +76,16 @@ public class LoginGUI extends javax.swing.JFrame {
                                 exit();
                                 break;
                             case 2:
+                                System.out.println("Welcome back manager");
+                                Dashboard managerInterface = new Dashboard(usuario);
+                                managerInterface.setVisible(true);
+                                exit();
+                                break;
+                            case 3:
                                 System.out.println("Welcome back operator");
                                 Dashboard operatorInterface = new Dashboard(usuario);
                                 operatorInterface.setVisible(true);
                                 exit();
-                                break;
-                            case 3:
-                                System.out.println("Welcome back 3rd role");
                                 break;
                             case 4:
                                 System.out.println("Couldn't find a proper window");

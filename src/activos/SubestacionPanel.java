@@ -1,5 +1,9 @@
 package activos;
 
+import com.formdev.flatlaf.FlatDarkLaf;
+import com.formdev.flatlaf.FlatLaf;
+import com.formdev.flatlaf.FlatLightLaf;
+
 import java.util.ArrayList;
 import javax.swing.*;
 
@@ -23,7 +27,19 @@ public class SubestacionPanel extends javax.swing.JPanel {
         changeBorders(Components);
         initComponents();
     }
+    public void lightMode() {
+        FlatLightLaf.install();
+        FlatLaf.updateUI();
+        this.revalidate();
+        this.repaint();
+    }
+    public void darkMode(){
+        FlatDarkLaf.install();
+        FlatLaf.updateUI();
+        this.revalidate();
+        this.repaint();
 
+    }
     public void changeBorders(ArrayList<JTextField> Componentes){
         for(int i = 0; i < Componentes.size(); i++){
             Componentes.get(i).setBorder(BorderFactory.createCompoundBorder(
@@ -56,7 +72,6 @@ public class SubestacionPanel extends javax.swing.JPanel {
 
         setLayout(null);
 
-        content_panel.setBackground(java.awt.Color.white);
         content_panel.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 1, new java.awt.Color(0, 0, 0)));
         content_panel.setLayout(null);
 
@@ -67,7 +82,7 @@ public class SubestacionPanel extends javax.swing.JPanel {
 
         jLabel3.setText("Documento del encargado");
         content_panel.add(jLabel3);
-        jLabel3.setBounds(70, 90, 170, 19);
+        jLabel3.setBounds(70, 90, 170, 17);
 
         text_encargado.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         content_panel.add(text_encargado);
@@ -75,7 +90,7 @@ public class SubestacionPanel extends javax.swing.JPanel {
 
         jLabel4.setText("Ciudad donde se encuentra la subestacion");
         content_panel.add(jLabel4);
-        jLabel4.setBounds(70, 170, 271, 19);
+        jLabel4.setBounds(70, 170, 272, 17);
 
         text_ciudad.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         content_panel.add(text_ciudad);
@@ -83,7 +98,7 @@ public class SubestacionPanel extends javax.swing.JPanel {
 
         jLabel5.setText("Direccion donde se encuentra la subestacion");
         content_panel.add(jLabel5);
-        jLabel5.setBounds(70, 260, 288, 19);
+        jLabel5.setBounds(70, 260, 287, 17);
 
         text_direccion.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         content_panel.add(text_direccion);
@@ -91,7 +106,7 @@ public class SubestacionPanel extends javax.swing.JPanel {
 
         jLabel6.setText("Estado de la subestacion");
         content_panel.add(jLabel6);
-        jLabel6.setBounds(470, 90, 160, 19);
+        jLabel6.setBounds(470, 90, 160, 17);
 
         combo_estado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
         content_panel.add(combo_estado);
