@@ -36,12 +36,12 @@ public class ControlRegisterCliente
 		switch(field) 
                 {
 		case "tipo_cliente":
-			cliente.setTipoCliente(Integer.parseInt(value));
+			cliente.setTipoCliente(value);
 			break;
-                case "num_documento":
+		case "num_documento":
 			cliente.setNumeroDocumento(Integer.parseInt(value));
 			break;
-                case "tipo_documento":
+        case "tipo_documento":
 			cliente.setTipoDocumento(value);
 			break;
 		case "primer_nombre":

@@ -41,31 +41,31 @@ public class RegisterPanelCliente extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        tituloLabel = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        Apellido2Txt = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        correoTxt = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
+        registerLabel = new javax.swing.JLabel();
         registerBtn = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        tipoClienteCombo = new javax.swing.JComboBox<>();
         jLabel16 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
+        documentoTxt = new javax.swing.JTextField();
+        primerApellidoTxt = new javax.swing.JTextField();
+        tipoDocCombo = new javax.swing.JComboBox<>();
 
         jPanel3.setBackground(java.awt.Color.white);
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 640, -1, -1));
 
-        jLabel8.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jLabel8.setText("Registro de nuevos clientes");
-        jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 40, -1, -1));
+        tituloLabel.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        tituloLabel.setText("Registro de nuevos clientes");
+        jPanel3.add(tituloLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 40, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel10.setText("Primer apellido del cliente");
@@ -75,16 +75,8 @@ public class RegisterPanelCliente extends javax.swing.JPanel {
         jLabel11.setText("Tipo de cliente");
         jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, -1, -1));
 
-        jTextField1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel3.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 360, 240, 30));
-
-        jTextField2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 240, 30));
+        Apellido2Txt.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel3.add(Apellido2Txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 360, 240, 30));
 
         jLabel12.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel12.setText("Correo");
@@ -102,13 +94,13 @@ public class RegisterPanelCliente extends javax.swing.JPanel {
         });
         jPanel3.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 290, 240, 30));
 
-        jTextField4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        correoTxt.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        correoTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                correoTxtActionPerformed(evt);
             }
         });
-        jPanel3.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 430, 240, 30));
+        jPanel3.add(correoTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 430, 240, 30));
 
         jLabel14.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel14.setText("Tipo de Documento");
@@ -118,9 +110,9 @@ public class RegisterPanelCliente extends javax.swing.JPanel {
         jLabel15.setText("Segundo apellido del cliente");
         jPanel3.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 330, -1, 20));
 
-        jLabel17.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel17.setText("Registrar cliente");
-        jPanel3.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 530, -1, -1));
+        registerLabel.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        registerLabel.setText("Registrar cliente");
+        jPanel3.add(registerLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 530, -1, -1));
 
         registerBtn.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         registerBtn.setForeground(java.awt.Color.darkGray);
@@ -132,28 +124,36 @@ public class RegisterPanelCliente extends javax.swing.JPanel {
         jPanel3.add(registerBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 510, 160, 50));
         registerBtn.addMouseListener(escuchaM);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CC", "TI", "CE", "PA", "RC", "AS", "MS" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        tipoClienteCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Persona Natural", "Corporativo" }));
+        tipoClienteCombo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                tipoClienteComboActionPerformed(evt);
             }
         });
-        jPanel3.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, 240, 30));
+        jPanel3.add(tipoClienteCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 240, 30));
 
         jLabel16.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel16.setText("Numero de documento");
         jPanel3.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 180, -1, -1));
 
-        jTextField5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        documentoTxt.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        documentoTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                documentoTxtActionPerformed(evt);
             }
         });
-        jPanel3.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 210, 240, 30));
+        jPanel3.add(documentoTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 210, 240, 30));
 
-        jTextField6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel3.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 360, 240, 30));
+        primerApellidoTxt.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel3.add(primerApellidoTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 360, 240, 30));
+
+        tipoDocCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CC", "TI", "CE", "PA", "RC", "AS", "MS" }));
+        tipoDocCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tipoDocComboActionPerformed(evt);
+            }
+        });
+        jPanel3.add(tipoDocCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, 240, 30));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -196,38 +196,38 @@ public class RegisterPanelCliente extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void correoTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_correoTxtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
-
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_correoTxtActionPerformed
 
     private void registerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerBtnActionPerformed
         // TODO add your handling code here:
 
     }//GEN-LAST:event_registerBtnActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void tipoClienteComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipoClienteComboActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_tipoClienteComboActionPerformed
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void documentoTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_documentoTxtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_documentoTxtActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
+
+    private void tipoDocComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipoDocComboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tipoDocComboActionPerformed
     private void getFields() {
-        datos.put("tipo_cliente", jTextField2.getText());
-    	datos.put("num_documento", jTextField5.getText());
-        datos.put("tipo_documento", String.valueOf(jComboBox1.getSelectedItem()));
+        datos.put("tipo_cliente", String.valueOf(tipoClienteCombo.getSelectedItem()));
+    	datos.put("num_documento", documentoTxt.getText());
+        datos.put("tipo_documento", String.valueOf(tipoDocCombo.getSelectedItem()));
     	datos.put("primer_nombre", jTextField3.getText());
-    	datos.put("primer_apellido", jTextField6.getText());
-        datos.put("segundo_apellido", jTextField1.getText());
-    	datos.put("email", jTextField4.getText() );
+    	datos.put("primer_apellido", primerApellidoTxt.getText());
+        datos.put("segundo_apellido", Apellido2Txt.getText());
+    	datos.put("email", correoTxt.getText() );
     }
     private class EscuchaMouse implements MouseListener 
     {
@@ -280,7 +280,9 @@ public class RegisterPanelCliente extends javax.swing.JPanel {
     	
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JTextField Apellido2Txt;
+    private javax.swing.JTextField correoTxt;
+    private javax.swing.JTextField documentoTxt;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -288,17 +290,15 @@ public class RegisterPanelCliente extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField primerApellidoTxt;
     private javax.swing.JButton registerBtn;
+    private javax.swing.JLabel registerLabel;
+    private javax.swing.JComboBox<String> tipoClienteCombo;
+    private javax.swing.JComboBox<String> tipoDocCombo;
+    private javax.swing.JLabel tituloLabel;
     // End of variables declaration//GEN-END:variables
 }

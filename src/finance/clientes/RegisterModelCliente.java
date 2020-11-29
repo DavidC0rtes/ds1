@@ -102,7 +102,9 @@ public class RegisterModelCliente
 	}
 	
 	/** setters **/
-        public void setTipoCliente(int tipoCliente) {this.tipoCliente = tipoCliente;}
+    public void setTipoCliente(String tipoCliente) {
+    	this.tipoCliente = tipoCliente.equals("Corporativo") ? 2 : 1;
+    }
         
 	public void setNumeroDocumento(int numeroDocumento) {this.numeroDocumento = numeroDocumento;}
         
