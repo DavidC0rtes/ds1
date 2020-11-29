@@ -47,7 +47,7 @@ public class ConsultaPanelCliente extends javax.swing.JPanel {
     }
     public void noModificable()
     {
-        JOptionPane.showMessageDialog(this, "Este campo no es modificable");
+        JOptionPane.showMessageDialog(this, "Este campo no es modificable","Error al tratar de modificar el campo",1);
     }
     
     public void TestTableSortFilter() {
