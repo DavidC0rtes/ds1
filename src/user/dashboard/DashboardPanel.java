@@ -20,6 +20,7 @@ private DashboardControl dashboardControl;
     /** Creates new form DashboardPanel */
     public DashboardPanel() {
         dashboardControl = new DashboardControl();
+        dashboardControl.updateData();
         initComponents();
 
     }
@@ -102,7 +103,7 @@ private DashboardControl dashboardControl;
         itemTitlelabel1.setText("Pendientes para hoy");
 
         pagosRealizadosLabel1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
-        pagosRealizadosLabel1.setText("16");
+        pagosRealizadosLabel1.setText(String.valueOf(dashboardControl.getExpectedPayments()));
 
         javax.swing.GroupLayout resumenItemPanel1Layout = new javax.swing.GroupLayout(resumenItemPanel1);
         resumenItemPanel1.setLayout(resumenItemPanel1Layout);
