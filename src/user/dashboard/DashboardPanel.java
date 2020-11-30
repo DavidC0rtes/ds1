@@ -15,10 +15,14 @@ import com.formdev.flatlaf.FlatLightLaf;
  * @author camilo
  */
 public class DashboardPanel extends javax.swing.JPanel {
+private DashboardControl dashboardControl;
 
     /** Creates new form DashboardPanel */
     public DashboardPanel() {
+        dashboardControl = new DashboardControl();
+        dashboardControl.updateData();
         initComponents();
+
     }
     public void lightMode() {
         FlatLightLaf.install();
@@ -67,7 +71,7 @@ public class DashboardPanel extends javax.swing.JPanel {
         itemTitlelabel.setText("Pagos realizados");
 
         pagosRealizadosLabel.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
-        pagosRealizadosLabel.setText("60");
+        pagosRealizadosLabel.setText(String.valueOf(dashboardControl.getTodayPayments()));
 
         javax.swing.GroupLayout resumenItemPanelLayout = new javax.swing.GroupLayout(resumenItemPanel);
         resumenItemPanel.setLayout(resumenItemPanelLayout);
@@ -99,7 +103,7 @@ public class DashboardPanel extends javax.swing.JPanel {
         itemTitlelabel1.setText("Pendientes para hoy");
 
         pagosRealizadosLabel1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
-        pagosRealizadosLabel1.setText("16");
+        pagosRealizadosLabel1.setText(String.valueOf(dashboardControl.getExpectedPayments()));
 
         javax.swing.GroupLayout resumenItemPanel1Layout = new javax.swing.GroupLayout(resumenItemPanel1);
         resumenItemPanel1.setLayout(resumenItemPanel1Layout);
