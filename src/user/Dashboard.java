@@ -17,9 +17,9 @@ import user.register.RegisterPanel;
 import user.dashboard.DashboardPanel;
 import activos.SubestacionPanel;
 import finance.pagos.MainPagosPanel;
-import finance.pagos.VistaRegistrarPago;
 import finance.clientes.RegisterPanelCliente;
 import finance.consultaclientes.ConsultaPanelCliente;
+import finance.pagoDirecto.VistaRegistrarPago;
 
 import javax.swing.*;
 
