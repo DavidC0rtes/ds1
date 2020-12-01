@@ -105,9 +105,8 @@ public class ConsultaModeloCliente {
         System.out.println("Affected rows: " + affectedrows);
     }
     public void borrarCliente(String numDocumento){
-        String SQL = "DELETE FROM clientes WHERE num_documento=" + numDocumento;
+        String SQL = "DELETE FROM clientes WHERE num_documento=?";
         String[] params = {numDocumento};
-        //DB.updateRecord(SQL, params);
         int affectedrows = DB.updateRecord(SQL, params);
         System.out.println("Affected rows: " + affectedrows);
     }
