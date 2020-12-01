@@ -57,7 +57,6 @@ public class SubestacionPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        content_panel = new javax.swing.JPanel();
         Title = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         text_encargado = new javax.swing.JTextField();
@@ -67,71 +66,96 @@ public class SubestacionPanel extends javax.swing.JPanel {
         text_direccion = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         combo_estado = new javax.swing.JComboBox<>();
-        jLabel7 = new javax.swing.JLabel();
-        btn_registro = new javax.swing.JLabel();
+        btn_registro = new javax.swing.JButton();
 
-        setLayout(null);
-
-        content_panel.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 1, new java.awt.Color(0, 0, 0)));
-        content_panel.setLayout(null);
-
-        Title.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Title.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         Title.setText("Adicion de nuevas subestaciones de energia");
-        content_panel.add(Title);
-        Title.setBounds(270, 40, 310, 17);
 
+        jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 12)); // NOI18N
         jLabel3.setText("Documento del encargado");
-        content_panel.add(jLabel3);
-        jLabel3.setBounds(70, 90, 170, 17);
 
         text_encargado.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        content_panel.add(text_encargado);
-        text_encargado.setBounds(70, 110, 300, 30);
 
+        jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         jLabel4.setText("Ciudad donde se encuentra la subestacion");
-        content_panel.add(jLabel4);
-        jLabel4.setBounds(70, 170, 272, 17);
 
         text_ciudad.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        content_panel.add(text_ciudad);
-        text_ciudad.setBounds(70, 190, 300, 30);
 
+        jLabel5.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         jLabel5.setText("Direccion donde se encuentra la subestacion");
-        content_panel.add(jLabel5);
-        jLabel5.setBounds(70, 260, 287, 17);
 
         text_direccion.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        content_panel.add(text_direccion);
-        text_direccion.setBounds(70, 280, 300, 30);
 
+        jLabel6.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         jLabel6.setText("Estado de la subestacion");
-        content_panel.add(jLabel6);
-        jLabel6.setBounds(470, 90, 160, 17);
 
+        combo_estado.setFont(new java.awt.Font("Lucida Grande", 0, 12)); // NOI18N
         combo_estado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
-        content_panel.add(combo_estado);
-        combo_estado.setBounds(470, 110, 240, 30);
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Registrar subestacion");
-        content_panel.add(jLabel7);
-        jLabel7.setBounds(370, 420, 140, 30);
-
-        btn_registro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/button.png"))); // NOI18N
-        btn_registro.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_registroMouseClicked(evt);
+        btn_registro.setFont(new java.awt.Font("Lucida Grande", 0, 12)); // NOI18N
+        btn_registro.setText("Registrar Subestacion");
+        btn_registro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_registroActionPerformed(evt);
             }
         });
-        content_panel.add(btn_registro);
-        btn_registro.setBounds(350, 410, 160, 48);
 
-        add(content_panel);
-        content_panel.setBounds(0, 0, 870, 670);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(114, 114, 114)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(200, 200, 200)
+                        .addComponent(Title))
+                    .addComponent(jLabel4)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(267, 267, 267)
+                        .addComponent(btn_registro))
+                    .addComponent(text_direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(text_ciudad, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(text_encargado, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(80, 80, 80)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(combo_estado, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(115, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(145, 145, 145)
+                .addComponent(Title)
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel6))
+                .addGap(5, 5, 5)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(text_encargado, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(combo_estado, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addComponent(jLabel4)
+                .addGap(5, 5, 5)
+                .addComponent(text_ciudad, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addComponent(jLabel5)
+                .addGap(5, 5, 5)
+                .addComponent(text_direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(78, 78, 78)
+                .addComponent(btn_registro)
+                .addContainerGap(146, Short.MAX_VALUE))
+        );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_registroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_registroMouseClicked
+    private void btn_registroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_registroActionPerformed
+
         switch (controlador.createNewSubestacion(Components, String.valueOf(text_encargado.getText()), text_ciudad.getText(), text_direccion.getText(), String.valueOf(combo_estado.getSelectedItem()))) {
             case 0:
                 JOptionPane.showMessageDialog(this, "Fallo la creacion de la nueva subestacion");
@@ -146,19 +170,17 @@ public class SubestacionPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "El campo 'Documento del encargado' debe ser llenado unicamente con numeros");
                 break;
         }
-    }//GEN-LAST:event_btn_registroMouseClicked
+    }//GEN-LAST:event_btn_registroActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Title;
-    private javax.swing.JLabel btn_registro;
+    private javax.swing.JButton btn_registro;
     private javax.swing.JComboBox<String> combo_estado;
-    private javax.swing.JPanel content_panel;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JTextField text_ciudad;
     private javax.swing.JTextField text_direccion;
     private javax.swing.JTextField text_encargado;
