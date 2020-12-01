@@ -23,7 +23,7 @@ public class GenerarFactura {
 		Map<String, Object> parametros = new HashMap<String, Object>();
 		parametros.put("IdContrato", contract_ID);
 		try {
-			reporte = JasperCompileManager.compileReport("/src/finance/Facturas/FacturaTest1.jrxml");
+			reporte = JasperCompileManager.compileReport("src/finance/Facturas/FacturaTest1.jrxml");
 			JasperPrint jp = JasperFillManager.fillReport(reporte, parametros, con.getConnection());
 			JasperViewer.viewReport(jp,false);
 			
