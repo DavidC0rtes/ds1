@@ -74,10 +74,13 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="itemDarkMode1">
+        <Component class="javax.swing.JCheckBox" name="itemMantenimiento">
           <Properties>
             <Property name="text" type="java.lang.String" value="Mantenimiento del Sistema"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemMantenimientoActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

@@ -16,12 +16,15 @@ import javax.swing.*;
  * @author camilo
  */
 public class ConfigPanel extends javax.swing.JPanel {
+    private ConfigControl configControl;
 
     /**
      * Creates new form ConfigPanel
      */
     public ConfigPanel() {
+        configControl = new ConfigControl();
         initComponents();
+        configControl.updateData();
     }
 
     /**
@@ -39,7 +42,7 @@ public class ConfigPanel extends javax.swing.JPanel {
         itemDarkMode = new javax.swing.JCheckBox();
         panelMantenimiento = new javax.swing.JPanel();
         icon1 = new javax.swing.JLabel();
-        itemDarkMode1 = new javax.swing.JCheckBox();
+        itemMantenimiento = new javax.swing.JCheckBox();
 
         setLayout(new java.awt.GridLayout(3, 0));
 
@@ -68,8 +71,13 @@ public class ConfigPanel extends javax.swing.JPanel {
         icon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/advertencia.png"))); // NOI18N
         panelMantenimiento.add(icon1);
 
-        itemDarkMode1.setText("Mantenimiento del Sistema");
-        panelMantenimiento.add(itemDarkMode1);
+        itemMantenimiento.setText("Mantenimiento del Sistema");
+        itemMantenimiento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemMantenimientoActionPerformed(evt);
+            }
+        });
+        panelMantenimiento.add(itemMantenimiento);
 
         add(panelMantenimiento);
     }// </editor-fold>//GEN-END:initComponents
@@ -81,11 +89,17 @@ public class ConfigPanel extends javax.swing.JPanel {
 
     }//GEN-LAST:event_itemDarkModeActionPerformed
 
+    private void itemMantenimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMantenimientoActionPerformed
+       if(itemMantenimiento.isSelected()){
+           
+       }
+    }//GEN-LAST:event_itemMantenimientoActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel icon;
     private javax.swing.JLabel icon1;
     public javax.swing.JCheckBox itemDarkMode;
-    private javax.swing.JCheckBox itemDarkMode1;
+    private javax.swing.JCheckBox itemMantenimiento;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel panelDarkMode;
     public javax.swing.JPanel panelMantenimiento;

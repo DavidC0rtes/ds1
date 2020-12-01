@@ -1,5 +1,8 @@
 package user;
 
+import user.config.ConfigControl;
+import user.mantenimiento.Mantenimiento;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
@@ -12,13 +15,14 @@ import javax.swing.JFrame;
  * @author USER
  */
 public class LoginGUI extends javax.swing.JFrame {
-	
+	public ConfigControl configControl;
 	private User usuario;
     /**
      * Creates new form ds_login
      */
     public LoginGUI() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        configControl = new ConfigControl();
         setVisible(true);
         initComponents();
         changeComponents();
@@ -63,6 +67,7 @@ public class LoginGUI extends javax.swing.JFrame {
                     
                     if (usuario.attemptLogin(s, String.valueOf(jPasswordField1.getPassword()))) {
                         int rol = usuario.getIdRol();
+                        configControl.updateData();
                         switch(rol){
                             case 0:
                                 System.out.println("Not found");
@@ -76,16 +81,29 @@ public class LoginGUI extends javax.swing.JFrame {
                                 exit();
                                 break;
                             case 2:
-                                System.out.println("Welcome back manager");
-                                Dashboard managerInterface = new Dashboard(usuario);
-                                managerInterface.setVisible(true);
+                                if (configControl.tiempoDelMantenimiento() > 0){
+                                    Mantenimiento mantenimiento = new Mantenimiento(configControl.getHMS());
+                                    mantenimiento.setVisible(true);
+                                }
+                                else{
+                                    System.out.println("Welcome back manager");
+                                    Dashboard managerInterface = new Dashboard(usuario);
+                                    managerInterface.setVisible(true);
+                                }
                                 exit();
+
                                 break;
                             case 3:
-                                System.out.println("Welcome back operator");
-                                Dashboard operatorInterface = new Dashboard(usuario);
-                                operatorInterface.setVisible(true);
+                                if (configControl.tiempoDelMantenimiento() > 0){
+                                    Mantenimiento mantenimiento = new Mantenimiento(configControl.getHMS());
+                                    mantenimiento.setVisible(true);
+                                }else{
+                                    System.out.println("Welcome back operator");
+                                    Dashboard operatorInterface = new Dashboard(usuario);
+                                    operatorInterface.setVisible(true);
+                                }
                                 exit();
+
                                 break;
                             case 4:
                                 System.out.println("Couldn't find a proper window");
