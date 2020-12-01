@@ -41,7 +41,7 @@ public class ControlRegisterCliente
 		case "num_documento":
 			cliente.setNumeroDocumento(Integer.parseInt(value));
 			break;
-        case "tipo_documento":
+                case "tipo_documento":
 			cliente.setTipoDocumento(value);
 			break;
 		case "primer_nombre":
@@ -55,6 +55,12 @@ public class ControlRegisterCliente
 			break;
 		case "email":
 			cliente.setEmail(value);
+			break;
+                case "dir_instalacion":
+			cliente.setDireccion(value);
+			break;
+                case "estrato":
+			cliente.setEstrato(Integer.parseInt(value));
 			break;
 		}
 	}
