@@ -9,6 +9,7 @@ import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.FlatLightLaf;
 
+import activos.subestacion.ListaSubestaciones;
 import activos.subestacion.SubestacionPanel;
 
 /**
@@ -49,15 +50,8 @@ public class MainActivos extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        backBtn = new javax.swing.JButton();
         tituloLabel = new javax.swing.JLabel();
         mainTabbedPane = new javax.swing.JTabbedPane();
-
-        backBtn.setFont(new java.awt.Font("SF Pro Text", 0, 12)); // NOI18N
-        backBtn.setText("Atrás");
-        backBtn.setContentAreaFilled(false);
-        backBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        backBtn.setEnabled(false);
 
         tituloLabel.setFont(new java.awt.Font("SF Pro Display", 1, 24)); // NOI18N
         tituloLabel.setText("Gestión de activos");
@@ -69,8 +63,7 @@ public class MainActivos extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(backBtn)
-                        .addGap(272, 272, 272)
+                        .addGap(336, 336, 336)
                         .addComponent(tituloLabel))
                     .addComponent(mainTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 833, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(37, Short.MAX_VALUE))
@@ -78,18 +71,13 @@ public class MainActivos extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(backBtn)
-                    .addComponent(tituloLabel))
+                .addComponent(tituloLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(mainTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 677, Short.MAX_VALUE))
         );
-        mainTabbedPane.add("Agregar subestación",agregarSub);
-        mainTabbedPane.add("Lista de subestaciones", listaSubPanel);
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton backBtn;
     private javax.swing.JTabbedPane mainTabbedPane;
     private javax.swing.JLabel tituloLabel;
     // End of variables declaration//GEN-END:variables
