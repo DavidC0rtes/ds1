@@ -1,4 +1,4 @@
-package billing;
+package finance.Facturas;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -10,10 +10,16 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
+import com.formdev.flatlaf.FlatDarkLaf;
+import com.formdev.flatlaf.FlatLaf;
+import com.formdev.flatlaf.FlatLightLaf;
+import com.formdev.flatlaf.ui.FlatTableUI;
+
 import misc.TableCellListener;
 
 public class FacturaPanel extends javax.swing.JPanel {
 		private final FacturaModel modelo = new FacturaModel();
+		private final GenerarFactura GeneraFactura = new GenerarFactura();
 		private final DefaultTableModel mDefaultTableMoadel = new DefaultTableModel();
 		private final TableRowSorter<TableModel> rowSorter;
 
@@ -24,13 +30,26 @@ public class FacturaPanel extends javax.swing.JPanel {
 		public FacturaPanel() {
 			initComponents();
 			construirTabla();
-			rowSorter  = new TableRowSorter<>(tablaUsuarios.getModel());
+			rowSorter  = new TableRowSorter<>(tablaFacturas.getModel());
 			TestTableSortFilter();
+			FlatTableUI.createUI(tablaFacturas);
 		}
+		public void lightMode() {
+			FlatLightLaf.install();
+			FlatLaf.updateUI();
+			this.revalidate();
+			this.repaint();
+		}
+		public void darkMode(){
+			FlatDarkLaf.install();
+			FlatLaf.updateUI();
+			this.revalidate();
+			this.repaint();
 
+		}
 		public void TestTableSortFilter() {
 
-			tablaUsuarios.setRowSorter(rowSorter);
+			tablaFacturas.setRowSorter(rowSorter);
 			buscador.getDocument().addDocumentListener(new DocumentListener(){
 
 				@Override
@@ -74,10 +93,11 @@ public class FacturaPanel extends javax.swing.JPanel {
 
 	        jPanel3 = new javax.swing.JPanel();
 	        jScrollPane1 = new javax.swing.JScrollPane();
-	        tablaUsuarios = new javax.swing.JTable();
+	        tablaFacturas = new javax.swing.JTable();
 	        buscador = new javax.swing.JTextField();
 	        jLabel2 = new javax.swing.JLabel();
 	        jButton1 = new javax.swing.JButton();
+	        JButton2 = new javax.swing.JButton();
 
 	        setLayout(new java.awt.BorderLayout());
 
@@ -88,7 +108,7 @@ public class FacturaPanel extends javax.swing.JPanel {
 	        jScrollPane1.setBorder(null);
 	        jScrollPane1.setFocusable(false);
 
-	        tablaUsuarios.setModel(new javax.swing.table.DefaultTableModel(
+	        tablaFacturas.setModel(new javax.swing.table.DefaultTableModel(
 	            new Object [][] {
 	                {null, null, null, null},
 	                {null, null, null, null},
@@ -99,11 +119,11 @@ public class FacturaPanel extends javax.swing.JPanel {
 	                "Title 1", "Title 2", "Title 3", "Title 4"
 	            }
 	        ));
-	        tablaUsuarios.setFocusable(false);
-	        tablaUsuarios.setGridColor(new java.awt.Color(255, 255, 255));
-	        tablaUsuarios.setRowHeight(25);
-	        tablaUsuarios.setSelectionBackground(new java.awt.Color(2, 143, 224));
-	        jScrollPane1.setViewportView(tablaUsuarios);
+	        tablaFacturas.setFocusable(false);
+	        tablaFacturas.setGridColor(new java.awt.Color(255, 255, 255));
+	        tablaFacturas.setRowHeight(25);
+	        tablaFacturas.setSelectionBackground(new java.awt.Color(2, 143, 224));
+	        jScrollPane1.setViewportView(tablaFacturas);
 
 	        jPanel3.add(jScrollPane1);
 	        jScrollPane1.setBounds(50, 120, 780, 480);
@@ -130,16 +150,32 @@ public class FacturaPanel extends javax.swing.JPanel {
 	                jButton1ActionPerformed(evt);
 	            }
 	        });
+	        
+	        JButton2.setText("Generar Factura");
+	        JButton2.addActionListener(new java.awt.event.ActionListener() {
+	        	public void actionPerformed(java.awt.event.ActionEvent evt) {
+	        		JButton2ActionPerformed(evt);
+	        	}
+	        });
+	        
 	        jPanel3.add(jButton1);
 	        jButton1.setBounds(740, 70, 90, 30);
-
+	        jPanel3.add(JButton2);
+	        JButton2.setBounds(800, 70, 90, 30);
 	    }// </editor-fold>//GEN-END:initComponents
 
 		private void buscadorKeyPressed(KeyEvent evt) {//GEN-FIRST:event_buscadorKeyPressed
 		}//GEN-LAST:event_buscadorKeyPressed
-
+	    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+	        construirTabla();
+	    }//GEN-LAST:event_jButton1ActionPerformed
+	    private void JButton2ActionPerformed(java.awt.event.ActionEvent evt){
+	    	int result = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingresar contrato", "Generar Factura"));
+	    	GeneraFactura.CrearJasperReport(result);
+	    	
+	    }
 		public void construirTabla() {
-			String[] titlesInfo = new String[8];
+			String[] titlesInfo = new String[7];
 			titlesInfo[0] = "ID";
 			titlesInfo[1] = "Nombre";
 			titlesInfo[2] = "Apellido";
@@ -147,23 +183,17 @@ public class FacturaPanel extends javax.swing.JPanel {
 			titlesInfo[4] = "Contrato";
 			titlesInfo[5] = "Fecha de Expedicion";
 			titlesInfo[6] = "Fecha de vencimiento";
-			titlesInfo[8] = "Generar factura";
 			mDefaultTableMoadel.setDataVector(modelo.obtenerMatrizData(), titlesInfo);
-			tablaUsuarios.setModel(mDefaultTableMoadel);
-			tablaUsuarios.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
-			tablaUsuarios.getTableHeader().setOpaque(true);
-			tablaUsuarios.getTableHeader().setBackground(Color.WHITE);
-			tablaUsuarios.getTableHeader().setForeground(new Color(255, 255, 255));
-			tablaUsuarios.setRowHeight(25);
-			tablaUsuarios.setBackground(Color.WHITE);
-			jScrollPane1.getViewport().setBackground(Color.WHITE);
-			UIDefaults defaults = UIManager.getLookAndFeelDefaults();
-			tablaUsuarios.setCellSelectionEnabled(true);
+			tablaFacturas.setModel(mDefaultTableMoadel);
+			tablaFacturas.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
+			tablaFacturas.getTableHeader().setOpaque(true);
+			tablaFacturas.setRowHeight(25);
+			tablaFacturas.setCellSelectionEnabled(false);
 			 /*Action action = new AbstractAction() {
 				public void actionPerformed(ActionEvent e) {
 					TableCellListener tcl = (TableCellListener) e.getSource();
 					modelo.updateData(tcl.getColumn(), (String) tcl.getNewValue(),
-							(String) tablaUsuarios.getModel().getValueAt(tcl.getRow(), 0));
+							(String) tablaFacturas.getModel().getValueAt(tcl.getRow(), 0));
 					System.out.println("Row   : " + tcl.getRow());
 					System.out.println("Column: " + tcl.getColumn());
 					System.out.println("Old   : " + tcl.getOldValue());
@@ -171,16 +201,17 @@ public class FacturaPanel extends javax.swing.JPanel {
 				}
 			};
 
-			TableCellListener tcl = new TableCellListener(tablaUsuarios, action);*/
+			TableCellListener tcl = new TableCellListener(tablaFacturas, action);*/
 		}
 
 	    // Variables declaration - do not modify//GEN-BEGIN:variables
 	    private javax.swing.JTextField buscador;
 	    private javax.swing.JButton jButton1;
+	    private javax.swing.JButton JButton2;
 	    private javax.swing.JLabel jLabel2;
 	    private javax.swing.JPanel jPanel3;
 	    private javax.swing.JScrollPane jScrollPane1;
-	    private javax.swing.JTable tablaUsuarios;
+	    private javax.swing.JTable tablaFacturas;
 	    // End of variables declaration//GEN-END:variables
 }
 

@@ -1,4 +1,4 @@
-package billing;
+package finance.Facturas;
 
 import db.JDBCConnection;
 import deprecated.ds_bd_connection;

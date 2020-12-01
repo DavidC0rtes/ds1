@@ -6,5 +6,7 @@ module sige {
 	requires org.junit.jupiter.api;
     requires com.formdev.flatlaf;
     requires org.postgresql.jdbc;
+    requires jasperreports;
+    
 
 }

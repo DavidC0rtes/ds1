@@ -1,25 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Asasfa" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="54fff7b1-3e91-4ebe-8a29-b22a9e72fe4d">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="FacturaTest1" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="85df3c99-b264-4460-8676-bfe9b2d38a54">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="483"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="510"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Jaspersoft is garbage"/>
+	<parameter name="IdContrato" class="java.lang.Integer">
+		<parameterDescription><![CDATA[Numero de contrato ingresado por el usuario al generar la factura.]]></parameterDescription>
+	</parameter>
 	<queryString language="SQL">
-		<![CDATA[SELECT 
-    *
-FROM
-    clientes
- FULL OUTER JOIN contratos
- ON clientes.id = contratos.id_cliente
- FULL OUTER JOIN facturas
- ON clientes.id = facturas.id_cliente
- FULL OUTER JOIN medidores
- ON clientes.id = medidores.id_cliente_asignado
- FULL OUTER JOIN pagos
- ON contratos.id = pagos.id_contrato
- FULL OUTER JOIN Transformadores
- ON  1 = 1]]>
+		<![CDATA[SELECT *
+FROM clientes
+	FULL OUTER JOIN contratos ON 
+	 clientes.id = contratos.id_cliente 
+	FULL OUTER JOIN facturas ON 
+	 clientes.id = facturas.id_cliente 
+	FULL OUTER JOIN medidores ON 
+	 clientes.id = medidores.id_cliente_asignado 
+	FULL OUTER JOIN pagos ON 
+	 contratos.id = pagos.id_contrato 
+	FULL OUTER JOIN transformadores ON 
+	 1 = 1
+WHERE contratos.id = $P{IdContrato}]]>
 	</queryString>
 	<field name="id" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.name" value="id"/>
@@ -236,7 +238,7 @@ FROM
 				<textElement>
 					<font fontName="Arial Black"/>
 				</textElement>
-				<text><![CDATA[SISTEMA DE GESTIÓN ELECTRICA SiGE NIT: XXX.XXX.XXX-X]]></text>
+				<text><![CDATA[SISTEMA DE GESTION ELECTRICA SiGE NIT: XXX.XXX.XXX-X]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="39" y="20" width="90" height="30" uuid="1c38f8c8-e2c4-4093-af3f-04cc3a60282d"/>
@@ -315,10 +317,6 @@ FROM
 				<reportElement x="420" y="100" width="83" height="17" uuid="1a592fde-6fae-44d4-ac9f-f88145fc7c60"/>
 				<textFieldExpression><![CDATA[$F{fecha_vencimiento}]]></textFieldExpression>
 			</textField>
-			<image>
-				<reportElement x="510" y="10" width="60" height="60" uuid="520ade53-229e-421c-9b8f-79ceda25ea88"/>
-				<imageExpression><![CDATA["/src/assets/Bill_certificacion.png"]]></imageExpression>
-			</image>
 			<textField>
 				<reportElement x="420" y="41" width="82" height="17" uuid="4b6590f1-58fc-4432-9ff8-380be0f171da"/>
 				<textFieldExpression><![CDATA[$F{id_contrato}]]></textFieldExpression>
@@ -356,7 +354,7 @@ FROM
 			</textField>
 			<staticText>
 				<reportElement x="13" y="20" width="142" height="20" uuid="2691bce7-7b66-4c21-881e-f40ab5761e82"/>
-				<text><![CDATA[Dirección de instalación]]></text>
+				<text><![CDATA[Direccion de instalacion]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="13" y="30" width="100" height="13" uuid="69d3d44c-f100-43e1-8c1b-318ffcc9323e"/>
@@ -376,7 +374,7 @@ FROM
 			</staticText>
 			<staticText>
 				<reportElement x="13" y="100" width="267" height="20" uuid="94a276e0-e4ae-4a4c-ad98-2facd65da491"/>
-				<text><![CDATA[Nivel de Tensión]]></text>
+				<text><![CDATA[Nivel de Tension]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="13" y="110" width="100" height="20" uuid="4632e99c-b66f-4de4-b36f-e5783c1c87e4"/>
@@ -417,7 +415,7 @@ FROM
 			</staticText>
 			<staticText>
 				<reportElement x="13" y="237" width="100" height="14" uuid="b330afc7-c635-4d31-b88d-24e6383b1f20"/>
-				<text><![CDATA[Interés de mora]]></text>
+				<text><![CDATA[Interes de mora]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="113" y="196" width="86" height="26" uuid="80e1009f-7b55-48fb-aea3-eabaec82614c"/>
@@ -477,7 +475,7 @@ FROM
 				<textElement textAlignment="Center" markup="none">
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[CENTROS DE ATENCIÓN Y RECAUDO]]></text>
+				<text><![CDATA[CENTROS DE ATENCION Y RECAUDO]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="7" y="30" width="140" height="18" forecolor="#273B7D" uuid="cc561a65-272b-4443-a502-ab2dd006807d"/>
@@ -544,7 +542,7 @@ FROM
 				<textElement>
 					<font fontName="Arial" isBold="true"/>
 				</textElement>
-				<text><![CDATA[CALI 07 (Alfonso López)]]></text>
+				<text><![CDATA[CALI 07 (Alfonso Lopez)]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="7" y="110" width="140" height="18" forecolor="#273B7D" uuid="dd262a26-c551-4d6e-93d4-5fedcb3a5b40"/>
@@ -562,7 +560,7 @@ FROM
 				<textElement>
 					<font fontName="Arial" isBold="true"/>
 				</textElement>
-				<text><![CDATA[CALI 16 (La Unión)]]></text>
+				<text><![CDATA[CALI 16 (La Union)]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="7" y="160" width="140" height="19" uuid="e521207a-7085-4140-bc9f-4254ef295ee8"/>
@@ -649,11 +647,11 @@ FROM
 			</staticText>
 			<image>
 				<reportElement x="441" y="196" width="40" height="34" uuid="33632e7d-e75b-40a9-973c-0645364a9866"/>
-				<imageExpression><![CDATA["/src/assets/Bill_Mastercard.png"]]></imageExpression>
+				<imageExpression><![CDATA["src/assets/Bill_Mastercard.png"]]></imageExpression>
 			</image>
 			<image>
 				<reportElement x="485" y="196" width="48" height="33" uuid="86b1037e-94e8-4236-b591-11fee9b48a96"/>
-				<imageExpression><![CDATA["/src/assets/Bill_Visa.png"]]></imageExpression>
+				<imageExpression><![CDATA["src/assets/Bill_Visa.png"]]></imageExpression>
 			</image>
 			<rectangle>
 				<reportElement x="0" y="230" width="555" height="63" forecolor="#273B7D" uuid="c105b852-7323-43ac-89f7-859a9defcc27"/>
@@ -667,19 +665,19 @@ FROM
 			</staticText>
 			<image>
 				<reportElement x="109" y="250" width="50" height="40" uuid="58b3c918-5a1b-40cb-9c1a-8efd4dee32db"/>
-				<imageExpression><![CDATA["/src/assets/Bill_Colpatria.png"]]></imageExpression>
+				<imageExpression><![CDATA["src/assets/Bill_Colpatria.png"]]></imageExpression>
 			</image>
 			<image>
 				<reportElement x="170" y="255" width="69" height="30" uuid="5a85df75-ee81-485a-86af-53cdf3729251"/>
-				<imageExpression><![CDATA["/src/assets/Bill_BancodeBogota.png"]]></imageExpression>
+				<imageExpression><![CDATA["src/assets/Bill_BancodeBogota.png"]]></imageExpression>
 			</image>
 			<image>
 				<reportElement x="260" y="250" width="50" height="40" uuid="15923838-1833-43fb-994a-366b5716292a"/>
-				<imageExpression><![CDATA["/src/assets/Bill_Bancolombia.png"]]></imageExpression>
+				<imageExpression><![CDATA["src/assets/Bill_Bancolombia.png"]]></imageExpression>
 			</image>
 			<image>
 				<reportElement x="460" y="232" width="95" height="53" uuid="ee9d041d-ac9e-4a80-b9e1-932c90e6ab56"/>
-				<imageExpression><![CDATA["/src/assets/Bill_superservicios1.jpg"]]></imageExpression>
+				<imageExpression><![CDATA["src/assets/Bill_superservicios1.jpg"]]></imageExpression>
 			</image>
 		</band>
 	</columnHeader>

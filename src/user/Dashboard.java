@@ -20,6 +20,7 @@ import finance.pagos.MainPagosPanel;
 import finance.pagos.VistaRegistrarPago;
 import finance.clientes.RegisterPanelCliente;
 import finance.consultaclientes.ConsultaPanelCliente;
+import finance.Facturas.FacturaPanel;
 
 import javax.swing.*;
 
@@ -32,6 +33,7 @@ public class Dashboard extends javax.swing.JFrame {
     private final RegisterPanelCliente registerPanelCliente = new RegisterPanelCliente();
     public final ConsultaPanel consultaPanel = new ConsultaPanel();
     public final ConsultaPanelCliente consultaPanelCliente = new ConsultaPanelCliente();
+    public final FacturaPanel FacturaPanel = new FacturaPanel();
     private final DashboardPanel dashboardPanel = new DashboardPanel();
     private final SubestacionPanel subestacionPanel = new SubestacionPanel();
     private MainPagosPanel registerPayPanel;
@@ -83,11 +85,13 @@ public class Dashboard extends javax.swing.JFrame {
             itemTitle3.setText("Registrar Usuarios");
             panelMenu.remove(itemSubestaciones);
             panelMenu.remove(registerPayPanel);
+            panelMenu.remove(itemFactura);
         }
         if (usuario.getIdRol() == 2){   //Gerente
             panelMenu.remove(itemRegistrar);
             panelMenu.remove(itemListaUsuarios);
             panelMenu.remove(registerPayPanel);
+            panelMenu.remove(itemFactura);
             configPanel.remove(configPanel.panelMantenimiento);
 
         }
@@ -137,6 +141,9 @@ public class Dashboard extends javax.swing.JFrame {
         itemPagos = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         itemTitle6 = new javax.swing.JLabel();
+        itemFactura = new javax.swing.JPanel();
+        JLabel17 = new javax.swing.JLabel();
+        itemTitle8 = new javax.swing.JLabel();
         itemConfigurar = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         itemTitle5 = new javax.swing.JLabel();
@@ -432,6 +439,39 @@ public class Dashboard extends javax.swing.JFrame {
         itemConfigurar.add(itemTitle5);
 
         panelMenu.add(itemConfigurar);
+        itemFactura.setBorder(new javax.swing.border.LineBorder(java.awt.Color.white, 1, true));
+        itemFactura.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        itemFactura.setOpaque(false);
+        itemFactura.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                itemFacturaMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                itemFacturaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                itemFacturaMouseExited(evt);
+            }
+        });
+        java.awt.FlowLayout flowLayout8 = new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 10, 5);
+        flowLayout8.setAlignOnBaseline(true);
+        itemFactura.setLayout(flowLayout8);
+
+        JLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Factura.png"))); // NOI18N
+        itemFactura.add(JLabel17);
+
+        itemTitle8.setFont(new java.awt.Font("Fira Code", 1, 12)); // NOI18N
+        itemTitle8.setForeground(new java.awt.Color(254, 254, 254));
+        itemTitle8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        itemTitle8.setText("Facturas");
+        itemTitle8.setAlignmentX(0.6F);
+        itemTitle8.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        itemTitle8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        itemFactura.add(itemTitle8);
+
+        panelMenu.add(itemFactura);
+
 
         panelLateral.add(panelMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 230, 420));
 
@@ -770,7 +810,27 @@ public class Dashboard extends javax.swing.JFrame {
     	itemPagos.setOpaque(false);
         itemPagos.setBackground(new Color(50,55,61));
     }//GEN-LAST:event_itemPagosMouseExited
-
+    
+    private void itemFacturaMouseClicked(java.awt.event.MouseEvent evt) {
+    	jPanel3.removeAll();
+    	jPanel3.add(FacturaPanel);
+    	if(configPanel.itemDarkMode.isSelected()){
+    		FacturaPanel.darkMode();
+    	}
+    	else{
+    		FacturaPanel.lightMode();
+    	}
+    }
+    
+    private void itemFacturaMouseEntered(java.awt.event.MouseEvent evt) {
+    	itemFactura.setOpaque(false);
+    	itemFactura.setBackground(new Color(2, 50, 100));
+    }
+    
+    private void itemFacturaMouseExited(java.awt.event.MouseEvent evt) {
+    	itemFactura.setOpaque(false);
+    	itemFactura.setBackground(new Color(50,55,61));
+    }
     /**
      * @param args the command line arguments
      */
@@ -783,12 +843,14 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel itemPagos;
     private javax.swing.JPanel itemRegistrar;
     private javax.swing.JPanel itemSubestaciones;
+    private javax.swing.JPanel itemFactura;
     private javax.swing.JLabel itemTitle1;
     private javax.swing.JLabel itemTitle2;
     private javax.swing.JLabel itemTitle3;
     private javax.swing.JLabel itemTitle4;
     private javax.swing.JLabel itemTitle5;
     private javax.swing.JLabel itemTitle6;
+    private javax.swing.JLabel itemTitle8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -797,6 +859,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel JLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel9;
