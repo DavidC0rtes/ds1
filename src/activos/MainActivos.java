@@ -5,19 +5,41 @@
  */
 package activos;
 
+import com.formdev.flatlaf.FlatDarkLaf;
+import com.formdev.flatlaf.FlatLaf;
+import com.formdev.flatlaf.FlatLightLaf;
+
+import activos.subestacion.SubestacionPanel;
+
 /**
  *
  * @author david
  */
 public class MainActivos extends javax.swing.JPanel {
-
+	private SubestacionPanel agregarSub;
+	private final ListaSubestaciones listaSubPanel = new ListaSubestaciones();
     /**
      * Creates new form MainSubestacion
      */
     public MainActivos() {
+    	agregarSub = new SubestacionPanel();
         initComponents();
     }
+    
+    public void lightMode() {
+        FlatLightLaf.install();
+        FlatLaf.updateUI();
+        this.revalidate();
+        this.repaint();
+    }
+    
+    public void darkMode(){
+        FlatDarkLaf.install();
+        FlatLaf.updateUI();
+        this.revalidate();
+        this.repaint();
 
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,90 +49,48 @@ public class MainActivos extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        backBtn = new javax.swing.JButton();
         tituloLabel = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
-        subestacionLabel = new javax.swing.JLabel();
-        trasnforLabel = new javax.swing.JLabel();
-        consultarSubeBtn = new javax.swing.JButton();
-        regSubeBtn = new javax.swing.JButton();
-        consultarTranBtn = new javax.swing.JButton();
-        regTranBtn = new javax.swing.JButton();
+        mainTabbedPane = new javax.swing.JTabbedPane();
 
+        backBtn.setFont(new java.awt.Font("SF Pro Text", 0, 12)); // NOI18N
+        backBtn.setText("Atrás");
+        backBtn.setContentAreaFilled(false);
+        backBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        backBtn.setEnabled(false);
+
+        tituloLabel.setFont(new java.awt.Font("SF Pro Display", 1, 24)); // NOI18N
         tituloLabel.setText("Gestión de activos");
-
-        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
-
-        subestacionLabel.setText("Subestaciones");
-
-        trasnforLabel.setText("Transformadores");
-
-        consultarSubeBtn.setText("Ver subestaciones");
-
-        regSubeBtn.setText("Añadir subestacion");
-
-        consultarTranBtn.setText("Ver transformadores");
-
-        regTranBtn.setText("Añadir transformador");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(tituloLabel)
-                .addGap(333, 333, 333))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(129, 129, 129)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(subestacionLabel)
-                    .addComponent(consultarSubeBtn)
-                    .addComponent(regSubeBtn))
-                .addGap(176, 176, 176)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(trasnforLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(regTranBtn, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(consultarTranBtn))
-                .addContainerGap(97, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(backBtn)
+                        .addGap(272, 272, 272)
+                        .addComponent(tituloLabel))
+                    .addComponent(mainTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 833, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(tituloLabel)
-                .addGap(18, 18, 18)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator1)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(subestacionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(trasnforLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(60, 60, 60)
-                                .addComponent(consultarTranBtn)
-                                .addGap(81, 81, 81)
-                                .addComponent(regTranBtn))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(48, 48, 48)
-                                .addComponent(consultarSubeBtn)
-                                .addGap(96, 96, 96)
-                                .addComponent(regSubeBtn)))
-                        .addGap(0, 390, Short.MAX_VALUE)))
-                .addContainerGap())
+                    .addComponent(backBtn)
+                    .addComponent(tituloLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(mainTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 677, Short.MAX_VALUE))
         );
+        mainTabbedPane.add("Agregar subestación",agregarSub);
+        mainTabbedPane.add("Lista de subestaciones", listaSubPanel);
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton consultarSubeBtn;
-    private javax.swing.JButton consultarTranBtn;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JButton regSubeBtn;
-    private javax.swing.JButton regTranBtn;
-    private javax.swing.JLabel subestacionLabel;
+    private javax.swing.JButton backBtn;
+    private javax.swing.JTabbedPane mainTabbedPane;
     private javax.swing.JLabel tituloLabel;
-    private javax.swing.JLabel trasnforLabel;
     // End of variables declaration//GEN-END:variables
 }

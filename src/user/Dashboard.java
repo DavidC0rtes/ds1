@@ -15,7 +15,8 @@ import user.config.ConfigPanel;
 import user.consulta.ConsultaPanel;
 import user.register.RegisterPanel;
 import user.dashboard.DashboardPanel;
-import activos.SubestacionPanel;
+import activos.MainActivos;
+import activos.subestacion.SubestacionPanel;
 import finance.pagos.MainPagosPanel;
 import finance.clientes.RegisterPanelCliente;
 import finance.consultaclientes.ConsultaPanelCliente;
@@ -33,7 +34,7 @@ public class Dashboard extends javax.swing.JFrame {
     public final ConsultaPanel consultaPanel = new ConsultaPanel();
     public final ConsultaPanelCliente consultaPanelCliente = new ConsultaPanelCliente();
     private final DashboardPanel dashboardPanel = new DashboardPanel();
-    private final SubestacionPanel subestacionPanel = new SubestacionPanel();
+    private final MainActivos subestacionPanel = new MainActivos();
     private MainPagosPanel registerPayPanel;
     public final ConfigPanel configPanel = new ConfigPanel();
     private User usuario;

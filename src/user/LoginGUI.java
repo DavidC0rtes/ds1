@@ -143,15 +143,15 @@ public class LoginGUI extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("SF Pro Rounded", 0, 24)); // NOI18N
         jLabel1.setText("Bienvenido nuevamente");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, -1, -1));
 
-        jTextField2.setFont(new java.awt.Font("Franklin Gothic Medium Cond", 0, 11)); // NOI18N
+        jTextField2.setFont(new java.awt.Font("SF Pro Display", 0, 12)); // NOI18N
         jTextField2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(228, 228, 228)));
         jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 400, 40));
 
-        jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("SF Pro Rounded", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Ingresar");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 380, -1, 20));
@@ -164,13 +164,16 @@ public class LoginGUI extends javax.swing.JFrame {
         jButton1.setFocusPainted(false);
         jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 370, 160, 40));
 
+        jPasswordField1.setFont(new java.awt.Font("SF Pro Rounded", 0, 12)); // NOI18N
         jPasswordField1.setToolTipText("Ingresa tu clave");
         jPasswordField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(228, 228, 228)));
         jPanel2.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 400, 40));
 
+        jLabel3.setFont(new java.awt.Font("SF Pro Rounded", 0, 12)); // NOI18N
         jLabel3.setText("Contraseña");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, -1, -1));
 
+        jLabel5.setFont(new java.awt.Font("SF Pro Rounded", 0, 12)); // NOI18N
         jLabel5.setText("Cedula");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, -1, -1));
 

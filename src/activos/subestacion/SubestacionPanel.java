@@ -1,8 +1,10 @@
-package activos;
+package activos.subestacion;
 
 import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.FlatLightLaf;
+
+import activos.ControlSubestacion;
 
 import java.util.ArrayList;
 import javax.swing.*;
@@ -130,7 +132,7 @@ public class SubestacionPanel extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(145, 145, 145)
+                .addGap(34, 34, 34)
                 .addComponent(Title)
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -150,7 +152,7 @@ public class SubestacionPanel extends javax.swing.JPanel {
                 .addComponent(text_direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(78, 78, 78)
                 .addComponent(btn_registro)
-                .addContainerGap(146, Short.MAX_VALUE))
+                .addContainerGap(257, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
