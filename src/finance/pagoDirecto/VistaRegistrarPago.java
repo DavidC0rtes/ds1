@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package finance.pagos;
+package finance.pagoDirecto;
 
 import javax.swing.JOptionPane;
 
@@ -99,19 +99,19 @@ public class VistaRegistrarPago extends javax.swing.JPanel {
         pagarBtn = new javax.swing.JButton();
         cancelarPagoBtn = new javax.swing.JButton();
 
-        //setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(858, 654));
         setMinimumSize(new java.awt.Dimension(858, 654));
         setPreferredSize(new java.awt.Dimension(858, 654));
 
-
-        tituloLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        tituloLabel.setFont(new java.awt.Font("SF Pro Text", 1, 18)); // NOI18N
         tituloLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         tituloLabel.setText("Registrar pago");
 
-        contratoLabel.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        contratoLabel.setFont(new java.awt.Font("SF Pro Rounded", 0, 14)); // NOI18N
         contratoLabel.setText("#Contrato");
 
+        contratoTxt.setFont(new java.awt.Font("SF Pro Rounded", 0, 14)); // NOI18N
         contratoTxt.setToolTipText("");
         contratoTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -119,7 +119,7 @@ public class VistaRegistrarPago extends javax.swing.JPanel {
             }
         });
 
-        consultarBtn.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        consultarBtn.setFont(new java.awt.Font("SF Pro Rounded", 0, 14)); // NOI18N
         consultarBtn.setText("Consultar");
         consultarBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -133,30 +133,35 @@ public class VistaRegistrarPago extends javax.swing.JPanel {
         });
 
         infoContratoPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        infoContratoPanel.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        infoContratoPanel.setFont(new java.awt.Font("SF Pro Rounded", 0, 14)); // NOI18N
 
-        deudaLabel.setFont(new java.awt.Font("DejaVu Sans", 1, 12)); // NOI18N
+        deudaLabel.setFont(new java.awt.Font("SF Pro Rounded", 1, 14)); // NOI18N
         deudaLabel.setText("Deuda total:");
 
         deudaCantLabel.setText("0");
 
-        clienteLabel.setFont(new java.awt.Font("DejaVu Sans", 1, 12)); // NOI18N
+        clienteLabel.setFont(new java.awt.Font("SF Pro Rounded", 1, 14)); // NOI18N
         clienteLabel.setText("Cliente:");
 
-        estratoLabel.setFont(new java.awt.Font("DejaVu Sans", 1, 12)); // NOI18N
+        estratoLabel.setFont(new java.awt.Font("SF Pro Rounded", 1, 14)); // NOI18N
         estratoLabel.setText("Estrato:");
 
-        dirLabel.setFont(new java.awt.Font("DejaVu Sans", 1, 12)); // NOI18N
+        dirLabel.setFont(new java.awt.Font("SF Pro Rounded", 1, 14)); // NOI18N
         dirLabel.setText("Dirección:");
 
+        clienteNombreLbl.setFont(new java.awt.Font("SF Pro Rounded", 0, 14)); // NOI18N
         clienteNombreLbl.setText("jLabel1");
 
+        estratoNumLbl.setFont(new java.awt.Font("SF Pro Rounded", 0, 14)); // NOI18N
         estratoNumLbl.setText("jLabel2");
 
+        dirTextLabel.setFont(new java.awt.Font("SF Pro Rounded", 0, 14)); // NOI18N
         dirTextLabel.setText("jLabel3");
 
+        corteLabel.setFont(new java.awt.Font("SF Pro Rounded", 1, 14)); // NOI18N
         corteLabel.setText("Fecha de corte:");
 
+        corteTxtLabel.setFont(new java.awt.Font("SF Pro Rounded", 0, 14)); // NOI18N
         corteTxtLabel.setText(" de cada mes");
 
         javax.swing.GroupLayout infoContratoPanelLayout = new javax.swing.GroupLayout(infoContratoPanel);
@@ -210,17 +215,18 @@ public class VistaRegistrarPago extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        valorPagarTxt.setFont(new java.awt.Font("SF Pro Rounded", 0, 14)); // NOI18N
         valorPagarTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 valorPagarTxtActionPerformed(evt);
             }
         });
 
-        valorPagarLabel.setFont(new java.awt.Font("DejaVu Sans", 1, 12)); // NOI18N
+        valorPagarLabel.setFont(new java.awt.Font("SF Pro Rounded", 0, 14)); // NOI18N
         valorPagarLabel.setText("Valor a pagar");
 
         pagarBtn.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Green"));
-        pagarBtn.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
+        pagarBtn.setFont(new java.awt.Font("SF Pro Rounded", 0, 14)); // NOI18N
         pagarBtn.setText("Efectuar pago");
         pagarBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         pagarBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -230,7 +236,7 @@ public class VistaRegistrarPago extends javax.swing.JPanel {
         });
 
         cancelarPagoBtn.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Red"));
-        cancelarPagoBtn.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
+        cancelarPagoBtn.setFont(new java.awt.Font("SF Pro Rounded", 0, 14)); // NOI18N
         cancelarPagoBtn.setText("Cancelar");
         cancelarPagoBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         cancelarPagoBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -243,18 +249,20 @@ public class VistaRegistrarPago extends javax.swing.JPanel {
         pagarPanel.setLayout(pagarPanelLayout);
         pagarPanelLayout.setHorizontalGroup(
             pagarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pagarPanelLayout.createSequentialGroup()
-                .addContainerGap(83, Short.MAX_VALUE)
-                .addGroup(pagarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pagarPanelLayout.createSequentialGroup()
+                .addGap(74, 74, 74)
+                .addGroup(pagarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(cancelarPagoBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pagarPanelLayout.createSequentialGroup()
-                        .addComponent(valorPagarLabel)
-                        .addGap(16, 16, 16)))
-                .addGap(30, 30, 30)
+                    .addComponent(valorPagarLabel))
                 .addGroup(pagarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(valorPagarTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pagarBtn))
-                .addGap(66, 66, 66))
+                    .addGroup(pagarPanelLayout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(valorPagarTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(pagarPanelLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                        .addComponent(pagarBtn)
+                        .addGap(66, 66, 66))))
         );
         pagarPanelLayout.setVerticalGroup(
             pagarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -276,20 +284,21 @@ public class VistaRegistrarPago extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(tituloLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(195, 195, 195)
-                .addComponent(pagarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 234, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(272, 272, 272)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(infoContratoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(contratoLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(contratoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(consultarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(272, 272, 272)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(infoContratoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(contratoLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(contratoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(consultarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(205, 205, 205)
+                        .addComponent(pagarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(208, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -304,7 +313,7 @@ public class VistaRegistrarPago extends javax.swing.JPanel {
                 .addComponent(infoContratoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(pagarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(225, Short.MAX_VALUE))
+                .addContainerGap(193, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

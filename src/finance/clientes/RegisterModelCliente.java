@@ -1,8 +1,10 @@
 package finance.clientes;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import db.JDBCConnection;
+import java.sql.ResultSet;
+import java.time.LocalDate;
+import java.util.ArrayList;
 /**
  *
  * @author user
@@ -17,8 +19,13 @@ public class RegisterModelCliente
 	private String primerApellido;
 	private String segundoApellido;
 	private String email;
+        private int estrato;
+        private String direccion;
 	private JDBCConnection conn;
-	
+	private LocalDate myDate = LocalDate.now();
+        private int dia = myDate.getDayOfMonth();
+        private String idCliente;
+        
 	public RegisterModelCliente() {
 		conn = new JDBCConnection();
 	}
@@ -46,6 +53,17 @@ public class RegisterModelCliente
 		
 		return true;
 	}
+        
+        public void idCliente(String numeroDocumento) throws SQLException{
+            String query = "SELECT * FROM clientes WHERE num_documento =?";
+            String[] params = {numeroDocumento};
+            ResultSet rs = conn.getRecords(query, params);
+            if(rs.next()){
+                idCliente = rs.getString("id");
+            }
+            else{
+            }
+        }
 	
 	/**
 	 * Verifica que el tipo de cliente asignado al cliente sea válido.
@@ -74,11 +92,10 @@ public class RegisterModelCliente
 		 * ciertas validaciones.
 		 */
 		if (!userExists(numeroDocumento)/* && roleIsValid(tipoCliente) */) {
-			String createUserSQL = 
+			String createClienteSQL = 
 					"INSERT INTO clientes(tipo_cliente, tipo_documento, num_documento,"
                                         + "primer_nombre, primer_apellido, segundo_apellido, email)VALUES(?,?,?,?,?,?,?)";
-			
-			String[] userParams = {
+                        String[] clienteParams = {
 						Integer.toString(tipoCliente),
                                                 tipoDocumento,
                                                 Integer.toString(numeroDocumento),
@@ -87,7 +104,23 @@ public class RegisterModelCliente
 						segundoApellido,
 						email,
 				};
-			return conn.updateRecord(createUserSQL, userParams);
+                        conn.updateRecord(createClienteSQL, clienteParams);
+                        
+                                
+                        String createContratoSQL = 
+					"INSERT INTO contratos(id_cliente, dir_instalacion, fecha_corte, estrato)"
+                                        + "VALUES(?,?,?,?)";
+                        
+			idCliente(Integer.toString(numeroDocumento));
+                        
+                        String[] contratoParams = {
+						idCliente,
+                                                direccion,
+                                                Integer.toString(dia),
+						Integer.toString(estrato)
+				};
+                
+			return conn.updateRecord(createContratoSQL, contratoParams);
 		}
 		return -1;
 	}
@@ -102,7 +135,9 @@ public class RegisterModelCliente
 	}
 	
 	/** setters **/
-        public void setTipoCliente(int tipoCliente) {this.tipoCliente = tipoCliente;}
+    public void setTipoCliente(String tipoCliente) {
+    	this.tipoCliente = tipoCliente.equals("Corporativo") ? 2 : 1;
+    }
         
 	public void setNumeroDocumento(int numeroDocumento) {this.numeroDocumento = numeroDocumento;}
         
@@ -116,7 +151,9 @@ public class RegisterModelCliente
 	
         public void setEmail(String email) {this.email = email;}
 	
-	
+	public void setDireccion(String direccion) {this.direccion = direccion;}
+        
+        public void setEstrato(int estrato) {this.estrato = estrato;}
 	/* getters */
 	//public int getID() {return idRol;}
 	

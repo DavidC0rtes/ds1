@@ -11,6 +11,8 @@ import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.FlatLightLaf;
 
+import finance.pagoDirecto.VistaRegistrarPago;
+import finance.pagoSucursal.VistaSucursal;
 import user.User;
 
 /**
@@ -19,6 +21,7 @@ import user.User;
  */
 public class MainPagosPanel extends javax.swing.JPanel {
     private VistaRegistrarPago panelDirecto;
+    private VistaSucursal panelSucursal;
     private User loggedUser;
 
     /**
@@ -27,6 +30,7 @@ public class MainPagosPanel extends javax.swing.JPanel {
     public MainPagosPanel(User usuario) {
         this.loggedUser = usuario;
         panelDirecto = new VistaRegistrarPago(loggedUser);
+        panelSucursal = new VistaSucursal(loggedUser);
         initComponents();
         //backBtn.setVisible(false);
     }
@@ -67,20 +71,17 @@ public class MainPagosPanel extends javax.swing.JPanel {
         backBtn = new javax.swing.JButton();
         topLabel = new javax.swing.JLabel();
 
-        //setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(870, 670));
 
-        //cardsPanel.setBackground(new java.awt.Color(204, 204, 204));
         cardsPanel.setName(""); // NOI18N
         cardsPanel.setPreferredSize(new java.awt.Dimension(800, 600));
         cardsPanel.setLayout(new java.awt.CardLayout());
 
-        //mainPanel.setBackground(new java.awt.Color(255, 255, 255));
         mainPanel.setMaximumSize(new java.awt.Dimension(858, 654));
         mainPanel.setMinimumSize(new java.awt.Dimension(858, 654));
         mainPanel.setPreferredSize(new java.awt.Dimension(858, 654));
 
-        tituloLabel.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        tituloLabel.setFont(new java.awt.Font("SF Pro Text", 1, 24)); // NOI18N
         tituloLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         tituloLabel.setText("Escoja que tipo de pago va a registrar");
 
@@ -103,6 +104,7 @@ public class MainPagosPanel extends javax.swing.JPanel {
             }
         });
 
+        pagoDirectoLbl.setFont(new java.awt.Font("SF Pro Text", 1, 12)); // NOI18N
         pagoDirectoLbl.setText("Pago directo");
 
         pagoSucursalBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/pago-sucural.png"))); // NOI18N
@@ -116,7 +118,13 @@ public class MainPagosPanel extends javax.swing.JPanel {
                 pagoSucursalBtnMouseExited(evt);
             }
         });
+        pagoSucursalBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pagoSucursalBtnActionPerformed(evt);
+            }
+        });
 
+        sucursalLbl.setFont(new java.awt.Font("SF Pro Text", 1, 12)); // NOI18N
         sucursalLbl.setText("Pago en sucursal");
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
@@ -166,8 +174,6 @@ public class MainPagosPanel extends javax.swing.JPanel {
 
         cardsPanel.add(mainPanel, "card2");
 
-        //topPanel.setBackground(new java.awt.Color(255, 255, 255));
-
         backBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/go-back.png"))); // NOI18N
         backBtn.setToolTipText("Volver al menú anterior");
         backBtn.setContentAreaFilled(false);
@@ -178,7 +184,7 @@ public class MainPagosPanel extends javax.swing.JPanel {
             }
         });
 
-        topLabel.setFont(new java.awt.Font("DejaVu Sans", 0, 11)); // NOI18N
+        topLabel.setFont(new java.awt.Font("SF Pro Rounded", 0, 11)); // NOI18N
         topLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         topLabel.setText("Registro de pagos");
 
@@ -227,7 +233,9 @@ public class MainPagosPanel extends javax.swing.JPanel {
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         
-    	((CardLayout) cardsPanel.getLayout()).show(cardsPanel, "card2");
+        ((CardLayout) cardsPanel.getLayout()).show(cardsPanel, "card2");
+        ((CardLayout)cardsPanel.getLayout()).removeLayoutComponent(panelDirecto);
+        ((CardLayout)cardsPanel.getLayout()).removeLayoutComponent(panelSucursal);
         //backBtn.setVisible(false);
     }//GEN-LAST:event_backBtnActionPerformed
 
@@ -248,6 +256,11 @@ public class MainPagosPanel extends javax.swing.JPanel {
     private void pagoSucursalBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pagoSucursalBtnMouseExited
        pagoSucursalBtn.setOpaque(false);
     }//GEN-LAST:event_pagoSucursalBtnMouseExited
+
+    private void pagoSucursalBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pagoSucursalBtnActionPerformed
+        cardsPanel.add(panelSucursal, "panelSucursal");
+        ((CardLayout) cardsPanel.getLayout()).show(cardsPanel, "panelSucursal");
+    }//GEN-LAST:event_pagoSucursalBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -1,22 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package activos;
+package activos.subestacion;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import javax.swing.JTextField;
 
-import deprecated.ds_bd;
+import db.JDBCConnection;
 
 /**
  *
  * @author USER
  */
 public class ControlSubestacion {
+	
+	private JDBCConnection DB;
     
-    ds_bd GestorBD = new ds_bd();
+	public ControlSubestacion(JDBCConnection conn) {
+		DB = conn;
+	}
+	
     public int valoresVacios(ArrayList<JTextField> Componentes){
         for(int i = 0; i < Componentes.size(); i++){
             if(Componentes.get(i).getText().length() == 0){
@@ -26,27 +28,35 @@ public class ControlSubestacion {
         return 0;
     }
     
-    public int createNewSubestacion(ArrayList<JTextField> Componentes, String identificacion, String ciudad, String direccion, String state){
+    public int createNewSubestacion(ArrayList<JTextField> Componentes, String[] datos){
         int estadoFinal = 0;
         boolean estado = false;
         int id = 0;
+       
         if(valoresVacios(Componentes) == 0){
             try{
-                switch(state){
+                switch(datos[3]) {
                     case "Activo":
-                        estado = true;
+                        datos[3] = "true";
                         break;
                     case "Inactivo":
-                        estado = false;
+                        datos[3] = "false";
                         break;
                 }
                 
-                if(GestorBD.createNewSubE(Integer.parseInt(identificacion), ciudad, direccion, estado) != 0){
-                    return 1;
+                String sql = 
+                		 "insert into subestaciones(id_jefe_subestacion,ciudad,direccion,estado,nombre) "
+                		 + "values(?,?,?,?,?)";
+                
+                
+                Integer.parseInt(datos[0]);
+                if (DB.updateRecord(sql, datos) == 1) {
+                	return 1;
                 }
+                
             }
             catch (NumberFormatException nfe) {
-                    System.out.println("Invalido");
+                    System.out.println(datos[0]);
                     return 3;
             }
         } else {

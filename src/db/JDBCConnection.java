@@ -21,8 +21,9 @@ public class JDBCConnection {
 	
 	public JDBCConnection() {
 		try {
-			FileReader reader = new FileReader("src/db/db.properties");
-			props.load(reader);
+			InputStream inputStream = getClass().getResourceAsStream("db.properties");
+
+			props.load(inputStream);
 			dbHost = props.getProperty("DB_HOST");
 			dbUser = props.getProperty("DB_USER");
 			dbName = props.getProperty("DB_NAME");
@@ -115,7 +116,7 @@ public class JDBCConnection {
 				} else if(params[i].equals("false") || params[i].equals("f")){
                    	updateStatement.setBoolean(i+1, false);
                    	
-				} else if(params[i].matches("^[0-9]+\\.{1}[0-9]+$")) {
+				} else if(params[i].matches("^[0-9]+\\.*[0-9]+$")) {
 					updateStatement.setFloat(i+1, Float.parseFloat(params[i]));
 				} else {
 					updateStatement.setString(i+1, params[i]);

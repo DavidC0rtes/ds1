@@ -1,4 +1,4 @@
-package finance.pagos;
+package finance.pagoDirecto;
 
 import java.util.*;
 

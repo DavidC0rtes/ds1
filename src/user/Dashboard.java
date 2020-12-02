@@ -15,12 +15,16 @@ import user.config.ConfigPanel;
 import user.consulta.ConsultaPanel;
 import user.register.RegisterPanel;
 import user.dashboard.DashboardPanel;
-import activos.SubestacionPanel;
+import activos.MainActivos;
+import activos.subestacion.SubestacionPanel;
 import finance.pagos.MainPagosPanel;
-import finance.pagos.VistaRegistrarPago;
 import finance.clientes.RegisterPanelCliente;
 import finance.consultaclientes.ConsultaPanelCliente;
+
 import finance.Facturas.FacturaPanel;
+
+import finance.pagoDirecto.VistaRegistrarPago;
+
 
 import javax.swing.*;
 
@@ -35,9 +39,9 @@ public class Dashboard extends javax.swing.JFrame {
     public final ConsultaPanelCliente consultaPanelCliente = new ConsultaPanelCliente();
     public final FacturaPanel FacturaPanel = new FacturaPanel();
     private final DashboardPanel dashboardPanel = new DashboardPanel();
-    private final SubestacionPanel subestacionPanel = new SubestacionPanel();
+    private final MainActivos subestacionPanel = new MainActivos();
     private MainPagosPanel registerPayPanel;
-    public final ConfigPanel configPanel = new ConfigPanel();
+    public final ConfigPanel configPanel = new ConfigPanel();;
     private User usuario;
     private JFrame window;
 
@@ -45,12 +49,15 @@ public class Dashboard extends javax.swing.JFrame {
      * Creates new form Dashboard
      */
     public Dashboard(User usuario) {
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.usuario = usuario;
         registerPayPanel = new MainPagosPanel(usuario);
         initComponents();
         window = this;
         configUser();
         darkMode();
+        setLocationRelativeTo(null);
+        setVisible(true);
     }
 
     public  void darkMode(){
@@ -83,7 +90,7 @@ public class Dashboard extends javax.swing.JFrame {
         if (usuario.getIdRol() == 1){   //Administrador
             itemTitle2.setText("Lista de Usuarios");
             itemTitle3.setText("Registrar Usuarios");
-            panelMenu.remove(itemSubestaciones);
+            panelMenu.remove(itemPagos);
             panelMenu.remove(registerPayPanel);
             panelMenu.remove(itemFactura);
         }
@@ -91,7 +98,12 @@ public class Dashboard extends javax.swing.JFrame {
             panelMenu.remove(itemRegistrar);
             panelMenu.remove(itemListaUsuarios);
             panelMenu.remove(registerPayPanel);
+
             panelMenu.remove(itemFactura);
+
+            panelMenu.remove(itemSubestaciones);
+            panelMenu.remove(itemPagos);
+
             configPanel.remove(configPanel.panelMantenimiento);
 
         }
@@ -755,8 +767,9 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_itemSubestacionesMouseExited
 
     private void itemConfigurarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemConfigurarMouseClicked
-
-        jPanel3.removeAll();
+    	
+        
+    	jPanel3.removeAll();
         jPanel3.add(configPanel);
         jPanel3.revalidate();
         jPanel3.repaint();

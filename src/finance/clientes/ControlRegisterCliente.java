@@ -36,9 +36,9 @@ public class ControlRegisterCliente
 		switch(field) 
                 {
 		case "tipo_cliente":
-			cliente.setTipoCliente(Integer.parseInt(value));
+			cliente.setTipoCliente(value);
 			break;
-                case "num_documento":
+		case "num_documento":
 			cliente.setNumeroDocumento(Integer.parseInt(value));
 			break;
                 case "tipo_documento":
@@ -55,6 +55,12 @@ public class ControlRegisterCliente
 			break;
 		case "email":
 			cliente.setEmail(value);
+			break;
+                case "dir_instalacion":
+			cliente.setDireccion(value);
+			break;
+                case "estrato":
+			cliente.setEstrato(Integer.parseInt(value));
 			break;
 		}
 	}
