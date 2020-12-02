@@ -21,8 +21,9 @@ public class JDBCConnection {
 	
 	public JDBCConnection() {
 		try {
-			FileReader reader = new FileReader("src/db/db.properties");
-			props.load(reader);
+			InputStream inputStream = getClass().getResourceAsStream("db.properties");
+
+			props.load(inputStream);
 			dbHost = props.getProperty("DB_HOST");
 			dbUser = props.getProperty("DB_USER");
 			dbName = props.getProperty("DB_NAME");
