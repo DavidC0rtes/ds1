@@ -24,8 +24,9 @@ public class ConfigPanel extends javax.swing.JPanel {
      */
     public ConfigPanel() {
         initComponents();
-        buttonGurardarCambios.setVisible(false);
-        panelConfigMantenimiento.setVisible(false);
+        buttonGurardarCambios.setVisible(ConfigControl.isActive());
+        panelConfigMantenimiento.setVisible(ConfigControl.isActive());
+        itemMantenimiento.setSelected(ConfigControl.isActive());
     }
 
     /**
@@ -111,8 +112,7 @@ public class ConfigPanel extends javax.swing.JPanel {
         jTextArea2.setColumns(20);
         jTextArea2.setLineWrap(true);
         jTextArea2.setRows(5);
-        jTextArea2.setText("Por favor ingrese la fecha y hora de inicio y final del mantenimiento en formato en formato descendente 1999-01-08T04:05:00    AÑOS-MES-DIA T HORAS:MINUTOS:SEGUNDOS\nHORA24:MINUTO:SEGUNDO");
-        jTextArea2.setWrapStyleWord(true);
+        jTextArea2.setText("Por favor ingrese la fecha y hora de inicio y final del mantenimiento en formato en formato descendente 1999-01-08T04:05:00    AÑOS-MES-DIA T HORAS24:MINUTOS:SEGUNDOS");
         jScrollPane1.setViewportView(jTextArea2);
 
         panelConfigMantenimiento.add(jScrollPane1);
@@ -161,20 +161,44 @@ public class ConfigPanel extends javax.swing.JPanel {
         }else{
             panelConfigMantenimiento.setVisible(false);
             buttonGurardarCambios.setVisible(false);
+            try{
+                LocalDateTime mantenimientoInicio = LocalDateTime.parse( itemMantenimientoInicio.getText());
+                LocalDateTime mantenimientoFinal = LocalDateTime.parse( itemMantenimientoFinal.getText());
+                ConfigControl.changeData(mantenimientoInicio, mantenimientoFinal, false);
+                JOptionPane.showMessageDialog(this, "Mantenimiento desactivado exitosamente");
+
+            }
+            catch (DateTimeParseException e){
+                JOptionPane.showMessageDialog(this, "Por favor introduzca una fecha valida");
+            }
 
         }
 
     }//GEN-LAST:event_itemMantenimientoActionPerformed
 
     private void buttonGurardarCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGurardarCambiosActionPerformed
+
         try{
             LocalDateTime mantenimientoInicio = LocalDateTime.parse( itemMantenimientoInicio.getText());
             LocalDateTime mantenimientoFinal = LocalDateTime.parse( itemMantenimientoFinal.getText());
+
+            if (ConfigControl.validateDate(mantenimientoInicio, mantenimientoFinal)){
+                ConfigControl.changeData(mantenimientoInicio, mantenimientoFinal, true);
+                JOptionPane.showMessageDialog(this, "Mantenimiento activado exitosamente");
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Por favor introduzca una fecha valida");
+            }
+
+
 
         }
         catch (DateTimeParseException e){
             JOptionPane.showMessageDialog(this, "Por favor introduzca una fecha valida");
         }
+
+
+
 
     }//GEN-LAST:event_buttonGurardarCambiosActionPerformed
 

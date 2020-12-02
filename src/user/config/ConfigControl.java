@@ -3,6 +3,7 @@ import db.JDBCConnection;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -10,7 +11,8 @@ import java.time.LocalTime;
 import java.time.temporal.Temporal;
 
 public class ConfigControl {
-    private  JDBCConnection DB;
+    private static JDBCConnection  DB  = new JDBCConnection();
+
     private static  LocalDateTime date;
     private static LocalDateTime start;
     private static  LocalDateTime end;
@@ -18,11 +20,10 @@ public class ConfigControl {
 
     long tiempoDelMantenimiento ;
     private static Duration diff;
-    private boolean active;
+    private static boolean active;
 
 
     public ConfigControl(){
-        DB  = new JDBCConnection();
         date = LocalDateTime.now();
 
     }
@@ -60,6 +61,21 @@ public class ConfigControl {
             e.printStackTrace();
         }
     }
+/*UPDATE public.mantenimiento
+SET activo = false
+WHERE id = 1;*/
+    public static void changeData(LocalDateTime inicio, LocalDateTime fin, Boolean state){
+        System.out.println(inicio.toString());
+        System.out.println(Timestamp.valueOf(inicio).toString());
+
+        String query = "UPDATE mantenimiento SET inicio = ?::timestamp, fin = ?::timestamp, activo = ? " +
+                "WHERE id = 1";
+        String[] params = {Timestamp.valueOf(inicio).toString(), fin.toString(), state.toString().toLowerCase()};
+        //System.out.println( inicio.toString().substring(0,10) + " "+ inicio.toString().substring(11,19));
+        DB.updateRecord(query, params);
+
+    }
+
     public static LocalDateTime getStart() {
         return start;
     }
@@ -68,7 +84,7 @@ public class ConfigControl {
         return end;
     }
 //Antes de usar este metodo hacer un update
-    public boolean isActive() {
+    public static boolean isActive() {
         return active;
     }
 
@@ -80,9 +96,15 @@ public class ConfigControl {
         ConfigControl.end = end;
     }
 
-    public void setActive(boolean active) {
-        this.active = active;
+    public static boolean validateDate(LocalDateTime ldt1, LocalDateTime ldt2){
+        if (Duration.between(ldt1, ldt2).getSeconds() <= 0 ){
+            return false;
+        }
+        else{
+            return true;
+        }
     }
+
     public static String getHMS(){
         String hms = String.format("%d:%02d:%02d",
                 diff.toHours(),
