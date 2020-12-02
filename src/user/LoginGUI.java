@@ -56,6 +56,8 @@ public class LoginGUI extends javax.swing.JFrame {
         jButton1.setBorderPainted(false);
         jButton1.setFocusPainted(false);
         jButton1.setContentAreaFilled(false);
+
+
 //        jButton1.addActionListener(new ActionListener()
 //        {
 //          public void actionPerformed(ActionEvent e)
@@ -66,6 +68,7 @@ public class LoginGUI extends javax.swing.JFrame {
 //        	
 //          }
 //        });
+
     }
 
     /**

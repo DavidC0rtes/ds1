@@ -1,0 +1,53 @@
+package finance.Facturas;
+
+import db.JDBCConnection;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.view.JasperViewer;
+import java.util.HashMap;
+import java.util.Map;
+
+
+public class GenerarFactura {
+
+	JasperReport reporte; 
+	
+	
+	public GenerarFactura() {
+
+	}
+	
+	public void VerifyInput(String entrada) {
+		int result;
+		
+    	if (entrada == null) {
+    	} else if (entrada.equalsIgnoreCase("")) {
+    		System.out.println("No se ingreso ningún contrato");
+    	} else {
+    		try {
+    			result = Integer.parseInt(entrada);
+    			if (result <= 0) {
+    				System.out.println("Número invalido");
+    			} else {
+    				CrearJasperReport(result);
+    			}
+    		} catch (Exception e) {
+    			System.out.println("Contrato inexistente");
+    		  }
+    	}
+    }
+	
+	public void CrearJasperReport(int contract_ID) {
+		final JDBCConnection con;
+		
+		con = new JDBCConnection();
+		Map<String, Object> parametros = new HashMap<String, Object>();
+		parametros.put("IdContrato", contract_ID);
+		try {
+			reporte = JasperCompileManager.compileReport("src/finance/Facturas/FacturaTest2.jrxml");
+			JasperPrint jp = JasperFillManager.fillReport(reporte, parametros, con.getConnection());
+			JasperViewer.viewReport(jp,false);
+			
+		} 	catch(Exception e) {e.printStackTrace();
+	  }	
+	}
+}
