@@ -8,22 +8,22 @@ import db.JDBCConnection;
 
 public class ModeloLista {
 	private JDBCConnection DB;
-	private ArrayList<ArrayList<String>> datosSub = new ArrayList<ArrayList<String>>();
+
 	
 	public ModeloLista() {
 		DB = new JDBCConnection();
 	}
 	
-	private void getAll() {
+	private ArrayList<ArrayList<String>> getAll() {
 		String sql = "select * from subestaciones";
 		
 		ResultSet rs = DB.getRecords(sql);
-		
+		ArrayList<ArrayList<String>> datosSub = new ArrayList<ArrayList<String>>();
 		try {
 			if(rs.isBeforeFirst()) {
 				while(rs.next()) {
 					ArrayList<String> row = new ArrayList<String>();
-					row.add(rs.getString("id"));
+					row.add(rs.getString("nombre"));
 					row.add(rs.getString("id_jefe_subestacion"));
 					row.add(rs.getString("ciudad"));
 					row.add(rs.getString("direccion"));
@@ -34,11 +34,12 @@ public class ModeloLista {
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
-		}		
+		}
+		return datosSub;
 	}
 	
 	public Object[][] convertData() {
-		getAll();
+		ArrayList<ArrayList<String>> datosSub = getAll();
 		Object[][] toReturn = new Object[datosSub.size()][5];
 		
 		for (int row=0; row<datosSub.size(); row++) {

@@ -36,7 +36,7 @@ public class Dashboard extends javax.swing.JFrame {
     private final DashboardPanel dashboardPanel = new DashboardPanel();
     private final MainActivos subestacionPanel = new MainActivos();
     private MainPagosPanel registerPayPanel;
-    public final ConfigPanel configPanel = new ConfigPanel();
+    public final ConfigPanel configPanel = new ConfigPanel();;
     private User usuario;
     private JFrame window;
 
@@ -716,8 +716,9 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_itemSubestacionesMouseExited
 
     private void itemConfigurarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemConfigurarMouseClicked
-
-        jPanel3.removeAll();
+    	
+        
+    	jPanel3.removeAll();
         jPanel3.add(configPanel);
         jPanel3.revalidate();
         jPanel3.repaint();

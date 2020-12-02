@@ -25,6 +25,8 @@ public class MainActivos extends javax.swing.JPanel {
     public MainActivos() {
     	agregarSub = new SubestacionPanel();
         initComponents();
+        mainTabbedPane.add(listaSubPanel, "Lista de subestacions");
+        mainTabbedPane.add(agregarSub, "Agregar subestacion");
     }
     
     public void lightMode() {
