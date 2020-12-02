@@ -1,8 +1,15 @@
 package activos.subestacion.lista;
 
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 import db.JDBCConnection;
+import javax.swing.DefaultRowSorter;
+import javax.swing.RowFilter;
+import javax.swing.RowSorter;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 /**
  * Vista de la lista de subestaciones.
@@ -11,22 +18,59 @@ import db.JDBCConnection;
 public class ListaSubestaciones extends javax.swing.JPanel {
 	private ModeloLista modelo;
 	private DefaultTableModel modeloTabla;
+	private final TableRowSorter<TableModel> rowSorterSube;
 	
     /** Creates new form ListaSubestaciones */
     public ListaSubestaciones(JDBCConnection conn) {
     	modelo = new ModeloLista(conn);
+    	
         initComponents();
         setTable();
+        rowSorterSube  = new TableRowSorter<>(tablaSubs.getModel());
+        TestTableSortFilter();
     }
     
-    
+    private void TestTableSortFilter() {
+    	tablaSubs.setRowSorter(rowSorterSube);
+    	filterTxt.getDocument().addDocumentListener(new DocumentListener(){
+
+    		@Override
+    		public void insertUpdate(DocumentEvent e) {
+    			String text = filterTxt.getText();
+
+    			if (text.trim().length() == 0) {
+    				rowSorterSube.setRowFilter(null);
+    			} else {
+    				rowSorterSube.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+    			}
+    		}
+
+    		@Override
+    		public void removeUpdate(DocumentEvent e) {
+    			String text = filterTxt.getText();
+
+    			if (text.trim().length() == 0) {
+    				rowSorterSube.setRowFilter(null);
+    			} else {
+    				rowSorterSube.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+    			}
+    		}
+
+    		@Override
+    		public void changedUpdate(DocumentEvent e) {
+    			throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    		}
+
+    	});
+    }
     private void setTable() {
     	modeloTabla = new DefaultTableModel(
         		modelo.convertData(),
-        		new String[] {"Nombre", "Responsable", "Ciudad", "Dirección", "En funcionamiento"}
+        		new String[] {"Identificador", "Nombre", "Responsable", "Ciudad", "Dirección", "En funcionamiento"}
         		);
         
         tablaSubs.setModel(modeloTabla);
+        
     }
 
     /** This method is called from within the constructor to
@@ -42,6 +86,8 @@ public class ListaSubestaciones extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaSubs = new javax.swing.JTable();
         refreshBtn = new javax.swing.JButton();
+        filterTxt = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
 
         jLabel1.setFont(new java.awt.Font("SF Pro Rounded", 0, 18)); // NOI18N
         jLabel1.setText("Subestaciones existentes");
@@ -55,7 +101,7 @@ public class ListaSubestaciones extends javax.swing.JPanel {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Nombre", "Responsable", "Ciudad", "Dirección", "En funcionamiento"
+                "Nombre", "Ciudad", "Dirección", "Responsable", "En funcionamiento"
             }
         ) {
             Class[] types = new Class [] {
@@ -83,21 +129,44 @@ public class ListaSubestaciones extends javax.swing.JPanel {
             }
         });
 
+        filterTxt.setFont(new java.awt.Font("SF Pro Rounded", 0, 14)); // NOI18N
+        filterTxt.setToolTipText("Filtrar información");
+        filterTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                filterTxtActionPerformed(evt);
+            }
+        });
+        filterTxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                filterTxtKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                filterTxtKeyTyped(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("SF Pro Rounded", 0, 14)); // NOI18N
+        jLabel2.setText("Filtrar:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(140, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(75, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 639, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(54, 54, 54))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(41, 41, 41)
-                        .addComponent(refreshBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(144, 144, 144))))
+                    .addComponent(jLabel2)
+                    .addComponent(filterTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGap(233, 233, 233)
+                            .addComponent(jLabel1)
+                            .addGap(41, 41, 41)
+                            .addComponent(refreshBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(144, 144, 144))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 698, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(60, 60, 60)))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,9 +175,13 @@ public class ListaSubestaciones extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(refreshBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
+                .addGap(30, 30, 30)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(filterTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(183, Short.MAX_VALUE))
+                .addContainerGap(136, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -118,7 +191,8 @@ public class ListaSubestaciones extends javax.swing.JPanel {
     	modeloTabla.setRowCount(0);
     	
     	
-    	DefaultTableModel test = new DefaultTableModel(modelo.convertData(),new String[] {"Nombre", "Responsable", "Ciudad", "Dirección", "En funcionamiento"} );
+    	DefaultTableModel test = new DefaultTableModel(modelo.convertData(),
+    			new String[] {"Identificador", "Nombre", "Responsable", "Ciudad", "Dirección", "En funcionamiento"} );
     	
     	tablaSubs.setModel(test);
 		
@@ -126,9 +200,25 @@ public class ListaSubestaciones extends javax.swing.JPanel {
     
     }//GEN-LAST:event_refreshBtnActionPerformed
 
+    private void filterTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filterTxtActionPerformed
+        
+    }//GEN-LAST:event_filterTxtActionPerformed
+
+    private void filterTxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_filterTxtKeyTyped
+        // TODO add your handling code here:
+        ((DefaultRowSorter) tablaSubs.getRowSorter()).setRowFilter(RowFilter.regexFilter("(?i)"+filterTxt.getText()));
+    }//GEN-LAST:event_filterTxtKeyTyped
+
+    private void filterTxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_filterTxtKeyPressed
+        // TODO add your handling code here:
+        ((DefaultRowSorter) tablaSubs.getRowSorter()).setRowFilter(RowFilter.regexFilter("(?i)"+filterTxt.getText()));
+    }//GEN-LAST:event_filterTxtKeyPressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField filterTxt;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton refreshBtn;
     private javax.swing.JTable tablaSubs;
