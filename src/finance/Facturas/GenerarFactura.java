@@ -16,6 +16,26 @@ public class GenerarFactura {
 
 	}
 	
+	public void VerifyInput(String entrada) {
+		int result;
+		
+    	if (entrada == null) {
+    	} else if (entrada.equalsIgnoreCase("")) {
+    		System.out.println("No se ingreso ningún contrato");
+    	} else {
+    		try {
+    			result = Integer.parseInt(entrada);
+    			if (result <= 0) {
+    				System.out.println("Número invalido");
+    			} else {
+    				CrearJasperReport(result);
+    			}
+    		} catch (Exception e) {
+    			System.out.println("Contrato inexistente");
+    		  }
+    	}
+    }
+	
 	public void CrearJasperReport(int contract_ID) {
 		final JDBCConnection con;
 		
@@ -23,7 +43,7 @@ public class GenerarFactura {
 		Map<String, Object> parametros = new HashMap<String, Object>();
 		parametros.put("IdContrato", contract_ID);
 		try {
-			reporte = JasperCompileManager.compileReport("src/finance/Facturas/FacturaTest1.jrxml");
+			reporte = JasperCompileManager.compileReport("src/finance/Facturas/FacturaTest2.jrxml");
 			JasperPrint jp = JasperFillManager.fillReport(reporte, parametros, con.getConnection());
 			JasperViewer.viewReport(jp,false);
 			

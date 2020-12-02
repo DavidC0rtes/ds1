@@ -56,8 +56,8 @@ public class LoginGUI extends javax.swing.JFrame {
                 	
                     String s = jTextField2.getText();
                     
-                    /* Una vez se tengan el cc y la contraseña, se cre una instancia
-                     * de usuario, para poder realizar el login más adelante.
+                    /* Una vez se tengan el cc y la contraseﾃｱa, se cre una instancia
+                     * de usuario, para poder realizar el login mﾃ｡s adelante.
                      */
                     usuario = new User(s, String.valueOf(jPasswordField1.getPassword()));
                     

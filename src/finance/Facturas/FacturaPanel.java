@@ -134,7 +134,7 @@ public class FacturaPanel extends javax.swing.JPanel {
 	            }
 	        });
 	        jPanel3.add(buscador);
-	        buscador.setBounds(90, 70, 670, 30);
+	        buscador.setBounds(90, 70, 580, 30);
 
 	        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
 	        jLabel2.setFont(new java.awt.Font("Fira Code", 0, 14)); // NOI18N
@@ -151,7 +151,7 @@ public class FacturaPanel extends javax.swing.JPanel {
 	            }
 	        });
 	        
-	        JButton2.setText("Generar Factura");
+	        JButton2.setText("Factura");
 	        JButton2.addActionListener(new java.awt.event.ActionListener() {
 	        	public void actionPerformed(java.awt.event.ActionEvent evt) {
 	        		JButton2ActionPerformed(evt);
@@ -159,9 +159,9 @@ public class FacturaPanel extends javax.swing.JPanel {
 	        });
 	        
 	        jPanel3.add(jButton1);
-	        jButton1.setBounds(740, 70, 90, 30);
+	        jButton1.setBounds(660, 70, 90, 30);
 	        jPanel3.add(JButton2);
-	        JButton2.setBounds(800, 70, 90, 30);
+	        JButton2.setBounds(740, 70, 90, 30);
 	    }// </editor-fold>//GEN-END:initComponents
 
 		private void buscadorKeyPressed(KeyEvent evt) {//GEN-FIRST:event_buscadorKeyPressed
@@ -170,9 +170,8 @@ public class FacturaPanel extends javax.swing.JPanel {
 	        construirTabla();
 	    }//GEN-LAST:event_jButton1ActionPerformed
 	    private void JButton2ActionPerformed(java.awt.event.ActionEvent evt){
-	    	int result = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingresar contrato", "Generar Factura"));
-	    	GeneraFactura.CrearJasperReport(result);
-	    	
+	    	String code = JOptionPane.showInputDialog(null, "Ingresar contrato", "");
+	    	GeneraFactura.VerifyInput(code);
 	    }
 		public void construirTabla() {
 			String[] titlesInfo = new String[7];

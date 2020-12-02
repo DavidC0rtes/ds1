@@ -824,7 +824,7 @@ public class Dashboard extends javax.swing.JFrame {
     
     private void itemFacturaMouseEntered(java.awt.event.MouseEvent evt) {
     	itemFactura.setOpaque(false);
-    	itemFactura.setBackground(new Color(2, 50, 100));
+    	itemFactura.setBackground(new Color(2, 134, 224));
     }
     
     private void itemFacturaMouseExited(java.awt.event.MouseEvent evt) {
