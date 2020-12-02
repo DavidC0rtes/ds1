@@ -44,8 +44,6 @@ public class Dashboard extends javax.swing.JFrame {
      * Creates new form Dashboard
      */
     public Dashboard(User usuario) {
-        setVisible(true);
-        setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.usuario = usuario;
         registerPayPanel = new MainPagosPanel(usuario);
@@ -53,6 +51,8 @@ public class Dashboard extends javax.swing.JFrame {
         window = this;
         configUser();
         darkMode();
+        setLocationRelativeTo(null);
+        setVisible(true);
     }
 
     public  void darkMode(){

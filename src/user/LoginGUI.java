@@ -20,13 +20,19 @@ public class LoginGUI extends javax.swing.JFrame {
      */
     public LoginGUI() {
         this.setTitle("Iniciar Sesión");
-        setLocationRelativeTo(null);
+        setPreferredSize(new Dimension(908, 634));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         configControl = new ConfigControl();
-        setVisible(true);
         initComponents();
+        loadingLabel.setVisible(false);
         changeComponents();
-        setPreferredSize(new Dimension(908, 634));
+        
+        
+        this.setLocationRelativeTo(null);
+        setVisible(true);
+        
+        
+        
     }
     
     public void exit(){
@@ -50,15 +56,16 @@ public class LoginGUI extends javax.swing.JFrame {
         jButton1.setBorderPainted(false);
         jButton1.setFocusPainted(false);
         jButton1.setContentAreaFilled(false);
-        jButton1.addActionListener(new ActionListener()
-        {
-          public void actionPerformed(ActionEvent e)
-          {
-
-            new LoginProgresBar();
-
-          }
-        });
+//        jButton1.addActionListener(new ActionListener()
+//        {
+//          public void actionPerformed(ActionEvent e)
+//          {
+//
+//            //new LoginProgresBar();
+//        	  
+//        	
+//          }
+//        });
     }
 
     /**
@@ -80,6 +87,7 @@ public class LoginGUI extends javax.swing.JFrame {
         jPasswordField1 = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        loadingLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -114,6 +122,11 @@ public class LoginGUI extends javax.swing.JFrame {
         jButton1.setBorder(null);
         jButton1.setBorderPainted(false);
         jButton1.setFocusPainted(false);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 370, 160, 40));
 
         jPasswordField1.setFont(new java.awt.Font("SF Pro Rounded", 0, 12)); // NOI18N
@@ -129,10 +142,19 @@ public class LoginGUI extends javax.swing.JFrame {
         jLabel5.setText("Cedula");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, -1, -1));
 
+        loadingLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/loading.gif"))); // NOI18N
+        jPanel2.add(loadingLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 460, 80, 60));
+
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, 490, 600));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        loadingLabel.setVisible(true);
+        revalidate();
+        iniciarSesion();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -150,8 +172,11 @@ public class LoginGUI extends javax.swing.JFrame {
                 usuario = new User(s, String.valueOf(jPasswordField1.getPassword()));
 
                 if (usuario.attemptLogin(s, String.valueOf(jPasswordField1.getPassword()))) {
+                	
                     int rol = usuario.getIdRol();
                     configControl.updateData();
+                    //ImageIcon loadingIcon = new ImageIcon("assets/loading.gif");
+                    //loadingLabel.setIcon(loadingIcon);
                     switch(rol){
                         case 0:
                             System.out.println("Not found");
@@ -208,39 +233,7 @@ public class LoginGUI extends javax.swing.JFrame {
         }
     }
 
-    private class LoginProgresBar extends SwingWorker {
-
-        private final JFrame frame;
-        private final JOptionPane pane;
-        private final JProgressBar jProgressBar;
-        private JDialog dialog;
-
-        public LoginProgresBar() {
-            this.execute();
-            frame = new JFrame();
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            pane = new JOptionPane();
-            pane.setMessage("Iniciando sesión, por favor espere");
-            jProgressBar = new JProgressBar(1, 100);
-            jProgressBar.setIndeterminate(true);
-            pane.add(jProgressBar, 1);
-            dialog = pane.createDialog(frame, "Iniciando sesion");
-            dialog.setVisible(true);
-
-        }
-
-        @Override
-        protected Object doInBackground() throws Exception {
-
-            iniciarSesion();
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        }
-
-        public void dispose() {
-            frame.dispose();
-
-        }
-    }
+    
 
 
 
@@ -255,5 +248,6 @@ public class LoginGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JLabel loadingLabel;
     // End of variables declaration//GEN-END:variables
 }

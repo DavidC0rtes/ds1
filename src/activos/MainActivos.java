@@ -30,9 +30,9 @@ public class MainActivos extends javax.swing.JPanel {
     	agregarTran = new TransformadorPanel(DB);
     	
         initComponents();
-        mainTabbedPane.add(listaSubPanel, "Lista de subestacions");
+        mainTabbedPane.add(listaSubPanel, "Lista de subestaciones");
         mainTabbedPane.add(agregarSub, "Agregar subestacion");
-        mainTabbedPane.add(listaTran, "Lista de subestaciones");
+        mainTabbedPane.add(listaTran, "Lista de transformadores");
         mainTabbedPane.add(agregarTran, "Agregar transformador");
     }
     

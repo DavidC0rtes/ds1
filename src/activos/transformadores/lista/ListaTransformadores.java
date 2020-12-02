@@ -1,8 +1,13 @@
 package activos.transformadores.lista;
 
 import javax.swing.table.DefaultTableModel;
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import misc.TableCellListener;
 
 import db.JDBCConnection;
+import misc.TableCellListener;
 
 /**
  *
@@ -24,6 +29,13 @@ public class ListaTransformadores extends javax.swing.JPanel {
         
     }
     
+    private boolean isCellEditable(int row, int col) {
+    	if (col == 0) {
+    		return false;
+    	}
+    	return true;
+    }
+    
     private void setGenericModel() {
     	tablaTransfor.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
@@ -32,10 +44,24 @@ public class ListaTransformadores extends javax.swing.JPanel {
                     {null, null, null, null},
                     {null, null, null, null}
                 },
+                
                 new String [] {
                     "Serial", "Capacidad (KWh)", "Activo"
-                }
-            ));
+                }));
+    	
+    	Action action = new AbstractAction() {
+			public void actionPerformed(ActionEvent e) {
+				TableCellListener tcl = (TableCellListener) e.getSource();
+				if (isCellEditable(tcl.getRow(), tcl.getColumn())) {
+					modelo.updateData(
+							tcl.getColumn(),
+							String.valueOf(tablaTransfor.getValueAt(tcl.getRow(), 0)),
+							String.valueOf(tcl.getNewValue()));
+				}
+				
+			}
+    	};
+    	TableCellListener tcl = new TableCellListener(tablaTransfor, action);
     }
     private void setComboOptions() {
     	String[] options = modelo.getSubes().toArray(new String[0]);
@@ -85,7 +111,15 @@ public class ListaTransformadores extends javax.swing.JPanel {
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tablaTransfor);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
