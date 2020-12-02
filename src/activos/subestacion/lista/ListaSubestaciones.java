@@ -78,16 +78,16 @@ public class ListaSubestaciones extends javax.swing.JPanel {
         
         tablaSubs.setModel(modeloTabla);
         
-		/*
-		 * Action action = new AbstractAction() { public void
-		 * actionPerformed(ActionEvent e) { TableCellListener tcl = (TableCellListener)
-		 * e.getSource(); if (isCellEditable(tcl.getRow(), tcl.getColumn())) {
-		 * modelo.updateData( tcl.getColumn(),
-		 * String.valueOf(tablaSubs.getValueAt(tcl.getRow(), 0)),
-		 * String.valueOf(tcl.getNewValue())); modeloTabla.fireTableDataChanged(); }
-		 * 
-		 * } }; TableCellListener tcl = new TableCellListener(tablaSubs, action);
-		 */
+		
+		  Action action = new AbstractAction() { public void
+		  actionPerformed(ActionEvent e) { TableCellListener tcl = (TableCellListener)
+		  e.getSource(); if (isCellEditable(tcl.getRow(), tcl.getColumn())) {
+		  modelo.updateData( tcl.getColumn(),
+		  String.valueOf(tablaSubs.getValueAt(tcl.getRow(), 0)),
+		  String.valueOf(tcl.getNewValue())); modeloTabla.fireTableDataChanged(); }
+		  
+		  } }; TableCellListener tcl = new TableCellListener(tablaSubs, action);
+		 
         
     }
     
