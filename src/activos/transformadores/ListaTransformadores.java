@@ -1,23 +1,33 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package activos.transformadores;
+
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author david
  */
 public class ListaTransformadores extends javax.swing.JPanel {
-
+	
+	private ModeloListaTran modelo = new ModeloListaTran();
+	private DefaultTableModel modeloTabla;
     /**
      * Creates new form ListaTransformadores
      */
     public ListaTransformadores() {
         initComponents();
+        tablaTransfor.setVisible(false);
+        setComboOptions();
+        
     }
+    
 
+    private void setComboOptions() {
+    	String[] options = modelo.getSubes().toArray(new String[0]);
+    	comboSubes.removeAllItems();
+    	for (String s : options) {
+    		comboSubes.addItem(s);
+    	}
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,25 +38,56 @@ public class ListaTransformadores extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        comboSubes = new javax.swing.JComboBox<>();
+        consultarBtn = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaTransfor = new javax.swing.JTable();
 
         jLabel1.setFont(new java.awt.Font("SF Pro Rounded", 0, 18)); // NOI18N
-        jLabel1.setText("Lista de transformadores");
+        jLabel1.setText("Escoja una subestación");
 
-        jComboBox1.setFont(new java.awt.Font("SF Pro Text", 0, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.setToolTipText("Escoja una subestación");
+        comboSubes.setFont(new java.awt.Font("SF Pro Text", 0, 14)); // NOI18N
+        comboSubes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboSubes.setToolTipText("Escoja una subestación");
+
+        consultarBtn.setFont(new java.awt.Font("SF Pro Rounded", 0, 14)); // NOI18N
+        consultarBtn.setText("Consultar");
+        consultarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consultarBtnActionPerformed(evt);
+            }
+        });
+
+        tablaTransfor.setFont(new java.awt.Font("SF Pro Rounded", 0, 14)); // NOI18N
+        tablaTransfor.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tablaTransfor);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(128, 128, 128)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 223, Short.MAX_VALUE)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(161, 161, 161))
+                .addGap(80, 80, 80)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(comboSubes, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(consultarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(118, 118, 118))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(70, 70, 70)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 702, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(61, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -54,13 +95,38 @@ public class ListaTransformadores extends javax.swing.JPanel {
                 .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(618, Short.MAX_VALUE))
+                    .addComponent(comboSubes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(consultarBtn)
+                .addGap(28, 28, 28)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(51, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void consultarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarBtnActionPerformed
+        
+    	((DefaultTableModel) tablaTransfor.getModel()).setRowCount(0);
+    	
+    	
+    	DefaultTableModel test = new DefaultTableModel(modelo.convertData(String.valueOf(comboSubes.getSelectedItem())),
+    			new String[] {"Serial", "Capacidad (KWh)", "Activo"} );
+    	
+    	tablaTransfor.setModel(test);
+		
+    	
+    	((DefaultTableModel) tablaTransfor.getModel()).fireTableDataChanged();
+    	
+    	if (tablaTransfor.isVisible() == false) {
+            tablaTransfor.setVisible(true);
+        }
+    }//GEN-LAST:event_consultarBtnActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> comboSubes;
+    private javax.swing.JButton consultarBtn;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tablaTransfor;
     // End of variables declaration//GEN-END:variables
 }

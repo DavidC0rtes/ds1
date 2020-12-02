@@ -11,6 +11,7 @@ import com.formdev.flatlaf.FlatLightLaf;
 
 import activos.subestacion.ListaSubestaciones;
 import activos.subestacion.SubestacionPanel;
+import activos.transformadores.ListaTransformadores;
 
 /**
  *
@@ -19,6 +20,7 @@ import activos.subestacion.SubestacionPanel;
 public class MainActivos extends javax.swing.JPanel {
 	private SubestacionPanel agregarSub;
 	private final ListaSubestaciones listaSubPanel = new ListaSubestaciones();
+	private ListaTransformadores listaTran = new ListaTransformadores();
     /**
      * Creates new form MainSubestacion
      */
@@ -27,6 +29,7 @@ public class MainActivos extends javax.swing.JPanel {
         initComponents();
         mainTabbedPane.add(listaSubPanel, "Lista de subestacions");
         mainTabbedPane.add(agregarSub, "Agregar subestacion");
+        mainTabbedPane.add(listaTran, "Lista de subestaciones");
     }
     
     public void lightMode() {
