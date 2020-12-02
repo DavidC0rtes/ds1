@@ -33,12 +33,12 @@ public class ListaSubestaciones extends javax.swing.JPanel {
         initComponents();
         setTable();
         rowSorterSube  = new TableRowSorter<>(tablaSubs.getModel());
-        TestTableSortFilter();
+        TestTableSortFilter(rowSorterSube);
     }
     
     
-    private void TestTableSortFilter() {
-    	tablaSubs.setRowSorter(rowSorterSube);
+    private void TestTableSortFilter(TableRowSorter sorter) {
+    	tablaSubs.setRowSorter(sorter);
     	filterTxt.getDocument().addDocumentListener(new DocumentListener(){
 
     		@Override
@@ -46,9 +46,9 @@ public class ListaSubestaciones extends javax.swing.JPanel {
     			String text = filterTxt.getText();
 
     			if (text.trim().length() == 0) {
-    				rowSorterSube.setRowFilter(null);
+    				sorter.setRowFilter(null);
     			} else {
-    				rowSorterSube.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+    				sorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
     			}
     		}
 
@@ -57,9 +57,9 @@ public class ListaSubestaciones extends javax.swing.JPanel {
     			String text = filterTxt.getText();
 
     			if (text.trim().length() == 0) {
-    				rowSorterSube.setRowFilter(null);
+    				sorter.setRowFilter(null);
     			} else {
-    				rowSorterSube.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+    				sorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
     			}
     		}
 
@@ -97,6 +97,7 @@ public class ListaSubestaciones extends javax.swing.JPanel {
     	}
     	return true;
     }
+   
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -201,15 +202,17 @@ public class ListaSubestaciones extends javax.swing.JPanel {
 
 	private void refreshBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshBtnActionPerformed
 		
-    	modeloTabla.setRowCount(0);
+    	//modeloTabla.setRowCount(0);
     	
-    	
+    	//setTable();
     	DefaultTableModel test = new DefaultTableModel(modelo.convertData(),
     			new String[] {"Identificador", "Nombre", "Responsable", "Ciudad", "Dirección", "En funcionamiento"} );
     	
     	tablaSubs.setModel(test);
 		
     	modeloTabla.fireTableDataChanged();
+    	
+        TestTableSortFilter(new TableRowSorter<>(tablaSubs.getModel()));
     
     }//GEN-LAST:event_refreshBtnActionPerformed
 
