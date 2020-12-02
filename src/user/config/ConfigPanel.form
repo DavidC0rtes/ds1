@@ -160,7 +160,7 @@
                     <Property name="columns" type="int" value="20"/>
                     <Property name="lineWrap" type="boolean" value="true"/>
                     <Property name="rows" type="int" value="5"/>
-                    <Property name="text" type="java.lang.String" value="Por favor ingrese la fecha y hora de inicio y final del mantenimiento en formato en formato descendente 1999-01-08T04:05:00    A&#xd1;OS-MES-DIA T HORAS24:MINUTOS:SEGUNDOS"/>
+                    <Property name="text" type="java.lang.String" value="Por favor ingrese la fecha y hora de inicio y final del mantenimiento el formato  ISO-8601    1999-01-08T04:05:00    A&#xd1;OS-MES-DIA T HORAS24:MINUTOS:SEGUNDOS"/>
                   </Properties>
                 </Component>
               </SubComponents>

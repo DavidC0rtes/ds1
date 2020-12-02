@@ -126,7 +126,7 @@ public class ConfigPanel extends javax.swing.JPanel {
         jTextArea2.setColumns(20);
         jTextArea2.setLineWrap(true);
         jTextArea2.setRows(5);
-        jTextArea2.setText("Por favor ingrese la fecha y hora de inicio y final del mantenimiento en formato en formato descendente 1999-01-08T04:05:00    AÑOS-MES-DIA T HORAS24:MINUTOS:SEGUNDOS");
+        jTextArea2.setText("Por favor ingrese la fecha y hora de inicio y final del mantenimiento el formato  ISO-8601    1999-01-08T04:05:00    AÑOS-MES-DIA T HORAS24:MINUTOS:SEGUNDOS");
         jScrollPane1.setViewportView(jTextArea2);
 
         panelConfigMantenimiento.add(jScrollPane1);
