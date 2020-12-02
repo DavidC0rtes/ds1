@@ -3,7 +3,7 @@ package activos.subestacion;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
+ * Vista de la lista de subestaciones.
  * @author david
  */
 public class ListaSubestaciones extends javax.swing.JPanel {
@@ -14,11 +14,17 @@ public class ListaSubestaciones extends javax.swing.JPanel {
     public ListaSubestaciones() {
     	modelo = new ModeloLista();
         initComponents();
-        
-        modeloTabla = new DefaultTableModel(
+        setTable();
+    }
+    
+    
+    private void setTable() {
+    	modeloTabla = new DefaultTableModel(
         		modelo.convertData(),
-        		new String[] {"ID", "Responsable", "Ciudad", "Dirección", "En funcionamiento"}
+        		new String[] {"Nombre", "Responsable", "Ciudad", "Dirección", "En funcionamiento"}
         		);
+        
+        tablaSubs.setModel(modeloTabla);
     }
 
     /** This method is called from within the constructor to
@@ -47,7 +53,7 @@ public class ListaSubestaciones extends javax.swing.JPanel {
                 {null, null, null, null, null}
             },
             new String [] {
-                "ID", "Responsable", "Ciudad", "Dirección", "En funcionamiento"
+                "Nombre", "Responsable", "Ciudad", "Dirección", "En funcionamiento"
             }
         ) {
             Class[] types = new Class [] {
@@ -104,11 +110,18 @@ public class ListaSubestaciones extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    @SuppressWarnings("serial")
+
 	private void refreshBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshBtnActionPerformed
-    	tablaSubs.setModel(new DefaultTableModel(0,5));
-    	tablaSubs.setModel(modeloTabla);
+		
+    	modeloTabla.setRowCount(0);
     	
+    	
+    	DefaultTableModel test = new DefaultTableModel(modelo.convertData(),new String[] {"Nombre", "Responsable", "Ciudad", "Dirección", "En funcionamiento"} );
+    	
+    	tablaSubs.setModel(test);
+		
+    	modeloTabla.fireTableDataChanged();
+    
     }//GEN-LAST:event_refreshBtnActionPerformed
 
 

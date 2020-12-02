@@ -6,7 +6,8 @@ import com.formdev.flatlaf.FlatLightLaf;
 
 import activos.ControlSubestacion;
 
-import java.util.ArrayList;
+import java.util.*;
+
 import javax.swing.*;
 
 /**
@@ -22,12 +23,14 @@ public class SubestacionPanel extends javax.swing.JPanel {
      * Creates new form SubestacionPanel
      */
     public SubestacionPanel() {
+
         initComponents();
         Components.add(text_encargado);
         Components.add(text_ciudad);
         Components.add(text_direccion);
+        Components.add(nombreTxt);
         changeBorders(Components);
-        initComponents();
+        //initComponents();
     }
     public void lightMode() {
         FlatLightLaf.install();
@@ -69,96 +72,93 @@ public class SubestacionPanel extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         combo_estado = new javax.swing.JComboBox<>();
         btn_registro = new javax.swing.JButton();
+        nombreTxt = new javax.swing.JTextField();
+        nombreLabel = new javax.swing.JLabel();
 
-        Title.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        Title.setText("Adicion de nuevas subestaciones de energia");
+        setLayout(null);
 
-        jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 12)); // NOI18N
+        Title.setFont(new java.awt.Font("SF Pro Rounded", 1, 18)); // NOI18N
+        Title.setText("Adición de nuevas subestaciones de energía");
+        add(Title);
+        Title.setBounds(247, 34, 370, 23);
+
+        jLabel3.setFont(new java.awt.Font("SF Pro Rounded", 0, 14)); // NOI18N
         jLabel3.setText("Documento del encargado");
+        add(jLabel3);
+        jLabel3.setBounds(114, 86, 153, 18);
 
+        text_encargado.setFont(new java.awt.Font("SF Pro Rounded", 0, 14)); // NOI18N
         text_encargado.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        add(text_encargado);
+        text_encargado.setBounds(114, 106, 321, 30);
 
-        jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("SF Pro Rounded", 0, 14)); // NOI18N
         jLabel4.setText("Ciudad donde se encuentra la subestacion");
+        add(jLabel4);
+        jLabel4.setBounds(114, 166, 247, 18);
 
+        text_ciudad.setFont(new java.awt.Font("SF Pro Rounded", 0, 14)); // NOI18N
         text_ciudad.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        add(text_ciudad);
+        text_ciudad.setBounds(114, 189, 321, 30);
 
-        jLabel5.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("SF Pro Rounded", 0, 14)); // NOI18N
         jLabel5.setText("Direccion donde se encuentra la subestacion");
+        add(jLabel5);
+        jLabel5.setBounds(114, 259, 259, 18);
 
+        text_direccion.setFont(new java.awt.Font("SF Pro Rounded", 0, 14)); // NOI18N
         text_direccion.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        text_direccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                text_direccionActionPerformed(evt);
+            }
+        });
+        add(text_direccion);
+        text_direccion.setBounds(114, 281, 330, 30);
 
-        jLabel6.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("SF Pro Rounded", 0, 14)); // NOI18N
         jLabel6.setText("Estado de la subestacion");
+        add(jLabel6);
+        jLabel6.setBounds(515, 84, 146, 18);
 
         combo_estado.setFont(new java.awt.Font("Lucida Grande", 0, 12)); // NOI18N
         combo_estado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
+        add(combo_estado);
+        combo_estado.setBounds(515, 106, 240, 30);
 
-        btn_registro.setFont(new java.awt.Font("Lucida Grande", 0, 12)); // NOI18N
-        btn_registro.setText("Registrar Subestacion");
+        btn_registro.setFont(new java.awt.Font("SF Pro Rounded", 0, 14)); // NOI18N
+        btn_registro.setText("Registrar Subestación");
         btn_registro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_registroActionPerformed(evt);
             }
         });
+        add(btn_registro);
+        btn_registro.setBounds(359, 389, 180, 28);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(114, 114, 114)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(200, 200, 200)
-                        .addComponent(Title))
-                    .addComponent(jLabel4)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(267, 267, 267)
-                        .addComponent(btn_registro))
-                    .addComponent(text_direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(text_ciudad, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(text_encargado, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(80, 80, 80)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(combo_estado, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(115, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(Title)
-                .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel6))
-                .addGap(5, 5, 5)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(text_encargado, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(combo_estado, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addComponent(jLabel4)
-                .addGap(5, 5, 5)
-                .addComponent(text_ciudad, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
-                .addComponent(jLabel5)
-                .addGap(5, 5, 5)
-                .addComponent(text_direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(78, 78, 78)
-                .addComponent(btn_registro)
-                .addContainerGap(257, Short.MAX_VALUE))
-        );
+        nombreTxt.setFont(new java.awt.Font("SF Pro Rounded", 0, 14)); // NOI18N
+        add(nombreTxt);
+        nombreTxt.setBounds(515, 188, 257, 30);
+
+        nombreLabel.setFont(new java.awt.Font("SF Pro Rounded", 0, 14)); // NOI18N
+        nombreLabel.setText("Nombre descriptivo");
+        add(nombreLabel);
+        nombreLabel.setBounds(515, 168, 206, 18);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_registroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_registroActionPerformed
-
-        switch (controlador.createNewSubestacion(Components, String.valueOf(text_encargado.getText()), text_ciudad.getText(), text_direccion.getText(), String.valueOf(combo_estado.getSelectedItem()))) {
+    	
+    	
+    	String[] datos = {
+    			text_encargado.getText(),
+    			text_ciudad.getText(),
+    			text_direccion.getText(),
+    			String.valueOf(combo_estado.getSelectedItem()),
+    			nombreTxt.getText()
+    	};
+    	
+        switch (controlador.createNewSubestacion(Components, datos)) {
             case 0:
                 JOptionPane.showMessageDialog(this, "Fallo la creacion de la nueva subestacion");
                 break;
@@ -174,6 +174,10 @@ public class SubestacionPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btn_registroActionPerformed
 
+    private void text_direccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text_direccionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_text_direccionActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Title;
@@ -183,6 +187,8 @@ public class SubestacionPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel nombreLabel;
+    private javax.swing.JTextField nombreTxt;
     private javax.swing.JTextField text_ciudad;
     private javax.swing.JTextField text_direccion;
     private javax.swing.JTextField text_encargado;
