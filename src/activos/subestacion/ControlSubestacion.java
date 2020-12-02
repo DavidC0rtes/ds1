@@ -6,7 +6,6 @@ import java.util.HashMap;
 import javax.swing.JTextField;
 
 import db.JDBCConnection;
-import deprecated.ds_bd;
 
 /**
  *
