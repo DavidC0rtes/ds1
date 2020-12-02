@@ -214,7 +214,7 @@ public class LoginGUI extends javax.swing.JFrame {
 
         public LoginProgresBar() {
             this.execute();
-            frame = new JFrame("Login");
+            frame = new JFrame();
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             pane = new JOptionPane();
             pane.setMessage("Iniciando sesión, por favor espere");
