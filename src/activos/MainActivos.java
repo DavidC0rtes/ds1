@@ -1,35 +1,39 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package activos;
 
 import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.FlatLightLaf;
 
-import activos.subestacion.ListaSubestaciones;
 import activos.subestacion.SubestacionPanel;
-import activos.transformadores.ListaTransformadores;
+import activos.subestacion.lista.ListaSubestaciones;
+import activos.transformadores.TransformadorPanel;
+import activos.transformadores.lista.ListaTransformadores;
+import db.JDBCConnection;
 
 /**
  *
  * @author david
  */
 public class MainActivos extends javax.swing.JPanel {
+	public JDBCConnection DB = new JDBCConnection();
 	private SubestacionPanel agregarSub;
-	private final ListaSubestaciones listaSubPanel = new ListaSubestaciones();
-	private ListaTransformadores listaTran = new ListaTransformadores();
+	private final ListaSubestaciones listaSubPanel;
+	private ListaTransformadores listaTran;
+	private TransformadorPanel agregarTran;
     /**
      * Creates new form MainSubestacion
      */
     public MainActivos() {
-    	agregarSub = new SubestacionPanel();
+    	agregarSub = new SubestacionPanel(DB);
+    	listaSubPanel = new ListaSubestaciones(DB);
+    	listaTran = new ListaTransformadores(DB);
+    	agregarTran = new TransformadorPanel(DB);
+    	
         initComponents();
         mainTabbedPane.add(listaSubPanel, "Lista de subestacions");
         mainTabbedPane.add(agregarSub, "Agregar subestacion");
         mainTabbedPane.add(listaTran, "Lista de subestaciones");
+        mainTabbedPane.add(agregarTran, "Agregar transformador");
     }
     
     public void lightMode() {

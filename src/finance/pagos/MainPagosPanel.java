@@ -84,7 +84,7 @@ public class MainPagosPanel extends javax.swing.JPanel {
         mainPanel.setMinimumSize(new java.awt.Dimension(858, 654));
         mainPanel.setPreferredSize(new java.awt.Dimension(858, 654));
 
-        tituloLabel.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        tituloLabel.setFont(new java.awt.Font("SF Pro Text", 1, 24)); // NOI18N
         tituloLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         tituloLabel.setText("Escoja que tipo de pago va a registrar");
 
@@ -107,6 +107,7 @@ public class MainPagosPanel extends javax.swing.JPanel {
             }
         });
 
+        pagoDirectoLbl.setFont(new java.awt.Font("SF Pro Text", 1, 12)); // NOI18N
         pagoDirectoLbl.setText("Pago directo");
 
         pagoSucursalBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/pago-sucural.png"))); // NOI18N
@@ -126,6 +127,7 @@ public class MainPagosPanel extends javax.swing.JPanel {
             }
         });
 
+        sucursalLbl.setFont(new java.awt.Font("SF Pro Text", 1, 12)); // NOI18N
         sucursalLbl.setText("Pago en sucursal");
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
@@ -187,7 +189,7 @@ public class MainPagosPanel extends javax.swing.JPanel {
             }
         });
 
-        topLabel.setFont(new java.awt.Font("DejaVu Sans", 0, 11)); // NOI18N
+        topLabel.setFont(new java.awt.Font("SF Pro Rounded", 0, 11)); // NOI18N
         topLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         topLabel.setText("Registro de pagos");
 

@@ -1,4 +1,4 @@
-package activos.subestacion;
+package activos.subestacion.lista;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,8 +10,8 @@ public class ModeloLista {
 	private JDBCConnection DB;
 
 	
-	public ModeloLista() {
-		DB = new JDBCConnection();
+	public ModeloLista(JDBCConnection conn) {
+		DB = conn;
 	}
 	
 	private ArrayList<ArrayList<String>> getAll() {
@@ -23,6 +23,7 @@ public class ModeloLista {
 			if(rs.isBeforeFirst()) {
 				while(rs.next()) {
 					ArrayList<String> row = new ArrayList<String>();
+					row.add(rs.getString("id"));
 					row.add(rs.getString("nombre"));
 					row.add(rs.getString("id_jefe_subestacion"));
 					row.add(rs.getString("ciudad"));
@@ -40,7 +41,7 @@ public class ModeloLista {
 	
 	public Object[][] convertData() {
 		ArrayList<ArrayList<String>> datosSub = getAll();
-		Object[][] toReturn = new Object[datosSub.size()][5];
+		Object[][] toReturn = new Object[datosSub.size()][6];
 		
 		for (int row=0; row<datosSub.size(); row++) {
 			toReturn[row][0] = datosSub.get(row).get(0);
@@ -48,6 +49,7 @@ public class ModeloLista {
 			toReturn[row][2] = datosSub.get(row).get(2);
 			toReturn[row][3] = datosSub.get(row).get(3);
 			toReturn[row][4] = datosSub.get(row).get(4);
+			toReturn[row][5] = datosSub.get(row).get(5);
 		}
 		
 		return toReturn;

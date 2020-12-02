@@ -82,21 +82,23 @@ public class RegisterPanel extends javax.swing.JPanel {
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 640, -1, -1));
 
-        jLabel8.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("SF Pro Rounded", 1, 18)); // NOI18N
         jLabel8.setText("Registro de nuevos usuarios");
         jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 40, -1, -1));
 
-        jLabel10.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("SF Pro Rounded", 0, 14)); // NOI18N
         jLabel10.setText("Primer apellido del usuario");
         jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, -1, -1));
 
-        jLabel11.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("SF Pro Rounded", 0, 14)); // NOI18N
         jLabel11.setText("Correo");
         jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 100, -1, -1));
 
+        jTextField1.setFont(new java.awt.Font("SF Pro Rounded", 0, 14)); // NOI18N
         jTextField1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel3.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 280, 240, 30));
 
+        jTextField2.setFont(new java.awt.Font("SF Pro Rounded", 0, 14)); // NOI18N
         jTextField2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,17 +107,19 @@ public class RegisterPanel extends javax.swing.JPanel {
         });
         jPanel3.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 120, 240, 30));
 
-        jLabel12.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("SF Pro Rounded", 0, 14)); // NOI18N
         jLabel12.setText("Numero de documento");
         jPanel3.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, -1, -1));
 
-        jLabel13.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("SF Pro Rounded", 0, 14)); // NOI18N
         jLabel13.setText("Primer nombre del usuario");
         jPanel3.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 180, -1, -1));
 
+        jTextField3.setFont(new java.awt.Font("SF Pro Rounded", 0, 14)); // NOI18N
         jTextField3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel3.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, 240, 30));
 
+        jTextField4.setFont(new java.awt.Font("SF Pro Rounded", 0, 14)); // NOI18N
         jTextField4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jTextField4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,19 +128,19 @@ public class RegisterPanel extends javax.swing.JPanel {
         });
         jPanel3.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 240, 30));
 
-        jLabel14.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("SF Pro Rounded", 0, 14)); // NOI18N
         jLabel14.setText("Rol");
         jPanel3.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 180, -1, -1));
 
-        jLabel15.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("SF Pro Rounded", 0, 14)); // NOI18N
         jLabel15.setText("Contraseña");
         jPanel3.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 260, -1, -1));
 
-        jLabel17.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel17.setFont(new java.awt.Font("SF Pro Rounded", 0, 14)); // NOI18N
         jLabel17.setText("Registrar usuario");
         jPanel3.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 430, -1, -1));
 
-        registerBtn.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        registerBtn.setFont(new java.awt.Font("SF Pro Rounded", 0, 14)); // NOI18N
         registerBtn.setForeground(java.awt.Color.darkGray);
         registerBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,8 +150,11 @@ public class RegisterPanel extends javax.swing.JPanel {
         jPanel3.add(registerBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 420, 160, 40));
         registerBtn.addMouseListener(escuchaM);
 
+        jComboBox1.setFont(new java.awt.Font("SF Pro Rounded", 0, 14)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Gerente", "Operador" }));
         jPanel3.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 200, 240, 30));
+
+        passwordTxt.setFont(new java.awt.Font("SF Pro Rounded", 0, 14)); // NOI18N
         jPanel3.add(passwordTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 280, 240, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

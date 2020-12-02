@@ -132,6 +132,7 @@ public class ConsultaPanel extends javax.swing.JPanel {
         jPanel3.add(jScrollPane1);
         jScrollPane1.setBounds(50, 120, 780, 480);
 
+        buscador.setFont(new java.awt.Font("SF Pro Rounded", 0, 14)); // NOI18N
         buscador.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 buscadorKeyPressed(evt);
@@ -141,10 +142,11 @@ public class ConsultaPanel extends javax.swing.JPanel {
         buscador.setBounds(90, 70, 670, 30);
 
         jLabel2.setBackground(javax.swing.UIManager.getDefaults().getColor("TextField.background"));
-        jLabel2.setFont(new java.awt.Font("Fira Code", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("SF Pro Rounded", 0, 18)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Buscador");
         jPanel3.add(jLabel2);
-        jLabel2.setBounds(360, 40, 72, 18);
+        jLabel2.setBounds(360, 40, 72, 23);
 
         add(jPanel3, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
@@ -188,5 +190,5 @@ public class ConsultaPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablaUsuarios;
-	// End of variables declaration//GEN-END:variables
+    // End of variables declaration//GEN-END:variables
 }
