@@ -14,8 +14,11 @@ import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.ui.FlatTableUI;
-import java.awt.event.ActionListener;
+import finance.contratos.ConsultaPanelContratos;
 import misc.TableCellListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 /**
  *
  * @author user
@@ -24,6 +27,20 @@ public class ConsultaPanelCliente extends javax.swing.JPanel {
     private final ConsultaModeloCliente modelo = new ConsultaModeloCliente();
     private final DefaultTableModel mDefaultTableMoadelCliente = new DefaultTableModel();
     private final TableRowSorter<TableModel> rowSorterCliente;
+    
+    private final MouseAdapter listener = new MouseAdapter(){
+        @Override
+        public void mouseClicked(MouseEvent e){
+            boolean flag = SwingUtilities.isRightMouseButton(e);
+            if(flag){
+                flag = false;
+                ConsultaPanelContratos consultaPanelContratos = new ConsultaPanelContratos();
+                JOptionPane.showMessageDialog(tablaClientes, consultaPanelContratos, "Contrato", JOptionPane.PLAIN_MESSAGE, null);
+            }
+            else{
+            }
+        }
+    };
     /**
      * Creates new form ConsultaPanelCliente
      */
@@ -49,7 +66,7 @@ public class ConsultaPanelCliente extends javax.swing.JPanel {
     public void noModificable(){
         JOptionPane.showMessageDialog(this, "Este campo no es modificable","Error al tratar de modificar el campo",1);
     }
-    
+
     public void TestTableSortFilter() {
 
 	tablaClientes.setRowSorter(rowSorterCliente);
@@ -234,7 +251,11 @@ public class ConsultaPanelCliente extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        construirTabla(jComboBox1.getSelectedIndex());
+        if(jComboBox1.getSelectedIndex() != 2){
+            construirTabla(jComboBox1.getSelectedIndex());
+        }else{
+            construirTabla(3);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -275,7 +296,7 @@ public class ConsultaPanelCliente extends javax.swing.JPanel {
         // TODO add your handling code here:
         construirTabla(2);
     }//GEN-LAST:event_jButton2ActionPerformed
-    
+  
     public void construirTabla(int flag) {
 	String[] titlesInfo = new String[8];
         titlesInfo[0] = "Tipo de cliente";
@@ -292,6 +313,7 @@ public class ConsultaPanelCliente extends javax.swing.JPanel {
 	tablaClientes.getTableHeader().setOpaque(true);
 	tablaClientes.setRowHeight(25);
 	tablaClientes.setCellSelectionEnabled(true);
+        tablaClientes.addMouseListener(listener);
 	Action action = new AbstractAction() {
 		public void actionPerformed(ActionEvent e) 
                 {
