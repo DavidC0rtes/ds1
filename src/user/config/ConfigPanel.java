@@ -11,20 +11,21 @@ import com.formdev.flatlaf.FlatLightLaf;
 import user.Dashboard;
 
 import javax.swing.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 
 /**
  * @author camilo
  */
 public class ConfigPanel extends javax.swing.JPanel {
-    private ConfigControl configControl;
 
     /**
      * Creates new form ConfigPanel
      */
     public ConfigPanel() {
-        configControl = new ConfigControl();
         initComponents();
-        configControl.updateData();
+        buttonGurardarCambios.setVisible(false);
+        panelConfigMantenimiento.setVisible(false);
     }
 
     /**
@@ -41,8 +42,19 @@ public class ConfigPanel extends javax.swing.JPanel {
         icon = new javax.swing.JLabel();
         itemDarkMode = new javax.swing.JCheckBox();
         panelMantenimiento = new javax.swing.JPanel();
-        icon1 = new javax.swing.JLabel();
+        panelMantenimiento1 = new javax.swing.JPanel();
+        icon2 = new javax.swing.JLabel();
         itemMantenimiento = new javax.swing.JCheckBox();
+        buttonGurardarCambios = new javax.swing.JButton();
+        panelConfigMantenimiento = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea2 = new javax.swing.JTextArea();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        itemMantenimientoInicio = new javax.swing.JTextField();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        itemMantenimientoFinal = new javax.swing.JTextField();
 
         setLayout(new java.awt.GridLayout(3, 0));
 
@@ -66,18 +78,70 @@ public class ConfigPanel extends javax.swing.JPanel {
 
         add(panelDarkMode);
 
-        panelMantenimiento.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 15, 30));
+        panelMantenimiento.setLayout(new java.awt.GridLayout(1, 0, 1, 0));
 
-        icon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/advertencia.png"))); // NOI18N
-        panelMantenimiento.add(icon1);
+        panelMantenimiento1.setLayout(null);
 
-        itemMantenimiento.setText("Mantenimiento del Sistema");
+        icon2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/advertencia.png"))); // NOI18N
+        panelMantenimiento1.add(icon2);
+        icon2.setBounds(15, 0, 32, 32);
+
+        itemMantenimiento.setText("Activar Mantenimiento del Sistema");
         itemMantenimiento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 itemMantenimientoActionPerformed(evt);
             }
         });
-        panelMantenimiento.add(itemMantenimiento);
+        panelMantenimiento1.add(itemMantenimiento);
+        itemMantenimiento.setBounds(62, 5, 247, 21);
+
+        buttonGurardarCambios.setText("Guardar Cambios");
+        buttonGurardarCambios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonGurardarCambiosActionPerformed(evt);
+            }
+        });
+        panelMantenimiento1.add(buttonGurardarCambios);
+        buttonGurardarCambios.setBounds(90, 80, 160, 60);
+
+        panelMantenimiento.add(panelMantenimiento1);
+
+        panelConfigMantenimiento.setLayout(new java.awt.GridLayout(4, 0));
+
+        jTextArea2.setColumns(20);
+        jTextArea2.setLineWrap(true);
+        jTextArea2.setRows(5);
+        jTextArea2.setText("Por favor ingrese la fecha y hora de inicio y final del mantenimiento en formato en formato descendente 1999-01-08T04:05:00    AÑOS-MES-DIA T HORAS:MINUTOS:SEGUNDOS\nHORA24:MINUTO:SEGUNDO");
+        jTextArea2.setWrapStyleWord(true);
+        jScrollPane1.setViewportView(jTextArea2);
+
+        panelConfigMantenimiento.add(jScrollPane1);
+
+        jPanel1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+
+        jLabel2.setText("Inicia");
+        jPanel1.add(jLabel2);
+
+        itemMantenimientoInicio.setColumns(30);
+        itemMantenimientoInicio.setText(ConfigControl.getStart().toString());
+        itemMantenimientoInicio.setToolTipText("1999-01-08 04:05:06");
+        jPanel1.add(itemMantenimientoInicio);
+
+        panelConfigMantenimiento.add(jPanel1);
+
+        jPanel3.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+
+        jLabel4.setText("Termina");
+        jPanel3.add(jLabel4);
+
+        itemMantenimientoFinal.setColumns(30);
+        itemMantenimientoFinal.setText(ConfigControl.getEnd().toString());
+        itemMantenimientoFinal.setToolTipText("1999-01-08 04:05:06");
+        jPanel3.add(itemMantenimientoFinal);
+
+        panelConfigMantenimiento.add(jPanel3);
+
+        panelMantenimiento.add(panelConfigMantenimiento);
 
         add(panelMantenimiento);
     }// </editor-fold>//GEN-END:initComponents
@@ -90,18 +154,48 @@ public class ConfigPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_itemDarkModeActionPerformed
 
     private void itemMantenimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMantenimientoActionPerformed
-       if(itemMantenimiento.isSelected()){
-           
-       }
+        if (itemMantenimiento.isSelected()){
+            panelConfigMantenimiento.setVisible(true);
+            buttonGurardarCambios.setVisible(true);
+
+        }else{
+            panelConfigMantenimiento.setVisible(false);
+            buttonGurardarCambios.setVisible(false);
+
+        }
+
     }//GEN-LAST:event_itemMantenimientoActionPerformed
 
+    private void buttonGurardarCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGurardarCambiosActionPerformed
+        try{
+            LocalDateTime mantenimientoInicio = LocalDateTime.parse( itemMantenimientoInicio.getText());
+            LocalDateTime mantenimientoFinal = LocalDateTime.parse( itemMantenimientoFinal.getText());
+
+        }
+        catch (DateTimeParseException e){
+            JOptionPane.showMessageDialog(this, "Por favor introduzca una fecha valida");
+        }
+
+    }//GEN-LAST:event_buttonGurardarCambiosActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buttonGurardarCambios;
     private javax.swing.JLabel icon;
-    private javax.swing.JLabel icon1;
+    private javax.swing.JLabel icon2;
     public javax.swing.JCheckBox itemDarkMode;
     private javax.swing.JCheckBox itemMantenimiento;
+    private javax.swing.JTextField itemMantenimientoFinal;
+    private javax.swing.JTextField itemMantenimientoInicio;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JPanel panelConfigMantenimiento;
     private javax.swing.JPanel panelDarkMode;
     public javax.swing.JPanel panelMantenimiento;
+    public javax.swing.JPanel panelMantenimiento1;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,6 +5,12 @@
  */
 package user.mantenimiento;
 
+import user.LoginGUI;
+import user.config.ConfigControl;
+
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 
 import java.time.Duration;
@@ -16,12 +22,62 @@ import java.util.Date;
  */
 public class Mantenimiento extends javax.swing.JFrame {
 private String mantenimientoHMS;
+private JFrame window;
+private ConfigControl configControl;
+private Timer verificarMantenimiento;
     /**
      * Creates new form Mantenimiento
      */
     public Mantenimiento(String mantenimientoHMS) {
+
        this.mantenimientoHMS = mantenimientoHMS;
         initComponents();
+        setTitle("SiGe | Mantenimiento en progreso");
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        window = this;
+        configControl = new ConfigControl();
+        updateUIEverySec();
+
+    }
+    private void updateUIEverySec(){
+        Timer timer = new Timer(1000, new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ConfigControl.uptimeTime();
+                mantenimientoHMS = ConfigControl.getHMS();
+                updateUI();
+            }
+        });
+
+         verificarMantenimiento = new Timer(30000, new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                configControl.updateData();
+                if (!configControl.isActive()){
+                    JOptionPane.showMessageDialog(null, "El mantenimiento se ha terminado");
+                    timer.stop();
+                    new LoginGUI().setVisible(true);
+                    killMySelf();
+
+                }
+            }
+        });
+
+        timer.start();
+        verificarMantenimiento.start();
+
+    }
+
+    private void killMySelf(){
+        verificarMantenimiento.stop();
+        window.dispose();
+
+    }
+    private void updateUI(){
+        jLabel1.setText(mantenimientoHMS);
+        jPanel2.revalidate();
+        jPanel2.repaint();
     }
 
     /**
@@ -89,9 +145,9 @@ private String mantenimientoHMS;
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    public javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    public javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables

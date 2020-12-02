@@ -6,10 +6,10 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 
 public class DashboardControl {
-    private  JDBCConnection DB;
-    private int expectedPayments = 0;
-    private int todayPayments = 0;
-    private String date;
+    private  static JDBCConnection DB;
+    private static int expectedPayments = 0;
+    private static int todayPayments = 0;
+    private static String date;
 
 
     public DashboardControl(){
@@ -18,7 +18,7 @@ public class DashboardControl {
     }
 
 
-    public  void  updateData(){
+    public static void  updateData(){
         date = LocalDate.now().toString();
         //Actualizar los pagos realizados hoy
         ResultSet resultSet = DB.getRecords("SELECT * FROM pagos");
