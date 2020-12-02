@@ -143,7 +143,7 @@ public class LoginGUI extends javax.swing.JFrame {
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, -1, -1));
 
         loadingLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/loading.gif"))); // NOI18N
-        jPanel2.add(loadingLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 460, 80, 60));
+        jPanel2.add(loadingLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 460, 60, 60));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, 490, 600));
 
@@ -151,9 +151,10 @@ public class LoginGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        loadingLabel.setVisible(true);
-        revalidate();
-        iniciarSesion();
+        
+        new LoginProgresBar();
+    	//iniciarSesion();
+        //loadingLabel.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -234,7 +235,39 @@ public class LoginGUI extends javax.swing.JFrame {
     }
 
     
+    private class LoginProgresBar extends SwingWorker {
 
+        private final JFrame frame;
+        private final JOptionPane pane;
+        private final JProgressBar jProgressBar;
+        private JDialog dialog;
+
+        public LoginProgresBar() {
+            this.execute();
+            frame = new JFrame();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            pane = new JOptionPane();
+            pane.setMessage("Iniciando sesión, por favor espere");
+            jProgressBar = new JProgressBar(1, 100);
+            jProgressBar.setIndeterminate(true);
+            pane.add(jProgressBar, 1);
+            dialog = pane.createDialog(frame, "Iniciando sesion");
+            dialog.setVisible(true);
+
+        }
+
+        @Override
+        protected Object doInBackground() throws Exception {
+
+            iniciarSesion();
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        public void dispose() {
+            frame.dispose();
+
+        }
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
