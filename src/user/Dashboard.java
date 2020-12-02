@@ -85,7 +85,7 @@ public class Dashboard extends javax.swing.JFrame {
         if (usuario.getIdRol() == 1){   //Administrador
             itemTitle2.setText("Lista de Usuarios");
             itemTitle3.setText("Registrar Usuarios");
-            
+            panelMenu.remove(itemPagos);
             panelMenu.remove(registerPayPanel);
         }
         if (usuario.getIdRol() == 2){   //Gerente
@@ -93,6 +93,7 @@ public class Dashboard extends javax.swing.JFrame {
             panelMenu.remove(itemListaUsuarios);
             panelMenu.remove(registerPayPanel);
             panelMenu.remove(itemSubestaciones);
+            panelMenu.remove(itemPagos);
             configPanel.remove(configPanel.panelMantenimiento);
 
         }
