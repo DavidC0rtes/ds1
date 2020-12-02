@@ -52,6 +52,14 @@ public class ModeloListaTran {
 		return toReturn;
 	}
 	
+	public void updateData(int col, String serial, String newData) {
+		String sql = col == 1 ? "update transformadores set capacidad=? where serial=?" : "update transformadores set estado=? where serial=?";
+		
+		
+		DB.updateRecord(sql, new String[] {newData,serial});
+		
+	}
+	
 	public ArrayList<String> getSubes() {
 		
 		

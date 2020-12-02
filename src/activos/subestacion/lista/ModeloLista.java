@@ -54,4 +54,30 @@ public class ModeloLista {
 		
 		return toReturn;
 	}
+	
+	public void updateData(int col, String id, String newData) {
+		String sql = "update subestaciones set ";
+		
+		switch (col) {
+		case 1:
+			sql += "nombre=?";
+			break;
+		case 2:
+			sql += "id_jefe_subestacion=?";
+			break;
+		case 3:
+			sql += "ciudad=?";
+			break;
+		case 4:
+			sql += "direccion=?";
+			break;
+		case 5:
+			sql += "estado=?";
+			break;
+		}
+		
+		sql += " where id=?";
+		DB.updateRecord(sql, new String[] {newData,id});
+		
+	}
 }

@@ -5,11 +5,17 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
 import db.JDBCConnection;
+
+import java.awt.event.ActionEvent;
+
+import javax.swing.AbstractAction;
+import javax.swing.Action;
 import javax.swing.DefaultRowSorter;
 import javax.swing.RowFilter;
-import javax.swing.RowSorter;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+
+import misc.TableCellListener;
 
 /**
  * Vista de la lista de subestaciones.
@@ -27,11 +33,12 @@ public class ListaSubestaciones extends javax.swing.JPanel {
         initComponents();
         setTable();
         rowSorterSube  = new TableRowSorter<>(tablaSubs.getModel());
-        TestTableSortFilter();
+        TestTableSortFilter(rowSorterSube);
     }
     
-    private void TestTableSortFilter() {
-    	tablaSubs.setRowSorter(rowSorterSube);
+    
+    private void TestTableSortFilter(TableRowSorter sorter) {
+    	tablaSubs.setRowSorter(sorter);
     	filterTxt.getDocument().addDocumentListener(new DocumentListener(){
 
     		@Override
@@ -39,9 +46,9 @@ public class ListaSubestaciones extends javax.swing.JPanel {
     			String text = filterTxt.getText();
 
     			if (text.trim().length() == 0) {
-    				rowSorterSube.setRowFilter(null);
+    				sorter.setRowFilter(null);
     			} else {
-    				rowSorterSube.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+    				sorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
     			}
     		}
 
@@ -50,9 +57,9 @@ public class ListaSubestaciones extends javax.swing.JPanel {
     			String text = filterTxt.getText();
 
     			if (text.trim().length() == 0) {
-    				rowSorterSube.setRowFilter(null);
+    				sorter.setRowFilter(null);
     			} else {
-    				rowSorterSube.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+    				sorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
     			}
     		}
 
@@ -71,7 +78,26 @@ public class ListaSubestaciones extends javax.swing.JPanel {
         
         tablaSubs.setModel(modeloTabla);
         
+		
+		  Action action = new AbstractAction() { public void
+		  actionPerformed(ActionEvent e) { TableCellListener tcl = (TableCellListener)
+		  e.getSource(); if (isCellEditable(tcl.getRow(), tcl.getColumn())) {
+		  modelo.updateData( tcl.getColumn(),
+		  String.valueOf(tablaSubs.getValueAt(tcl.getRow(), 0)),
+		  String.valueOf(tcl.getNewValue())); modeloTabla.fireTableDataChanged(); }
+		  
+		  } }; TableCellListener tcl = new TableCellListener(tablaSubs, action);
+		 
+        
     }
+    
+    private boolean isCellEditable(int row, int col) {
+    	if (col == 0) {
+    		return false;
+    	}
+    	return true;
+    }
+   
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -131,19 +157,7 @@ public class ListaSubestaciones extends javax.swing.JPanel {
 
         filterTxt.setFont(new java.awt.Font("SF Pro Rounded", 0, 14)); // NOI18N
         filterTxt.setToolTipText("Filtrar información");
-        filterTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                filterTxtActionPerformed(evt);
-            }
-        });
-        filterTxt.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                filterTxtKeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                filterTxtKeyTyped(evt);
-            }
-        });
+
 
         jLabel2.setFont(new java.awt.Font("SF Pro Rounded", 0, 14)); // NOI18N
         jLabel2.setText("Filtrar:");
@@ -188,31 +202,20 @@ public class ListaSubestaciones extends javax.swing.JPanel {
 
 	private void refreshBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshBtnActionPerformed
 		
-    	modeloTabla.setRowCount(0);
+    	//modeloTabla.setRowCount(0);
     	
-    	
+    	//setTable();
     	DefaultTableModel test = new DefaultTableModel(modelo.convertData(),
     			new String[] {"Identificador", "Nombre", "Responsable", "Ciudad", "Dirección", "En funcionamiento"} );
     	
     	tablaSubs.setModel(test);
 		
     	modeloTabla.fireTableDataChanged();
+    	
+        TestTableSortFilter(new TableRowSorter<>(tablaSubs.getModel()));
     
     }//GEN-LAST:event_refreshBtnActionPerformed
 
-    private void filterTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filterTxtActionPerformed
-        
-    }//GEN-LAST:event_filterTxtActionPerformed
-
-    private void filterTxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_filterTxtKeyTyped
-        // TODO add your handling code here:
-        ((DefaultRowSorter) tablaSubs.getRowSorter()).setRowFilter(RowFilter.regexFilter("(?i)"+filterTxt.getText()));
-    }//GEN-LAST:event_filterTxtKeyTyped
-
-    private void filterTxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_filterTxtKeyPressed
-        // TODO add your handling code here:
-        ((DefaultRowSorter) tablaSubs.getRowSorter()).setRowFilter(RowFilter.regexFilter("(?i)"+filterTxt.getText()));
-    }//GEN-LAST:event_filterTxtKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
