@@ -29,7 +29,6 @@ public class ConsultaModelo {
 			    usuarios.add(resultSet.getString("num_documento"));
 			    usuarios.add(resultSet.getString("primer_nombre"));
 			    usuarios.add(resultSet.getString("primer_apellido"));
-			    usuarios.add(resultSet.getString("password"));
 			    usuarios.add(resultSet.getString("email"));
 			    usuarios.add(resultSet.getString("activo"));
 			    usuarios.add(resultSet.getString("id_rol"));
@@ -45,7 +44,7 @@ public class ConsultaModelo {
     public Object[][] obtenerMatrizData(){
         ArrayList<ArrayList<String>> data = returnData();
         String[][] dataInfo;
-        dataInfo = new String[data.size()][7];
+        dataInfo = new String[data.size()][6];
         for(int x = 0; x < data.size(); x++){
             dataInfo[x][0] = data.get(x).get(0);
             dataInfo[x][1] = data.get(x).get(1);
@@ -53,7 +52,6 @@ public class ConsultaModelo {
             dataInfo[x][3] = data.get(x).get(3);
             dataInfo[x][4] = data.get(x).get(4);
             dataInfo[x][5] = data.get(x).get(5);
-            dataInfo[x][6] = data.get(x).get(6);
         }
         return dataInfo;
     }
@@ -74,16 +72,16 @@ public class ConsultaModelo {
                 SQL += "primer_apellido = ? WHERE num_documento = ?";
                 break;
             case 3:
-                SQL += "password = ? WHERE num_documento = ?";
-                break;
-            case 4:
                 SQL += "email = ? WHERE num_documento = ?";
                 break;
-            case 5:
+            case 4:
                 SQL += "activo = ? WHERE num_documento = ?";
                 break;
-            case 6:
+            case 5:
                 SQL += "id_rol = ? WHERE num_documento = ?";
+                break;
+            case 6:
+                SQL += "password = ? WHERE num_documento = ?";
                 break;
             default:
                 break;

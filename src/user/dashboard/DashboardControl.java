@@ -10,6 +10,9 @@ public class DashboardControl {
     private static int expectedPayments = 0;
     private static int todayPayments = 0;
     private static String date;
+    private static int activeUsers = 0;
+    private static int activeClients = 0;
+
 
 
     public DashboardControl(){
@@ -35,17 +38,46 @@ public class DashboardControl {
             resultSet = DB.getRecords("SELECT * FROM contratos");
             while (resultSet.next()) {
 
-                System.out.println(date.substring(8,10));
-                System.out.println(resultSet.getString("fecha_corte"));
+
 
                 if (resultSet.getString("fecha_corte").equals(date.substring(8,10))){
                     expectedPayments+=1;
                 }
             }
+            //Actualizar los clientes activos
+            resultSet = DB.getRecords("SELECT * FROM usuarios");
+            while (resultSet.next()) {
+
+
+
+                if (resultSet.getBoolean("activo")){
+                    activeUsers+=1;
+                }
+
+            }
+             //Actualizar los usuarios activos
+            resultSet = DB.getRecords("SELECT * FROM clientes");
+            while (resultSet.next()) {
+
+
+
+                if (resultSet.getBoolean("activo")){
+                    activeClients+=1;
+                }
+
+            }
         } catch (SQLException e) {
 
             e.printStackTrace();
         }
+    }
+
+    public  int getActiveUsers() {
+        return activeUsers;
+    }
+
+    public  int getActiveClients() {
+        return activeClients;
     }
 
     public int getExpectedPayments() {

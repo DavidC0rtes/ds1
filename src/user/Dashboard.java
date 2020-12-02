@@ -92,8 +92,8 @@ public class Dashboard extends javax.swing.JFrame {
             panelMenu.remove(itemRegistrar);
             panelMenu.remove(itemListaUsuarios);
             panelMenu.remove(registerPayPanel);
-            configPanel.remove(configPanel.panelMantenimiento);
             panelMenu.remove(itemSubestaciones);
+            configPanel.remove(configPanel.panelMantenimiento);
 
         }
         if (usuario.getIdRol() == 3){   //Operador

@@ -78,7 +78,7 @@ private DashboardControl dashboardControl;
         resumenItemPanelLayout.setHorizontalGroup(
             resumenItemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, resumenItemPanelLayout.createSequentialGroup()
-                .addContainerGap(7, Short.MAX_VALUE)
+                .addContainerGap(35, Short.MAX_VALUE)
                 .addComponent(itemTitlelabel)
                 .addGap(29, 29, 29))
             .addGroup(resumenItemPanelLayout.createSequentialGroup()
@@ -116,7 +116,7 @@ private DashboardControl dashboardControl;
             .addGroup(resumenItemPanel1Layout.createSequentialGroup()
                 .addGap(45, 45, 45)
                 .addComponent(pagosRealizadosLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         resumenItemPanel1Layout.setVerticalGroup(
             resumenItemPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,23 +132,21 @@ private DashboardControl dashboardControl;
         resumenItemPanel2.setForeground(new java.awt.Color(255, 255, 255));
         resumenItemPanel2.setPreferredSize(new java.awt.Dimension(146, 122));
 
-        itemTitlelabel2.setText("Generadores Activos");
+        itemTitlelabel2.setText("Clientes Activos");
 
         pagosRealizadosLabel2.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
-        pagosRealizadosLabel2.setText("43");
+        pagosRealizadosLabel2.setText(String.valueOf(dashboardControl.getActiveClients()));
 
         javax.swing.GroupLayout resumenItemPanel2Layout = new javax.swing.GroupLayout(resumenItemPanel2);
         resumenItemPanel2.setLayout(resumenItemPanel2Layout);
         resumenItemPanel2Layout.setHorizontalGroup(
             resumenItemPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, resumenItemPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(itemTitlelabel2)
-                .addGap(14, 14, 14))
             .addGroup(resumenItemPanel2Layout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addComponent(pagosRealizadosLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(29, 29, 29)
+                .addGroup(resumenItemPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(itemTitlelabel2)
+                    .addComponent(pagosRealizadosLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
         resumenItemPanel2Layout.setVerticalGroup(
             resumenItemPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,17 +154,17 @@ private DashboardControl dashboardControl;
                 .addContainerGap()
                 .addComponent(itemTitlelabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(pagosRealizadosLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
+                .addComponent(pagosRealizadosLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         resumenItemPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(javax.swing.UIManager.getDefaults().getColor("Objects.Purple")));
         resumenItemPanel3.setForeground(new java.awt.Color(255, 255, 255));
 
-        itemTitlelabel3.setText("Pagos realizados");
+        itemTitlelabel3.setText("Usuarios Activos");
 
         pagosRealizadosLabel3.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
-        pagosRealizadosLabel3.setText("64");
+        pagosRealizadosLabel3.setText(String.valueOf(dashboardControl.getActiveUsers()));
 
         javax.swing.GroupLayout resumenItemPanel3Layout = new javax.swing.GroupLayout(resumenItemPanel3);
         resumenItemPanel3.setLayout(resumenItemPanel3Layout);
@@ -209,7 +207,7 @@ private DashboardControl dashboardControl;
                         .addComponent(resumenItemPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 21, Short.MAX_VALUE)
                         .addComponent(resumenItemPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(12, Short.MAX_VALUE))))
+                        .addContainerGap(13, Short.MAX_VALUE))))
         );
         resumenPanelLayout.setVerticalGroup(
             resumenPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -218,13 +216,13 @@ private DashboardControl dashboardControl;
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(resumenPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(resumenItemPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(resumenItemPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, resumenPanelLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(resumenPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(resumenItemPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(resumenItemPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(resumenItemPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(resumenItemPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
