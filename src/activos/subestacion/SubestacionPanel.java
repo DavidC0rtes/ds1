@@ -4,7 +4,7 @@ import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.FlatLightLaf;
 
-import activos.ControlSubestacion;
+import db.JDBCConnection;
 
 import java.util.*;
 
@@ -17,13 +17,13 @@ import javax.swing.*;
 public class SubestacionPanel extends javax.swing.JPanel {
 
     ArrayList<JTextField> Components = new ArrayList<JTextField>();
-    ControlSubestacion controlador = new ControlSubestacion();
+    ControlSubestacion controlador;
 
     /**
      * Creates new form SubestacionPanel
      */
-    public SubestacionPanel() {
-
+    public SubestacionPanel(JDBCConnection conn) {
+    	controlador = new ControlSubestacion(conn);
         initComponents();
         Components.add(text_encargado);
         Components.add(text_ciudad);

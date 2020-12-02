@@ -1,6 +1,8 @@
-package activos.subestacion;
+package activos.subestacion.lista;
 
 import javax.swing.table.DefaultTableModel;
+
+import db.JDBCConnection;
 
 /**
  * Vista de la lista de subestaciones.
@@ -11,8 +13,8 @@ public class ListaSubestaciones extends javax.swing.JPanel {
 	private DefaultTableModel modeloTabla;
 	
     /** Creates new form ListaSubestaciones */
-    public ListaSubestaciones() {
-    	modelo = new ModeloLista();
+    public ListaSubestaciones(JDBCConnection conn) {
+    	modelo = new ModeloLista(conn);
         initComponents();
         setTable();
     }

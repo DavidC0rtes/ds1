@@ -1,4 +1,4 @@
-package activos.transformadores;
+package activos.transformadores.lista;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,8 +9,8 @@ import db.JDBCConnection;
 public class ModeloListaTran {
 	private JDBCConnection DB;
 	
-	public ModeloListaTran() {
-		DB = new JDBCConnection();
+	public ModeloListaTran(JDBCConnection conn) {
+		DB = conn;
 	}
 	
 	

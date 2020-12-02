@@ -1,6 +1,8 @@
-package activos.transformadores;
+package activos.transformadores.lista;
 
 import javax.swing.table.DefaultTableModel;
+
+import db.JDBCConnection;
 
 /**
  *
@@ -8,19 +10,33 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ListaTransformadores extends javax.swing.JPanel {
 	
-	private ModeloListaTran modelo = new ModeloListaTran();
+	private ModeloListaTran modelo;
 	private DefaultTableModel modeloTabla;
     /**
      * Creates new form ListaTransformadores
      */
-    public ListaTransformadores() {
+    public ListaTransformadores(JDBCConnection DB) {
+    	modelo = new ModeloListaTran(DB);
         initComponents();
         tablaTransfor.setVisible(false);
         setComboOptions();
+        setGenericModel();
         
     }
     
-
+    private void setGenericModel() {
+    	tablaTransfor.setModel(new javax.swing.table.DefaultTableModel(
+                new Object [][] {
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null}
+                },
+                new String [] {
+                    "Serial", "Capacidad (KWh)", "Activo"
+                }
+            ));
+    }
     private void setComboOptions() {
     	String[] options = modelo.getSubes().toArray(new String[0]);
     	comboSubes.removeAllItems();

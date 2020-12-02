@@ -137,7 +137,7 @@
             <Component class="javax.swing.JLabel" name="tituloLabel">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Dialog" size="24" style="1"/>
+                  <Font name="SF Pro Text" size="24" style="1"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="Escoja que tipo de pago va a registrar"/>
@@ -169,6 +169,9 @@
             </Component>
             <Component class="javax.swing.JLabel" name="pagoDirectoLbl">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="SF Pro Text" size="12" style="1"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Pago directo"/>
               </Properties>
             </Component>
@@ -190,6 +193,9 @@
             </Component>
             <Component class="javax.swing.JLabel" name="sucursalLbl">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="SF Pro Text" size="12" style="1"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Pago en sucursal"/>
               </Properties>
             </Component>
@@ -246,7 +252,7 @@
         <Component class="javax.swing.JLabel" name="topLabel">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="DejaVu Sans" size="11" style="0"/>
+              <Font name="SF Pro Rounded" size="11" style="0"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Registro de pagos"/>

@@ -1,4 +1,4 @@
-package activos.subestacion;
+package activos.subestacion.lista;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,8 +10,8 @@ public class ModeloLista {
 	private JDBCConnection DB;
 
 	
-	public ModeloLista() {
-		DB = new JDBCConnection();
+	public ModeloLista(JDBCConnection conn) {
+		DB = conn;
 	}
 	
 	private ArrayList<ArrayList<String>> getAll() {

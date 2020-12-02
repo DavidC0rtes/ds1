@@ -1,4 +1,4 @@
-package activos;
+package activos.subestacion;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,9 +14,12 @@ import deprecated.ds_bd;
  */
 public class ControlSubestacion {
 	
-	private JDBCConnection DB = new JDBCConnection();
+	private JDBCConnection DB;
     
-    ds_bd GestorBD = new ds_bd();
+	public ControlSubestacion(JDBCConnection conn) {
+		DB = conn;
+	}
+	
     public int valoresVacios(ArrayList<JTextField> Componentes){
         for(int i = 0; i < Componentes.size(); i++){
             if(Componentes.get(i).getText().length() == 0){
