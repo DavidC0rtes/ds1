@@ -27,6 +27,8 @@ public class ConfigPanel extends javax.swing.JPanel {
         buttonGurardarCambios.setVisible(ConfigControl.isActive());
         panelConfigMantenimiento.setVisible(ConfigControl.isActive());
         itemMantenimiento.setSelected(ConfigControl.isActive());
+        jTextArea1.setVisible(ConfigControl.isActive());
+        jScrollPane2.setVisible(ConfigControl.isActive());
     }
 
     /**
@@ -47,6 +49,8 @@ public class ConfigPanel extends javax.swing.JPanel {
         icon2 = new javax.swing.JLabel();
         itemMantenimiento = new javax.swing.JCheckBox();
         buttonGurardarCambios = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
         panelConfigMantenimiento = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
@@ -103,7 +107,17 @@ public class ConfigPanel extends javax.swing.JPanel {
             }
         });
         panelMantenimiento1.add(buttonGurardarCambios);
-        buttonGurardarCambios.setBounds(90, 80, 160, 60);
+        buttonGurardarCambios.setBounds(80, 150, 160, 40);
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setLineWrap(true);
+        jTextArea1.setRows(5);
+        jTextArea1.setText(ConfigControl.getSms());
+        jTextArea1.setWrapStyleWord(true);
+        jScrollPane2.setViewportView(jTextArea1);
+
+        panelMantenimiento1.add(jScrollPane2);
+        jScrollPane2.setBounds(10, 40, 320, 100);
 
         panelMantenimiento.add(panelMantenimiento1);
 
@@ -164,7 +178,8 @@ public class ConfigPanel extends javax.swing.JPanel {
             try{
                 LocalDateTime mantenimientoInicio = LocalDateTime.parse( itemMantenimientoInicio.getText());
                 LocalDateTime mantenimientoFinal = LocalDateTime.parse( itemMantenimientoFinal.getText());
-                ConfigControl.changeData(mantenimientoInicio, mantenimientoFinal, false);
+                String sms = jTextArea1.getText();
+                ConfigControl.changeData(mantenimientoInicio, mantenimientoFinal, false, sms);
                 JOptionPane.showMessageDialog(this, "Mantenimiento desactivado exitosamente");
 
             }
@@ -181,9 +196,10 @@ public class ConfigPanel extends javax.swing.JPanel {
         try{
             LocalDateTime mantenimientoInicio = LocalDateTime.parse( itemMantenimientoInicio.getText());
             LocalDateTime mantenimientoFinal = LocalDateTime.parse( itemMantenimientoFinal.getText());
+            String sms = jTextArea1.getText();
 
             if (ConfigControl.validateDate(mantenimientoInicio, mantenimientoFinal)){
-                ConfigControl.changeData(mantenimientoInicio, mantenimientoFinal, true);
+                ConfigControl.changeData(mantenimientoInicio, mantenimientoFinal, true, sms);
                 JOptionPane.showMessageDialog(this, "Mantenimiento activado exitosamente");
             }
             else{
@@ -216,6 +232,8 @@ public class ConfigPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JPanel panelConfigMantenimiento;
     private javax.swing.JPanel panelDarkMode;

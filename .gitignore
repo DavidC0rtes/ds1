@@ -16,3 +16,4 @@ build.xml
 manifest.mf
 build
 *.iml
+/dist/

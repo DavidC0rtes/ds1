@@ -51,7 +51,9 @@
                 </Property>
                 <Property name="lineWrap" type="boolean" value="true"/>
                 <Property name="rows" type="int" value="5"/>
-                <Property name="text" type="java.lang.String" value="El Sistema se encuentra en mantenimiento por favor ingresa m&#xe1;s tarde, para mayor informaci&#xf3;n contacta al Administrador del sistema.&#xa;"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="ConfigControl.getSms()" type="code"/>
+                </Property>
                 <Property name="wrapStyleWord" type="boolean" value="true"/>
                 <Property name="opaque" type="boolean" value="false"/>
               </Properties>

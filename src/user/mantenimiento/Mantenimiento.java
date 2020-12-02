@@ -61,6 +61,8 @@ private Timer verificarMantenimiento;
                     killMySelf();
 
                 }
+                jTextArea1.setText(ConfigControl.getSms());
+                updateUI();
             }
         });
 
@@ -75,9 +77,9 @@ private Timer verificarMantenimiento;
 
     }
     private void updateUI(){
-        jLabel1.setText(mantenimientoHMS);
-        jPanel2.revalidate();
-        jPanel2.repaint();
+        jLabel1.setText("Tiempo restante \n" + mantenimientoHMS);
+        this.revalidate();
+        this.repaint();
     }
 
     /**
@@ -105,7 +107,7 @@ private Timer verificarMantenimiento;
         jTextArea1.setFont(new java.awt.Font("sansserif", 0, 36)); // NOI18N
         jTextArea1.setLineWrap(true);
         jTextArea1.setRows(5);
-        jTextArea1.setText("El Sistema se encuentra en mantenimiento por favor ingresa más tarde, para mayor información contacta al Administrador del sistema.\n");
+        jTextArea1.setText(ConfigControl.getSms());
         jTextArea1.setWrapStyleWord(true);
         jTextArea1.setOpaque(false);
         jScrollPane1.setViewportView(jTextArea1);
