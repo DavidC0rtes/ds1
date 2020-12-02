@@ -105,9 +105,28 @@ public class ConsultaModeloCliente {
         System.out.println("Affected rows: " + affectedrows);
     }
     public void borrarCliente(String numDocumento){
-        String SQL = "DELETE FROM clientes WHERE num_documento=?";
-        String[] params = {numDocumento};
-        int affectedrows = DB.updateRecord(SQL, params);
-        System.out.println("Affected rows: " + affectedrows);
+        try {
+            ResultSet rs = DB.getRecords("SELECT id FROM clientes WHERE num_documento="+numDocumento);
+            String idCliente;
+            if(rs.next()){
+                idCliente = rs.getString("id");
+            }else{
+                idCliente = "0";
+            }
+            String SQLfacturas = "DELETE FROM facturas WHERE id_cliente=?";
+            String[] paramsfacturas = {idCliente};
+            String SQLcontratos = "DELETE FROM contratos WHERE id_cliente=?";
+            String[] paramscontratos = {idCliente};
+            String SQLclientes = "DELETE FROM clientes WHERE num_documento=?";
+            String[] paramsclientes = {numDocumento};
+            
+            
+            int affectedrows = DB.updateRecord(SQLfacturas, paramsfacturas)
+                    + DB.updateRecord(SQLcontratos, paramscontratos)
+                    + DB.updateRecord(SQLclientes, paramsclientes);
+            System.out.println("Affected rows: " + affectedrows);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
 }

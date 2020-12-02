@@ -1,27 +1,32 @@
 package user;
 
+import user.config.ConfigControl;
+import user.mantenimiento.Mantenimiento;
+
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.BorderFactory;
-import javax.swing.JOptionPane;
-
-import javax.swing.JFrame;
+import javax.swing.*;
 
 /**
  *
  * @author USER
  */
 public class LoginGUI extends javax.swing.JFrame {
-	
+	public ConfigControl configControl;
 	private User usuario;
     /**
      * Creates new form ds_login
      */
     public LoginGUI() {
+        this.setTitle("Iniciar Sesión");
+        setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        configControl = new ConfigControl();
         setVisible(true);
         initComponents();
         changeComponents();
+        setPreferredSize(new Dimension(908, 634));
     }
     
     public void exit(){
@@ -49,61 +54,8 @@ public class LoginGUI extends javax.swing.JFrame {
         {
           public void actionPerformed(ActionEvent e)
           {
-          
-            if(jTextField2.getText().length() != 0 && String.valueOf(jPasswordField1.getPassword()).length() != 0){
-                try {
-                    // intentional error
-                	
-                    String s = jTextField2.getText();
-                    
-                    /* Una vez se tengan el cc y la contraseña, se cre una instancia
-                     * de usuario, para poder realizar el login más adelante.
-                     */
-                    usuario = new User(s, String.valueOf(jPasswordField1.getPassword()));
-                    
-                    if (usuario.attemptLogin(s, String.valueOf(jPasswordField1.getPassword()))) {
-                        int rol = usuario.getIdRol();
-                        switch(rol){
-                            case 0:
-                                System.out.println("Not found");
-                                wrongUserPassword();
-                                jPasswordField1.setText("");
-                                break;
-                            case 1:
-                                Dashboard adminInterface = new Dashboard(usuario);
-                                adminInterface.setVisible(true);
-                                System.out.println("Welcome back admin");
-                                exit();
-                                break;
-                            case 2:
-                                System.out.println("Welcome back manager");
-                                Dashboard managerInterface = new Dashboard(usuario);
-                                managerInterface.setVisible(true);
-                                exit();
-                                break;
-                            case 3:
-                                System.out.println("Welcome back operator");
-                                Dashboard operatorInterface = new Dashboard(usuario);
-                                operatorInterface.setVisible(true);
-                                exit();
-                                break;
-                            case 4:
-                                System.out.println("Couldn't find a proper window");
-                                break;
-                        }
-                    } else {
-                    	wrongUserPassword();
-                    }
-                }
-                catch (NumberFormatException nfe) {
-                    System.out.println("Invalido");
-                    wrongUserPassword();
-                }
-                
-            } else {
-                System.out.println("Vacio");
-                wrongUserPassword();
-            }
+
+            new LoginProgresBar();
 
           }
         });
@@ -185,37 +137,112 @@ public class LoginGUI extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
+    private void iniciarSesion() {
+        if(jTextField2.getText().length() != 0 && String.valueOf(jPasswordField1.getPassword()).length() != 0){
+            try {
+                // intentional error
+
+                String s = jTextField2.getText();
+
+                /* Una vez se tengan el cc y la contraseña, se cre una instancia
+                 * de usuario, para poder realizar el login más adelante.
+                 */
+                usuario = new User(s, String.valueOf(jPasswordField1.getPassword()));
+
+                if (usuario.attemptLogin(s, String.valueOf(jPasswordField1.getPassword()))) {
+                    int rol = usuario.getIdRol();
+                    configControl.updateData();
+                    switch(rol){
+                        case 0:
+                            System.out.println("Not found");
+                            wrongUserPassword();
+                            jPasswordField1.setText("");
+                            break;
+                        case 1:
+                            Dashboard adminInterface = new Dashboard(usuario);
+                            adminInterface.setVisible(true);
+                            System.out.println("Welcome back admin");
+                            exit();
+                            break;
+                        case 2:
+                            if (configControl.isActive()){
+                                Mantenimiento mantenimiento = new Mantenimiento(configControl.getHMS());
+                                mantenimiento.setVisible(true);
+                            }
+                            else{
+                                System.out.println("Welcome back manager");
+                                Dashboard managerInterface = new Dashboard(usuario);
+                                managerInterface.setVisible(true);
+                            }
+                            exit();
+
+                            break;
+                        case 3:
+                            if (configControl.isActive()){
+                                Mantenimiento mantenimiento = new Mantenimiento(configControl.getHMS());
+                                mantenimiento.setVisible(true);
+                            }else{
+                                System.out.println("Welcome back operator");
+                                Dashboard operatorInterface = new Dashboard(usuario);
+                                operatorInterface.setVisible(true);
+                            }
+                            exit();
+
+                            break;
+                        case 4:
+                            System.out.println("Couldn't find a proper window");
+                            break;
+                    }
+                } else {
+                    wrongUserPassword();
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LoginGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LoginGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LoginGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LoginGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new LoginGUI().setVisible(true);
+            catch (NumberFormatException nfe) {
+                System.out.println("Invalido");
+                wrongUserPassword();
             }
-        });
+
+        } else {
+            System.out.println("Vacio");
+            wrongUserPassword();
+        }
     }
+
+    private class LoginProgresBar extends SwingWorker {
+
+        private final JFrame frame;
+        private final JOptionPane pane;
+        private final JProgressBar jProgressBar;
+        private JDialog dialog;
+
+        public LoginProgresBar() {
+            this.execute();
+            frame = new JFrame();
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            pane = new JOptionPane();
+            pane.setMessage("Iniciando sesión, por favor espere");
+            jProgressBar = new JProgressBar(1, 100);
+            jProgressBar.setIndeterminate(true);
+            pane.add(jProgressBar, 1);
+            dialog = pane.createDialog(frame, "Iniciando sesion");
+            dialog.setVisible(true);
+
+        }
+
+        @Override
+        protected Object doInBackground() throws Exception {
+
+            iniciarSesion();
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        public void dispose() {
+            frame.dispose();
+
+        }
+    }
+
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
