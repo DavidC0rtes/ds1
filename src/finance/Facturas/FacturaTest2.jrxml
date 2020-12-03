@@ -555,7 +555,7 @@ WHERE contratos.id = $P{IdContrato}]]>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[SERVICIO DE ENERGÍA]]></text>
+				<text><![CDATA[SERVICIO DE ENERG?A]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="13" y="147" width="170" height="16" uuid="3e45fd0e-608e-48b6-addf-650f8216e812"/>
@@ -623,7 +623,7 @@ WHERE contratos.id = $P{IdContrato}]]>
 			</staticText>
 			<staticText>
 				<reportElement x="290" y="41" width="94" height="15" uuid="a9d951f7-13dd-48b1-8e69-908f48814e76"/>
-				<text><![CDATA[Cargo Básico]]></text>
+				<text><![CDATA[Cargo B?sico]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="290" y="56" width="94" height="16" uuid="203bb493-a2c4-420d-834d-f02f38ffa696"/>
@@ -673,7 +673,7 @@ WHERE contratos.id = $P{IdContrato}]]>
 				<textElement>
 					<font fontName="Arial" isBold="true"/>
 				</textElement>
-				<text><![CDATA[COLÓN]]></text>
+				<text><![CDATA[COL?N]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="404" y="40" width="140" height="19" uuid="6a8675fc-5c87-4da4-9b1f-dfdbdc7981e6"/>
@@ -752,7 +752,7 @@ WHERE contratos.id = $P{IdContrato}]]>
 			</staticText>
 			<staticText>
 				<reportElement x="7" y="200" width="140" height="19" uuid="54c7d4d6-33a2-402d-a0d1-22928c5df6ee"/>
-				<text><![CDATA[AV.Estación # 5AN-54]]></text>
+				<text><![CDATA[AV.Estaci?n # 5AN-54]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="213" y="110" width="140" height="18" forecolor="#273B7D" uuid="76fb82d6-88f3-4060-9e8d-424e10d97240"/>
@@ -770,7 +770,7 @@ WHERE contratos.id = $P{IdContrato}]]>
 				<textElement>
 					<font fontName="Arial" isBold="true"/>
 				</textElement>
-				<text><![CDATA[CALI 08 (Las Américas)]]></text>
+				<text><![CDATA[CALI 08 (Las Am?ricas)]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="213" y="160" width="140" height="19" uuid="f63243c4-f6ed-43c3-826a-56d66798748e"/>
@@ -807,7 +807,7 @@ WHERE contratos.id = $P{IdContrato}]]>
 				<textElement>
 					<font fontName="Arial" isBold="true"/>
 				</textElement>
-				<text><![CDATA[CALI 20 (Siloé)]]></text>
+				<text><![CDATA[CALI 20 (Silo?)]]></text>
 			</staticText>
 			<rectangle>
 				<reportElement x="405" y="181" width="150" height="49" backcolor="rgba(87, 84, 84, 0.52156866)" uuid="9299d73f-3d05-4a9a-b7bd-9a3aa6ef3adb"/>
@@ -820,7 +820,7 @@ WHERE contratos.id = $P{IdContrato}]]>
 				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[Pago con tarjeta de crédito]]></text>
+				<text><![CDATA[Pago con tarjeta de cr?dito]]></text>
 			</staticText>
 			<image>
 				<reportElement x="441" y="196" width="40" height="34" uuid="33632e7d-e75b-40a9-973c-0645364a9866"/>
@@ -858,7 +858,7 @@ WHERE contratos.id = $P{IdContrato}]]>
 			</image>
 			<staticText>
 				<reportElement x="30" y="300" width="515" height="36" uuid="9deb934d-f265-4ddd-9d10-95792d879df6"/>
-				<text><![CDATA[RESERVADO PARA EL CÓDIGO DE BARRAS DEFINIDO POR LA EMPRESA]]></text>
+				<text><![CDATA[RESERVADO PARA EL C?DIGO DE BARRAS DEFINIDO POR LA EMPRESA]]></text>
 			</staticText>
 		</band>
 	</columnHeader>

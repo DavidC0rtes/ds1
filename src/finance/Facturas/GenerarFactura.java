@@ -2,14 +2,16 @@ package finance.Facturas;
 
 import db.JDBCConnection;
 import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
+
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
 
 public class GenerarFactura {
 
-	JasperReport reporte; 
 	
 	
 	public GenerarFactura() {
@@ -42,8 +44,11 @@ public class GenerarFactura {
 		con = new JDBCConnection();
 		Map<String, Object> parametros = new HashMap<String, Object>();
 		parametros.put("IdContrato", contract_ID);
-		try {
-			reporte = JasperCompileManager.compileReport("src/finance/Facturas/FacturaTest2.jrxml");
+
+		
+		try (InputStream is = GenerarFactura.class.getResourceAsStream("FacturaTest2.jasper")){
+
+			JasperReport reporte = (JasperReport)JRLoader.loadObject(is);
 			JasperPrint jp = JasperFillManager.fillReport(reporte, parametros, con.getConnection());
 			JasperViewer.viewReport(jp,false);
 			
