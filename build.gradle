@@ -1,0 +1,54 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+apply plugin: 'java'
+
+compileJava{
+    compileJava.options.encoding = 'UTF-8'
+    options.compilerArgs << '-Xlint:unchecked'
+    options.incremental = true
+}
+
+group 'sige'
+version '1.0'
+
+repositories {
+    mavenCentral()
+    maven { url "http://jaspersoft.jfrog.io/jaspersoft/third-party-ce-artifacts/" }
+
+}
+mainClassName = 'sige.user.Main'
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    compile group: 'org.postgresql', name: 'postgresql', version: '42.2.18'
+    compile group: 'net.sf.jasperreports', name: 'jasperreports', version: '6.16.0'
+    compile group: 'com.formdev', name: 'flatlaf', version: '0.44'
+    compile group: 'org.netbeans.external', name: 'AbsoluteLayout', version: 'RELEASE121'
+
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'sige.user.Main'
+
+    }
+    doFirst {
+        from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    }
+    exclude 'META-INF/*.RSA', 'META-INF/*.SF','META-INF/*.DSA'
+}
+
+test {
+    // Enable JUnit 5 (Gradle 4.6+).
+    useJUnitPlatform()
+
+    // Always run tests, even when nothing changed.
+    //dependsOn 'cleanTest'
+
+    // Show test results.
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
