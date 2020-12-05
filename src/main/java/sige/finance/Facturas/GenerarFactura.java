@@ -46,7 +46,7 @@ public class GenerarFactura {
 		parametros.put("IdContrato", contract_ID);
 
 		
-		try (InputStream is = GenerarFactura.class.getResourceAsStream("FacturaTest2.jasper")){
+		try (InputStream is = GenerarFactura.class.getResourceAsStream("/FacturaTest2.jasper")){
 
 			JasperReport reporte = (JasperReport)JRLoader.loadObject(is);
 			JasperPrint jp = JasperFillManager.fillReport(reporte, parametros, con.getConnection());

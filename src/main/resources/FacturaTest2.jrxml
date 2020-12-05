@@ -824,11 +824,11 @@ WHERE contratos.id = $P{IdContrato}]]>
 			</staticText>
 			<image>
 				<reportElement x="441" y="196" width="40" height="34" uuid="33632e7d-e75b-40a9-973c-0645364a9866"/>
-				<imageExpression><![CDATA["/Bill_Mastercard.png"]]></imageExpression>
+				<imageExpression><![CDATA["Bill_Mastercard.png"]]></imageExpression>
 			</image>
 			<image>
 				<reportElement x="485" y="196" width="48" height="33" uuid="86b1037e-94e8-4236-b591-11fee9b48a96"/>
-				<imageExpression><![CDATA["/Bill_Visa.png"]]></imageExpression>
+				<imageExpression><![CDATA["Bill_Visa.png"]]></imageExpression>
 			</image>
 			<rectangle>
 				<reportElement x="0" y="230" width="555" height="55" forecolor="#273B7D" uuid="c105b852-7323-43ac-89f7-859a9defcc27"/>
@@ -842,19 +842,19 @@ WHERE contratos.id = $P{IdContrato}]]>
 			</staticText>
 			<image>
 				<reportElement x="109" y="250" width="50" height="35" uuid="58b3c918-5a1b-40cb-9c1a-8efd4dee32db"/>
-				<imageExpression><![CDATA["/Bill_Colpatria.png"]]></imageExpression>
+				<imageExpression><![CDATA["Bill_Colpatria.png"]]></imageExpression>
 			</image>
 			<image>
 				<reportElement x="170" y="255" width="69" height="30" uuid="5a85df75-ee81-485a-86af-53cdf3729251"/>
-				<imageExpression><![CDATA["/Bill_BancodeBogota.png"]]></imageExpression>
+				<imageExpression><![CDATA["Bill_BancodeBogota.png"]]></imageExpression>
 			</image>
 			<image>
 				<reportElement x="260" y="250" width="50" height="35" uuid="15923838-1833-43fb-994a-366b5716292a"/>
-				<imageExpression><![CDATA["/Bill_Bancolombia.png"]]></imageExpression>
+				<imageExpression><![CDATA["Bill_Bancolombia.png"]]></imageExpression>
 			</image>
 			<image>
 				<reportElement x="460" y="232" width="95" height="53" uuid="ee9d041d-ac9e-4a80-b9e1-932c90e6ab56"/>
-				<imageExpression><![CDATA["/Bill_superservicios1.jpg"]]></imageExpression>
+				<imageExpression><![CDATA["Bill_superservicios1.jpg"]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="30" y="300" width="515" height="36" uuid="9deb934d-f265-4ddd-9d10-95792d879df6"/>
