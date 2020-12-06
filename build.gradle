@@ -6,7 +6,8 @@ apply plugin: 'java'
 
 compileJava{
     compileJava.options.encoding = 'UTF-8'
-    options.compilerArgs << '-Xlint:unchecked'
+    // Descomentar para ver las operaciones inseguras en el codigo
+    //options.compilerArgs << '-Xlint:unchecked'
     options.incremental = true
 }
 
